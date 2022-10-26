@@ -1,7 +1,5 @@
 #include "..\..\vtsed\vtsed.hpp"
 
-using namespace vtsed;
-
 int main()
 {
     if (!enableVTS())

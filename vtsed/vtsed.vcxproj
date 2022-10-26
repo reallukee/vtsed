@@ -153,8 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="common.hpp" />
     <ClInclude Include="console.hpp" />
-    <ClInclude Include="controls.hpp" />
+    <ClInclude Include="dcontrols.hpp" />
+    <ClInclude Include="scontrols.hpp" />
     <ClInclude Include="vts.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
@@ -166,14 +168,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common.cpp" />
     <ClCompile Include="console.cpp" />
-    <ClCompile Include="controls.cpp" />
+    <ClCompile Include="dcontrols.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="scontrols.cpp" />
     <ClCompile Include="vts.cpp" />
   </ItemGroup>
   <ItemGroup>

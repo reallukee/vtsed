@@ -17,140 +17,6 @@
 namespace vtsed
 {
     // ##
-    // ##   Structs
-    // ##
-
-    #pragma region Structs
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    RGBCOLOR::RGBCOLOR(short r, short g, short b)
-    {
-        this->r = r;
-        this->g = g;
-        this->b = b;
-
-        if (r < 0 || r > 255)
-            this->r = 0;
-
-        if (g < 0 || g > 255)
-            this->g = 0;
-
-        if (b < 0 || b > 255)
-            this->b = 0;
-    }
-
-
-    RGBCOLOR::RGBCOLOR(short c)
-    {
-        this->r = c;
-        this->g = c;
-        this->b = c;
-
-        if (c < 0 || r > 255)
-        {
-            this->r = 0;
-            this->g = 0;
-            this->b = 0;
-        }
-    }
-
-
-    RGBCOLOR::RGBCOLOR()
-    {
-        this->r = 0;
-        this->g = 0;
-        this->b = 0;
-    }
-
-
-    string RGBCOLOR::toString()
-    {
-        stringstream t;
-        t << "rgb(" << r << ", " << g << ", " << b << ")";
-        return t.str();
-    }
-
-
-    RGBCOLOR rgbFrom(short r, short g, short b)
-    {
-        return RGBCOLOR(r, g, b);
-    }
-
-
-    RGBCOLOR rgbFrom(short c)
-    {
-        return RGBCOLOR(c, c, c);
-    }
-
-
-    HEXCOLOR::HEXCOLOR(string r, string g, string b)
-    {
-        this->r = r;
-        this->g = g;
-        this->b = b;
-
-        if (r.size() != 2)
-            this->r = "00";
-        
-        if (g.size() != 2)
-            this->g = "00";
-
-        if (b.size() != 2)
-            this->b = "00";
-    }
-
-
-    HEXCOLOR::HEXCOLOR(string c)
-    {
-        this->r = c;
-        this->g = c;
-        this->b = c;
-
-        if (c.size() != 2)
-        {
-            this->r = "00";
-            this->g = "00";
-            this->b = "00";
-        }
-    }
-
-
-    HEXCOLOR::HEXCOLOR()
-    {
-        this->r = "00";
-        this->g = "00";
-        this->b = "00";
-    }
-
-
-    string HEXCOLOR::toString()
-    {
-        stringstream t;
-        t << "#" << r << g << b;
-        return t.str();
-    }
-
-
-    HEXCOLOR hexFrom(string r, string g, string b)
-    {
-        return HEXCOLOR(r, g, b);
-    }
-
-
-    HEXCOLOR hexFrom(string c)
-    {
-        return HEXCOLOR(c, c, c);
-    }
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
-
-
-    // ##
     // ##   Basics
     // ##
 
@@ -158,6 +24,8 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    #if defined(_WIN32) || defined(_WIN64)
 
     void initConsole()
     {
@@ -213,6 +81,8 @@ namespace vtsed
 
         return true;
     }
+
+    #endif
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////

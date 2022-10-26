@@ -16,6 +16,8 @@
 
 namespace vtsed
 {
+    #if defined(_WIN32) || defined(_WIN64)
+
     // ##
     // ##   Cursor
     // ##
@@ -164,4 +166,6 @@ namespace vtsed
     //////////////////////////////////////////////////
 
     #pragma endregion
+
+    #endif
 }

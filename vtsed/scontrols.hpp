@@ -5,17 +5,30 @@
     Questo progetto è disponibile su GitHub.
 
     Repository:     https://github.com/reallukee/vtsed/
-    Descrizione:    API EXPOSER
+    Descrizione:    STATIC CONTROLS
     Autore:         Realluke (https://github.com/reallukee/)
     Versione:       1.0.0
 */
 
 #pragma once
 
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <cstring>
+#if defined(_WIN32) || defined(_WIN64)
+#include <conio.h>
+#include <windows.h>
+#endif
+
+using namespace std;
+
 #include "common.hpp"
 #include "console.hpp"
-#include "dcontrols.hpp"
-#include "scontrols.hpp"
 #include "vts.hpp"
 
-using namespace vtsed;
+namespace vtsed
+{
+
+}

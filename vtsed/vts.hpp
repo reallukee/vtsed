@@ -12,98 +12,22 @@
 
 #pragma once
 
-#include <conio.h>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <cstring>
+#if defined(_WIN32) || defined(_WIN64)
+#include <conio.h>
 #include <windows.h>
+#endif
 
 using namespace std;
 
+#include "common.hpp"
+
 namespace vtsed
 {
-    // ##
-    // ##   Structs
-    // ##
-
-    #pragma region Structs
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #ifndef RGBCOLOR_STRUCT // RGBCOLOR_STRUCT
-    #define RGBCOLOR_STRUCT
-
-    //
-    //  RGBCOLOR
-    //
-    //  Rappresenta un colore a 24bit in formato RGB.
-    //
-
-    struct RGBCOLOR
-    {
-        short r = 0;
-        short b = 0;
-        short g = 0;
-
-        // Costruttori Struttura.
-
-        RGBCOLOR(short r, short g, short b);
-        RGBCOLOR(short c);
-        RGBCOLOR();
-
-        // Metodi.
-
-        string toString();
-    };
-
-    #endif  // RGBCOLOR_STRUCT
-
-
-    RGBCOLOR rgbFrom(short r, short g, short b);
-    RGBCOLOR rgbFrom(short c);
-
-
-    #ifndef HEXCOLOR_STRUCT // HEXCOLOR_STRUCT
-    #define HEXCOLOR_STRUCT
-
-    //
-    //  HEXCOLOR
-    //
-    //  Rappresenta un colore a 24bit in formato HEX.
-    //
-
-    struct HEXCOLOR
-    {
-        string r = "00";
-        string g = "00";
-        string b = "00";
-
-        // Costruttori Struttura.
-
-        HEXCOLOR(string r, string g, string b);
-        HEXCOLOR(string c);
-        HEXCOLOR();
-
-        // Metodi.
-
-        string toString();
-    };
-
-
-    HEXCOLOR hexFrom(string r, string g, string b);
-    HEXCOLOR hexFrom(string c);
-
-    #endif  // HEXCOLOR_STRUCT
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
-
-
     // ##
     // ##   Basics
     // ##
@@ -113,10 +37,14 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
+    #if defined(_WIN32) || defined(_WIN64)
+
     void initConsole();
     void dinitConsole();
     bool enableVTS();
     bool disableVTS();
+
+    #endif
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -306,7 +234,7 @@ namespace vtsed
 
     //
     //  Rappresenta una Raccolta di Colori a 16bit
-    //  di Windows ConHost
+    //  di Windows ConHost.
     //
 
     const HEXCOLOR conhost[16] = {
@@ -331,7 +259,32 @@ namespace vtsed
 
     //
     //  Rappresenta una Raccolta di Colori a 16bit
-    //  Classici
+    //  di Windows Terminal.
+    //
+
+    const HEXCOLOR terminal[16] = {
+        hexFrom("00", "00", "00"),
+        hexFrom("C2", "36", "21"),
+        hexFrom("25", "BC", "24"),
+        hexFrom("AD", "AD", "27"),
+        hexFrom("49", "2E", "E1"),
+        hexFrom("D3", "38", "D3"),
+        hexFrom("33", "BB", "C8"),
+        hexFrom("CB", "CC", "CD"),
+        hexFrom("81", "83", "83"),
+        hexFrom("FC", "39", "1F"),
+        hexFrom("31", "E7", "22"),
+        hexFrom("EA", "EC", "23"),
+        hexFrom("58", "33", "FF"),
+        hexFrom("F9", "35", "F8"),
+        hexFrom("14", "F0", "F0"),
+        hexFrom("E9", "EB", "EB"),
+    };
+
+
+    //
+    //  Rappresenta una Raccolta di Colori a 16bit
+    //  Classici.
     //
 
     const HEXCOLOR classic[16] = {
@@ -356,7 +309,7 @@ namespace vtsed
 
     //
     //  Rappresenta una Raccolta di Colori a 16bit
-    //  Moderni
+    //  Moderni.
     //
 
     const HEXCOLOR modterm[16] = {

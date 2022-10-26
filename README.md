@@ -20,8 +20,10 @@
 
 # Funzionalità
 
+- Common ([`common.hpp`](./vtsed/common.hpp))
 - Console ([`console.hpp`](./vtsed/console.hpp))
-- Controlli ([`controls.hpp`](./vtsed/controls.hpp))
+- Controlli Dinamici ([`dcontrols.hpp`](./vtsed/dcontrols.hpp))
+- Controlli Statici ([`scontrols.hpp`](./vtsed/scontrols.hpp))
 - VTS ([`vts.hpp`](./vtsed/vts.hpp))
 
 

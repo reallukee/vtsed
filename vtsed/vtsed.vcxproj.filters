@@ -27,10 +27,16 @@
     <ClInclude Include="console.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="controls.hpp">
+    <ClInclude Include="dcontrols.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="vtsed.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="common.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="scontrols.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +50,13 @@
     <ClCompile Include="console.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="controls.cpp">
+    <ClCompile Include="dcontrols.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="scontrols.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

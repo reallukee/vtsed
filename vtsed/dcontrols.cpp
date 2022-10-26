@@ -5,17 +5,19 @@
     Questo progetto è disponibile su GitHub.
 
     Repository:     https://github.com/reallukee/vtsed/
-    Descrizione:    CONTROLS
+    Descrizione:    DYNAMIC CONTROLS
     Autore:         Realluke (https://github.com/reallukee/)
     Versione:       1.0.0
 */
 
 #include "pch.h"
 
-#include "controls.hpp"
+#include "dcontrols.hpp"
 
 namespace vtsed
 {
+    #if defined(_WIN32) || defined(_WIN64)
+
     // ##
     // ##   Single Control
     // ##
@@ -826,4 +828,6 @@ namespace vtsed
     //////////////////////////////////////////////////
 
     #pragma endregion
+
+    #endif
 }

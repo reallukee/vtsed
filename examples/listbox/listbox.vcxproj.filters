@@ -21,10 +21,16 @@
     <ClCompile Include="..\..\vtsed\console.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\vtsed\controls.cpp">
+    <ClCompile Include="..\..\vtsed\vts.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\vtsed\vts.cpp">
+    <ClCompile Include="..\..\vtsed\scontrols.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\vtsed\dcontrols.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\vtsed\common.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,13 +38,19 @@
     <ClInclude Include="..\..\vtsed\console.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\vtsed\controls.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\vtsed\vts.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\vtsed\vtsed.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\dcontrols.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\scontrols.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\common.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
