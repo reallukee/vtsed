@@ -587,6 +587,76 @@ namespace vtsed
 
 
     // ##
+    // ##   Query State
+    // ##
+
+    #pragma Query State
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void reportCursorPosition()
+    {
+        cout << "\x1b[6n";
+    }
+
+
+    void deviceAttributes()
+    {
+        cout << "\x1b[0c";
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
+    // ##   Tabs
+    // ##
+
+    #pragma region Tabs
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void horizontalTab()
+    {
+        cout << "\x1bH";
+    }
+
+
+    void cursorHorizontalTab(int n)
+    {
+        cout << "\x1b[" << n << "I";
+    }
+
+
+    void cursorBackwardsTab(int n)
+    {
+        cout << "\x1b[" << n << "Z";
+    }
+
+
+    void tabClearCurrentColumn()
+    {
+        cout << "\x1b[0g";
+    }
+
+
+    void tabClearAllColumns()
+    {
+        cout << "\x1b[3g";
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
     // ##   Designate Character
     // ##
 
@@ -601,6 +671,26 @@ namespace vtsed
             cout << "\x1b(0";
         else
             cout << "\x1b(B";
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
+    // ##   Scrolling Margins
+    // ##
+
+    #pragma Scrolling Margin
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void scrollingMargin(int t, int b)
+    {
+        cout << "\x1b[" << t << ";" << b << "r";
     }
 
     //////////////////////////////////////////////////

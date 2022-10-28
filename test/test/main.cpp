@@ -5,7 +5,7 @@ int main()
     if (!enableVTS())
         return -1;
 
-    initConsole();
+    // initConsole();
 
     return 0;
 }
