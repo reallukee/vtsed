@@ -30,11 +30,64 @@
 
 # Esempi
 
+## Controllo `Box`
+
+```cpp
+#include "vtsed.hpp"
+```
+
+```cpp
+string content[] = {
+    "Lorem ipsum dolor sit.",
+    "Lorem ipsum dolor sit.",
+    "Lorem ipsum dolor sit.",
+};
+
+if (!enableVTS())
+    return -1;
+
+box(content, 3, "Lorem ipsum", 4, 2);
+
+_getch();
+
+return 0;
+```
+
+![Box](./assets/box.png)
+
+
+
+## Controllo `Table`
+
+```cpp
+#include "vtsed.hpp"
+```
+
+```cpp
+string* content[3] = {
+    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
+    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
+    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
+};
+
+if (!enableVTS())
+    return -1;
+
+table(content, 3, 3, 4, 2);
+
+_getch();
+
+return 0;
+```
+
+![Table](./assets/table.png)
+
+
+
 ## Controllo `ListBox`
 
 ```cpp
 #include "vtsed.hpp"
-using namespace vtsed;
 ```
 
 ```cpp
@@ -76,7 +129,6 @@ while (myListBox.call() != 5);
 
 ```cpp
 #include "vtsed.hpp"
-using namespace vtsed;
 ```
 
 ```cpp

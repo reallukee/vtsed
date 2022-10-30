@@ -1,8 +1,8 @@
 /*
     VTSEd
 
-    Questo progetto è distribuito sotto licenza MIT.
-    Questo progetto è disponibile su GitHub.
+    Questo progetto Ã¨ distribuito sotto licenza MIT.
+    Questo progetto Ã¨ disponibile su GitHub.
 
     Repository:     https://github.com/reallukee/vtsed/
     Descrizione:    CONSOLE

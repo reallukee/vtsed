@@ -1,8 +1,8 @@
 /*
     VTSEd
 
-    Questo progetto è distribuito sotto licenza MIT.
-    Questo progetto è disponibile su GitHub.
+    Questo progetto Ã¨ distribuito sotto licenza MIT.
+    Questo progetto Ã¨ disponibile su GitHub.
 
     Repository:     https://github.com/reallukee/vtsed/
     Descrizione:    STATIC CONTROLS
@@ -30,5 +30,40 @@ using namespace std;
 
 namespace vtsed
 {
+    #if defined(_WIN32) || defined(_WIN64)
 
+    // ##
+    // ##   Box
+    // ##
+
+    #pragma region Box
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void box(string* content, int ysize, string title, int x, int y);
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    
+    #pragma endregion
+
+
+    // ##
+    // ##   Table
+    // ##
+
+    #pragma region Table
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void table(string* content[], int ysize, int xsize, int x, int y);
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    
+    #pragma endregion
+
+    #endif
 }

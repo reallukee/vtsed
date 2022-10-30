@@ -479,7 +479,7 @@ namespace vtsed
 
 
     string sgr(unsigned c);
-    
+
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
@@ -508,7 +508,7 @@ namespace vtsed
     // ##   Query State
     // ##
 
-    #pragma Query State
+    #pragma region Query State
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -552,17 +552,17 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    #define DC_BOTTOM_LEFT      0x6A    // ┘
-    #define DC_TOP_LEFT         0x6B    // ┐
-    #define DC_TOP_RIGHT        0x6C    // ┌
-    #define DC_BOTTOM_RIGHT     0x6D    // └
-    #define DC_CENTER           0x6E    // ┼
-    #define DC_TOP              0x71    // ─
-    #define DC_LEFT_CENTER      0x74    // ├
-    #define DC_RIGHT_CENTER     0x75    // ┤
-    #define DC_BOTTOM_CENTER    0x76    // ┴
-    #define DC_TOP_CENTER       0x77    // ┬
-    #define DC_LEFT             0x78    // │
+    #define DC_BOTTOM_LEFT      0x6A    // ┘    j
+    #define DC_TOP_LEFT         0x6B    // ┐    k
+    #define DC_TOP_RIGHT        0x6C    // ┌    l
+    #define DC_BOTTOM_RIGHT     0x6D    // └    m
+    #define DC_CENTER           0x6E    // ┼    n
+    #define DC_TOP              0x71    // ─    q
+    #define DC_LEFT_CENTER      0x74    // ├    t
+    #define DC_RIGHT_CENTER     0x75    // ┤    u
+    #define DC_BOTTOM_CENTER    0x76    // ┴    v
+    #define DC_TOP_CENTER       0x77    // ┬    w
+    #define DC_LEFT             0x78    // │    x
 
 
     void designateCharacter(bool value);
@@ -577,7 +577,7 @@ namespace vtsed
     // ##   Scrolling Margins
     // ##
 
-    #pragma Scrolling Margin
+    #pragma region Scrolling Margin
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
