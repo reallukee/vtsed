@@ -289,35 +289,27 @@ namespace vtsed
                 case 'W':
                 case 'w':
                     up();
+                    selectedOption = currentOption;
                     break;
 
                 case 80:
                 case 'S':
                 case 's':
                     down();
+                    selectedOption = currentOption;
                     break;
 
                 case 73:
                 case 'T':
                 case 't':
                     top();
+                    selectedOption = currentOption;
                     break;
 
                 case 81:
                 case 'B':
                 case 'b':
                     bottom();
-                    break;
-
-                case 75:
-                case 'A':
-                case 'a':
-                    selectedOption = -1;
-                    break;
-
-                case 77:
-                case 'D':
-                case 'd':
                     selectedOption = currentOption;
                     break;
 
@@ -328,7 +320,7 @@ namespace vtsed
                     break;
 
                 default:
-                    break;
+                    return key * -1;
             }
 
             draw();
@@ -728,7 +720,7 @@ namespace vtsed
                 break;
 
             default:
-                break;
+                return new int { key * -1 };
             }
 
             draw();

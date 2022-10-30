@@ -32,26 +32,7 @@
 
 ## Controllo `Box`
 
-```cpp
-#include "vtsed.hpp"
-```
-
-```cpp
-string content[] = {
-    "Lorem ipsum dolor sit.",
-    "Lorem ipsum dolor sit.",
-    "Lorem ipsum dolor sit.",
-};
-
-if (!enableVTS())
-    return -1;
-
-box(content, 3, "Lorem ipsum", 4, 2);
-
-_getch();
-
-return 0;
-```
+> [Esempio](./examples/box/main.cpp)
 
 ![Box](./assets/box.png)
 
@@ -59,26 +40,7 @@ return 0;
 
 ## Controllo `Table`
 
-```cpp
-#include "vtsed.hpp"
-```
-
-```cpp
-string* content[3] = {
-    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
-    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
-    new string[3] { "Lorem ipsum", "Lorem ipsum", "Lorem ipsum" },
-};
-
-if (!enableVTS())
-    return -1;
-
-table(content, 3, 3, 4, 2);
-
-_getch();
-
-return 0;
-```
+> [Esempio](./examples/table/main.cpp)
 
 ![Table](./assets/table.png)
 
@@ -86,40 +48,7 @@ return 0;
 
 ## Controllo `ListBox`
 
-```cpp
-#include "vtsed.hpp"
-```
-
-```cpp
-string options[] = {
-    "---------",
-    " Play    ",
-    " Options ",
-    " About   ",
-    "---------",
-    " Quit    ",
-    "---------",
-};
-
-bool optionsState[] = {
-    false,
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-};
-
-listBox myListBox;
-
-myListBox.setOptions(options);
-myListBox.setOptionsState(optionsState);
-myListBox.setSelectedOption(1);
-myListBox.setOptionsCount(7);
-
-while (myListBox.call() != 5);
-```
+> [Esempio](./examples/listbox/main.cpp)
 
 ![ListBox](./assets/listbox.png)
 
@@ -127,50 +56,7 @@ while (myListBox.call() != 5);
 
 ## Controllo `CheckListBox`
 
-```cpp
-#include "vtsed.hpp"
-```
-
-```cpp
-string options[] = {
-    "---------",
-    " Apples  ",
-    " Bananas ",
-    " Oranges ",
-    " Peaches ",
-    " Kiwi    ",
-    "---------",
-};
-
-bool optionsState[] = {
-    false,
-    true,
-    true,
-    true,
-    true,
-    true,
-    false,
-};
-
-int selectedOptions[] = {
-    0,
-    1,
-    0,
-    1,
-    0,
-    0,
-    0,
-};
-
-checkListBox myCheckListBox;
-
-myCheckListBox.setOptions(options);
-myCheckListBox.setOptionsState(optionsState);
-myCheckListBox.setSelectedOptions(selectedOptions);
-myCheckListBox.setOptionsCount(7);
-
-myCheckListBox.call();
-```
+> [Esempio](./examples/checklistbox/main.cpp)
 
 ![CheckListBox](./assets/checklistbox.png)
 

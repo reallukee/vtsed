@@ -63,10 +63,6 @@ namespace vtsed
         RGBCOLOR disabledOptionBackColor = rgbFrom(12);
 
         int loop();
-        void up();
-        void down();
-        void top();
-        void bottom();
 
     public:
 
@@ -103,6 +99,10 @@ namespace vtsed
 
         int call();
         virtual void draw();
+        void up();
+        void down();
+        void top();
+        void bottom();
 
     };
 
@@ -174,10 +174,6 @@ namespace vtsed
         RGBCOLOR disabledOptionBackColor = rgbFrom(12);
 
         int* loop();
-        void up();
-        void down();
-        void top();
-        void bottom();
 
     public:
 
@@ -214,6 +210,10 @@ namespace vtsed
 
         int* call();
         virtual void draw();
+        void up();
+        void down();
+        void top();
+        void bottom();
 
     };
 
