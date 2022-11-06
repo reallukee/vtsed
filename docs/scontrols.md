@@ -2,6 +2,8 @@
 
 # Controlli Statici
 
+> 💡 I controlli statici sono controlli testuali che non presentano una fase interattiva.
+
 - [Controllo Box](#controllo-box)
 - [Controllo Table](#controllo-table)
 

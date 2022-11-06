@@ -33,6 +33,11 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Templates
+templates/**/dll/
+templates/**/include/
+templates/**/lib/
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Visual Studio Code cache/options directory

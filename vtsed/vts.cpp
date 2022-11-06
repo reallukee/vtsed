@@ -1,14 +1,16 @@
-﻿/*
-    VTSEd
-
-    Questo progetto è distribuito sotto licenza MIT.
-    Questo progetto è disponibile su GitHub.
-
-    Repository:     https://github.com/reallukee/vtsed/
-    Descrizione:    VTS
-    Autore:         Realluke (https://github.com/reallukee/)
-    Versione:       1.0.0
-*/
+﻿//
+//  VTSEd
+//
+//  Migliora la tua Applicazione Console!
+//
+//  Questo progetto è distribuito sotto licenza MIT.
+//  Questo progetto è disponibile su GitHub.
+//
+//  Repository:     https://github.com/reallukee/vtsed/
+//  Descrizione:    VTS
+//  Autore:         Luca Pollicino (https://github.com/reallukee/)
+//  Versione:       1.0.0
+//
 
 #include "pch.h"
 

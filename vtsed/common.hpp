@@ -1,16 +1,52 @@
-/*
-    VTSEd
-
-    Questo progetto è distribuito sotto licenza MIT.
-    Questo progetto è disponibile su GitHub.
-
-    Repository:     https://github.com/reallukee/vtsed/
-    Descrizione:    COMMON
-    Autore:         Realluke (https://github.com/reallukee/)
-    Versione:       1.0.0
-*/
+//
+//  VTSEd
+//
+//  Migliora la tua Applicazione Console!
+//
+//  Questo progetto è distribuito sotto licenza MIT.
+//  Questo progetto è disponibile su GitHub.
+//
+//  Repository:     https://github.com/reallukee/vtsed/
+//  Descrizione:    COMMON
+//  Autore:         Luca Pollicino (https://github.com/reallukee/)
+//  Versione:       1.0.0
+//
 
 #pragma once
+
+//
+//  /!\ IMPORTANTE!
+//
+//  #define VTSED_LIBRARY
+//
+//  De commentare la costante VTSED_LIBRARY o
+//  definire la costante VTSED_LIBRARY nella
+//  sezione "C/C++ > PREPROCESSORE" per
+//  compilare questo HEADER con destinazione
+//  Dynamic Link Library (DLL).
+//
+//  Quando definire VTSED_LIBARY?
+//
+//  1.  Si sta compilando VTSED come una
+//      Dynamic Link Library (DLL).
+//  2.  Si sta compilando un progetto che
+//      utilizza direttamente il codice di
+//      VTSED.
+//
+//  Quando non definire VTSED_LIBRARY?
+// 
+//  1.  Si sta compilando VTSED come una
+//      Static Library (LIB).
+//  2.  Si sta compilando un progetto che
+//      utilizza indirettamente il codice
+//      di VTSED.
+//
+
+#ifdef VTSED_LIBRARY   // VTSED_LIBRARY
+#define VTSED_API __declspec(dllexport)
+#else
+#define VTSED_API __declspec(dllimport)
+#endif  // VTSED_LIBRARY
 
 #include <cstdlib>
 #include <iostream>
@@ -44,7 +80,7 @@ namespace vtsed
     //  Rappresenta un colore a 24bit in formato RGB.
     //
 
-    struct RGBCOLOR
+    struct VTSED_API RGBCOLOR
     {
         short r = 0;
         short b = 0;
@@ -64,8 +100,8 @@ namespace vtsed
     #endif  // RGBCOLOR_STRUCT
 
 
-    RGBCOLOR rgbFrom(short r, short g, short b);
-    RGBCOLOR rgbFrom(short c);
+    RGBCOLOR VTSED_API rgbFrom(short r, short g, short b);
+    RGBCOLOR VTSED_API rgbFrom(short c);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -91,7 +127,7 @@ namespace vtsed
     //  Rappresenta un colore a 24bit in formato HEX.
     //
 
-    struct HEXCOLOR
+    struct VTSED_API HEXCOLOR
     {
         string r = "00";
         string g = "00";
@@ -109,8 +145,8 @@ namespace vtsed
     };
 
 
-    HEXCOLOR hexFrom(string r, string g, string b);
-    HEXCOLOR hexFrom(string c);
+    HEXCOLOR VTSED_API hexFrom(string r, string g, string b);
+    HEXCOLOR VTSED_API hexFrom(string c);
 
     #endif  // HEXCOLOR_STRUCT
 
@@ -132,7 +168,7 @@ namespace vtsed
     #ifndef POINT_STRUCT // POINT_STRUCT
     #define POINT_STRUCT
 
-    struct POINT
+    struct VTSED_API POINT
     {
         short x;
         short y;
@@ -150,8 +186,8 @@ namespace vtsed
     #endif  // POINT_STRUCT
 
 
-    POINT pointFrom(short x, short y);
-    POINT pointFrom(short c);
+    POINT VTSED_API pointFrom(short x, short y);
+    POINT VTSED_API pointFrom(short c);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -171,7 +207,7 @@ namespace vtsed
     #ifndef SIZE_STRUCT // SIZE_STRUCT
     #define SIZE_STRUCT
 
-    struct SIZE
+    struct VTSED_API SIZE
     {
         short width;
         short height;
@@ -189,8 +225,8 @@ namespace vtsed
     #endif  // SIZE_STRUCT
 
 
-    SIZE SIZEFrom(short width, short height);
-    SIZE SIZEFrom(short size);
+    SIZE VTSED_API SIZEFrom(short width, short height);
+    SIZE VTSED_API SIZEFrom(short size);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////

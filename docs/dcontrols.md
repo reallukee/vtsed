@@ -2,6 +2,8 @@
 
 # Controlli Dinamici
 
+> 💡 I controlli dinamici sono controlli testuali che presentano una fase interattiva.
+
 - [Controlli Base](#controlli-base)
     - [Controllo SingleControl](#controllo-singlecontrol)
     - [Controllo SingleControl](#controllo-multicontrol)

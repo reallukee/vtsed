@@ -1,4 +1,6 @@
-#include "..\..\vtsed\vtsed.hpp"
+#include "..\vtsed\vtsed.hpp"
+
+using namespace vtsed;
 
 int main()
 {
@@ -6,6 +8,8 @@ int main()
         return -1;
 
     // initConsole();
+
+    char k = _getch();
 
     return 0;
 }

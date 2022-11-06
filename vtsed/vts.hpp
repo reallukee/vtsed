@@ -1,16 +1,52 @@
-﻿/*
-    VTSEd
-
-    Questo progetto è distribuito sotto licenza MIT.
-    Questo progetto è disponibile su GitHub.
-
-    Repository:     https://github.com/reallukee/vtsed/
-    Descrizione:    VTS
-    Autore:         Realluke (https://github.com/reallukee/)
-    Versione:       1.0.0
-*/
+﻿//
+//  VTSEd
+//
+//  Migliora la tua Applicazione Console!
+//
+//  Questo progetto è distribuito sotto licenza MIT.
+//  Questo progetto è disponibile su GitHub.
+//
+//  Repository:     https://github.com/reallukee/vtsed/
+//  Descrizione:    VTS
+//  Autore:         Luca Pollicino (https://github.com/reallukee/)
+//  Versione:       1.0.0
+//
 
 #pragma once
+
+//
+//  /!\ IMPORTANTE!
+//
+//  #define VTSED_LIBRARY
+//
+//  De commentare la costante VTSED_LIBRARY o
+//  definire la costante VTSED_LIBRARY nella
+//  sezione "C/C++ > PREPROCESSORE" per
+//  compilare questo HEADER con destinazione
+//  Dynamic Link Library (DLL).
+//
+//  Quando definire VTSED_LIBARY?
+//
+//  1.  Si sta compilando VTSED come una
+//      Dynamic Link Library (DLL).
+//  2.  Si sta compilando un progetto che
+//      utilizza direttamente il codice di
+//      VTSED.
+//
+//  Quando non definire VTSED_LIBRARY?
+// 
+//  1.  Si sta compilando VTSED come una
+//      Static Library (LIB).
+//  2.  Si sta compilando un progetto che
+//      utilizza indirettamente il codice
+//      di VTSED.
+//
+
+#ifdef VTSED_LIBRARY   // VTSED_LIBRARY
+#define VTSED_API __declspec(dllexport)
+#else
+#define VTSED_API __declspec(dllimport)
+#endif  // VTSED_LIBRARY
 
 #include <cstdlib>
 #include <iostream>
@@ -39,10 +75,10 @@ namespace vtsed
 
     #if defined(_WIN32) || defined(_WIN64)
 
-    void initConsole();
-    void dinitConsole();
-    bool enableVTS();
-    bool disableVTS();
+    void VTSED_API initConsole();
+    void VTSED_API dinitConsole();
+    bool VTSED_API enableVTS();
+    bool VTSED_API disableVTS();
 
     #endif
 
@@ -79,9 +115,9 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void reverseCursorIndex();
-    void saveCursor();
-    void restoreCursor();
+    void VTSED_API reverseCursorIndex();
+    void VTSED_API saveCursor();
+    void VTSED_API restoreCursor();
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -98,16 +134,16 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorUp(int n);
-    void cursorDown(int n);
-    void cursorRight(int n);
-    void cursorLeft(int n);
-    void cursorUpLine(int n);
-    void cursorPreviousLine(int n);
-    void cursorHorizontalAbs(int n);
-    void cursorVerticalAbs(int n);
-    void setCursorPositionCUP(int x, int y);
-    void setCursorPositionHVP(int x, int y);
+    void VTSED_API cursorUp(int n);
+    void VTSED_API cursorDown(int n);
+    void VTSED_API cursorRight(int n);
+    void VTSED_API cursorLeft(int n);
+    void VTSED_API cursorUpLine(int n);
+    void VTSED_API cursorPreviousLine(int n);
+    void VTSED_API cursorHorizontalAbs(int n);
+    void VTSED_API cursorVerticalAbs(int n);
+    void VTSED_API setCursorPositionCUP(int x, int y);
+    void VTSED_API setCursorPositionHVP(int x, int y);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -124,8 +160,8 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorBlinking(bool value);
-    void cursorVisible(bool value);
+    void VTSED_API cursorBlinking(bool value);
+    void VTSED_API cursorVisible(bool value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -151,7 +187,7 @@ namespace vtsed
     #define CURSOR_SHAPE_STEADY_BAR         6
 
 
-    void cursorShape(int c);
+    void VTSED_API cursorShape(int c);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -168,8 +204,8 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void scrollUp(int n);
-    void scrollDown(int n);
+    void VTSED_API scrollUp(int n);
+    void VTSED_API scrollDown(int n);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -191,13 +227,13 @@ namespace vtsed
     #define TEXT_MODIFICATION_ERASE_ENTIRE       2
 
 
-    void insertCharacter(int n);
-    void deleteCharacter(int n);
-    void eraseCharacter(int n);
-    void insertLine(int n);
-    void deleteLine(int n);
-    void eraseInDisplay(int n);
-    void eraseInLine(int n);
+    void VTSED_API insertCharacter(int n);
+    void VTSED_API deleteCharacter(int n);
+    void VTSED_API eraseCharacter(int n);
+    void VTSED_API insertLine(int n);
+    void VTSED_API deleteLine(int n);
+    void VTSED_API eraseInDisplay(int n);
+    void VTSED_API eraseInLine(int n);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -332,9 +368,9 @@ namespace vtsed
     };
 
 
-    void setScreenColor(int i, string r, string g, string b);
-    void setScreenColor(int i, HEXCOLOR color);
-    void setScreenColor(const HEXCOLOR colors[16]);
+    void VTSED_API setScreenColor(int i, string r, string g, string b);
+    void VTSED_API setScreenColor(int i, HEXCOLOR color);
+    void VTSED_API setScreenColor(const HEXCOLOR colors[16]);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -351,14 +387,14 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    string setForegroundColor(int r, int g, int b);
-    string setForegroundColor(RGBCOLOR color);
-    string setForegroundColor(int c);
-    string setForegroundColorById(int id);
-    string sFC(int r, int g, int b);
-    string sFC(RGBCOLOR color);
-    string sFC(int c);
-    string sFCById(int id);
+    string VTSED_API setForegroundColor(int r, int g, int b);
+    string VTSED_API setForegroundColor(RGBCOLOR color);
+    string VTSED_API setForegroundColor(int c);
+    string VTSED_API setForegroundColorById(int id);
+    string VTSED_API sFC(int r, int g, int b);
+    string VTSED_API sFC(RGBCOLOR color);
+    string VTSED_API sFC(int c);
+    string VTSED_API sFCById(int id);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -375,14 +411,14 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    string setBackgroundColor(int r, int g, int b);
-    string setBackgroundColor(RGBCOLOR color);
-    string setBackgroundColor(int c);
-    string setBackgroundColorById(int id);
-    string sBC(int r, int g, int b);
-    string sBC(RGBCOLOR color);
-    string sBC(int c);
-    string sBCById(int id);
+    string VTSED_API setBackgroundColor(int r, int g, int b);
+    string VTSED_API setBackgroundColor(RGBCOLOR color);
+    string VTSED_API setBackgroundColor(int c);
+    string VTSED_API setBackgroundColorById(int id);
+    string VTSED_API sBC(int r, int g, int b);
+    string VTSED_API sBC(RGBCOLOR color);
+    string VTSED_API sBC(int c);
+    string VTSED_API sBCById(int id);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -478,7 +514,7 @@ namespace vtsed
     #define SGR_BK_BRIGHT_WHITE         107 // Bianco Sfondo Luminoso
 
 
-    string sgr(unsigned c);
+    string VTSED_API sgr(unsigned c);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -495,8 +531,8 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void keypadApplicationMode(bool value);
-    void cursorKeysApplicationMode(bool value);
+    void VTSED_API keypadApplicationMode(bool value);
+    void VTSED_API cursorKeysApplicationMode(bool value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -513,8 +549,8 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void reportCursorPosition();
-    void deviceAttributes();
+    void VTSED_API reportCursorPosition();
+    void VTSED_API deviceAttributes();
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -531,11 +567,11 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void horizontalTab();
-    void cursorHorizontalTab(int n);
-    void cursorBackwardsTab(int n);
-    void tabClearCurrentColumn();
-    void tabClearAllColumns();
+    void VTSED_API horizontalTab();
+    void VTSED_API cursorHorizontalTab(int n);
+    void VTSED_API cursorBackwardsTab(int n);
+    void VTSED_API tabClearCurrentColumn();
+    void VTSED_API tabClearAllColumns();
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -565,7 +601,7 @@ namespace vtsed
     #define DC_LEFT             0x78    // │    x
 
 
-    void designateCharacter(bool value);
+    void VTSED_API designateCharacter(bool value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -582,7 +618,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void scrollingMargin(int t, int b);
+    void VTSED_API scrollingMargin(int t, int b);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -599,7 +635,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void windowTitle(string value);
+    void VTSED_API windowTitle(string value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -616,7 +652,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void alternateScreenBuffer(bool value);
+    void VTSED_API alternateScreenBuffer(bool value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -633,7 +669,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void windowWidth(bool value);
+    void VTSED_API windowWidth(bool value);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -650,7 +686,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void softReset();
+    void VTSED_API softReset();
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
