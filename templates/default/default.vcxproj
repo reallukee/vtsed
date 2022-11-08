@@ -92,6 +92,9 @@
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vtsed-d-x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(OutputPath)vtsed-d-x86.dll copy $(ProjectDir)dll\vtsed-d-x86.dll $(OutputPath)vtsed-d-x86.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -111,6 +114,9 @@
       <AdditionalDependencies>vtsed-x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(OutputPath)vtsed-x86.dll copy $(ProjectDir)dll\vtsed-x86.dll $(OutputPath)vtsed-x86.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -126,6 +132,9 @@
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vtsed-d-x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(OutputPath)vtsed-d-x64.dll copy $(ProjectDir)dll\vtsed-d-x64.dll $(OutputPath)vtsed-d-x64.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -145,6 +154,9 @@
       <AdditionalDependencies>vtsed-x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(OutputPath)vtsed-x64.dll copy $(ProjectDir)dll\vtsed-x64.dll $(OutputPath)vtsed-x64.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -156,6 +168,18 @@
     <ClInclude Include="include\scontrols.hpp" />
     <ClInclude Include="include\vts.hpp" />
     <ClInclude Include="include\vtsed.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dll\vtsed-d-x64.dll" />
+    <None Include="dll\vtsed-d-x86.dll" />
+    <None Include="dll\vtsed-x64.dll" />
+    <None Include="dll\vtsed-x86.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\vtsed-d-x64.lib" />
+    <Library Include="lib\vtsed-d-x86.lib" />
+    <Library Include="lib\vtsed-x64.lib" />
+    <Library Include="lib\vtsed-x86.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,17 +29,25 @@ namespace vtsed
 
     #if defined(_WIN32) || defined(_WIN64)
 
-    void initConsole()
+    bool initConsole()
     {
+        if (!enableVTS())
+            return false;
+
         setScreenColor(modterm);
         sgr(SGR_DEFAULT);
+        return true;
     }
 
 
-    void dinitConsole()
+    bool dinitConsole()
     {
+        if (!enableVTS())
+            return false;
+
         setScreenColor(conhost);
         sgr(SGR_DEFAULT);
+        return true;
     }
 
 

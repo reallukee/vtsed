@@ -12,7 +12,7 @@ set lib=..\templates\default\lib
 set dll=..\templates\default\dll
 
 copy %src%\common.hpp %include%
-copy %src%\common.hpp %include%
+copy %src%\console.hpp %include%
 copy %src%\dcontrols.hpp %include%
 copy %src%\scontrols.hpp %include%
 copy %src%\vts.hpp %include%

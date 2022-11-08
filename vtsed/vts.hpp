@@ -75,30 +75,12 @@ namespace vtsed
 
     #if defined(_WIN32) || defined(_WIN64)
 
-    void VTSED_API initConsole();
-    void VTSED_API dinitConsole();
+    bool VTSED_API initConsole();
+    bool VTSED_API dinitConsole();
     bool VTSED_API enableVTS();
     bool VTSED_API disableVTS();
 
     #endif
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
-
-
-    // ##
-    // ##   CRT
-    // ##
-
-    #pragma region CRT
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    // string elaborateCrt(string str);
-    // string delaborateCrt(string str);
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -439,35 +421,35 @@ namespace vtsed
     //  Generic
     //
 
-    #define ESC                         0x1b    // Carattere ESC
-    #define CSI                         0x1b[   // Sequenza CSI
-    #define OSC                         0x1b]   // Sequenza OSC
-    #define ST                          0x5C    // Carattere ST
-    #define SP                          0x20    // Carattere SP
+    #define ESC                         "0x1b"  // Carattere ESC
+    #define CSI                         "0x1b[" // Sequenza CSI
+    #define OSC                         "0x1b]" // Sequenza OSC
+    #define ST                          "0x5C"  // Carattere ST
+    #define SP                          "0x20"  // Carattere SP
 
     //
     //  Text Style
     //
 
     #define SGR_DEFAULT                 0   // Default
-    #define SGR_BOLD_ON                 1   // Grassetto On
-    #define SGR_BOLD_OFF                22  // Grassetto Off
-    #define SGR_FAINT_ON                2   // Sottile On
-    #define SGR_FAINT_OFF               22  // Sottile Off
-    #define SGR_ITALIC_ON               3   // Corsivo On
-    #define SGR_ITALIC_OFF              23  // Corsivo Off
-    #define SGR_UNDERLINE_ON            4   // Sottolineato On
-    #define SGR_UNDERLINE_OFF           24  // Sottolineato Off
-    #define SGR_DOUBLE_UNDERLINE_ON     21  // Doppia Sottolineatura On
-    #define SGR_DOUBLE_UNDERLINE_OFF    24  // Doppia Sottolineatura Off
-    #define SGR_BLINKING_ON             5   // Lampeggiamento On
-    #define SGR_BLINKING_OFF            25  // Lampeggiamento Off
-    #define SGR_NEGATIVE_ON             7   // Negativo On
-    #define SGR_NEGATIVE_OFF            27  // Negativo Off
-    #define SGR_HIDDEN_ON               8   // Nascosto On
-    #define SGR_HIDDEN_OFF              28  // Nascosto Off
-    #define SGR_STRIKEOUT_ON            9   // Sbarrato On
-    #define SGR_STRIKEOUT_OFF           29  // Sbarrato Off
+    #define SGR_BOLD                    1   // Grassetto On
+    #define SGR_NO_BOLD                 22  // Grassetto Off
+    #define SGR_FAINT                   2   // Sottile On
+    #define SGR_NO_FAINT                22  // Sottile Off
+    #define SGR_ITALIC                  3   // Corsivo On
+    #define SGR_NO_ITALIC               23  // Corsivo Off
+    #define SGR_UNDERLINE               4   // Sottolineato On
+    #define SGR_NO_UNDERLINE            24  // Sottolineato Off
+    #define SGR_DOUBLE_UNDERLINE        21  // Doppia Sottolineatura On
+    #define SGR_NO_DOUBLE_UNDERLINE     24  // Doppia Sottolineatura Off
+    #define SGR_BLINKING                5   // Lampeggiamento On
+    #define SGR_NO_BLINKING             25  // Lampeggiamento Off
+    #define SGR_NEGATIVE                7   // Negativo On
+    #define SGR_NO_NEGATIVE             27  // Negativo Off
+    #define SGR_HIDDEN                  8   // Nascosto On
+    #define SGR_NO_HIDDEN               28  // Nascosto Off
+    #define SGR_STRIKEOUT               9   // Sbarrato On
+    #define SGR_NO_STRIKEOUT            29  // Sbarrato Off
 
     //
     //  8 Bit Colors

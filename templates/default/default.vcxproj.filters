@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Dipendenze">
+      <UniqueIdentifier>{6bd14c01-a87d-44d9-8a84-d7b1af562e85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,5 +41,33 @@
     <ClInclude Include="include\vtsed.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dll\vtsed-d-x64.dll">
+      <Filter>Dipendenze</Filter>
+    </None>
+    <None Include="dll\vtsed-d-x86.dll">
+      <Filter>Dipendenze</Filter>
+    </None>
+    <None Include="dll\vtsed-x64.dll">
+      <Filter>Dipendenze</Filter>
+    </None>
+    <None Include="dll\vtsed-x86.dll">
+      <Filter>Dipendenze</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\vtsed-d-x64.lib">
+      <Filter>Dipendenze</Filter>
+    </Library>
+    <Library Include="lib\vtsed-d-x86.lib">
+      <Filter>Dipendenze</Filter>
+    </Library>
+    <Library Include="lib\vtsed-x64.lib">
+      <Filter>Dipendenze</Filter>
+    </Library>
+    <Library Include="lib\vtsed-x86.lib">
+      <Filter>Dipendenze</Filter>
+    </Library>
   </ItemGroup>
 </Project>

@@ -2,13 +2,29 @@
 
 using namespace vtsed;
 
+void _sgr(unsigned int c);
+void pause();
+
 int main()
 {
-    cout << sgr(SGR_BOLD_ON);
-    cout << "Hello, World!" << endl;
-    cout << sgr(SGR_BOLD_OFF);
+    if (!initConsole())
+        return -1;
 
-    char k = _getch();
+    _sgr(SGR_BOLD);
+    cout << "Hello, World!" << endl;
+    _sgr(SGR_NO_BOLD);
+
+    pause();
 
     return 0;
+}
+
+void _sgr(unsigned int c)
+{
+    cout << sgr(c);
+}
+
+void pause()
+{
+    char k = _getch();
 }

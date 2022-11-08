@@ -11,8 +11,10 @@
 # Indice
 
 - [Funzionalità](#funzionalità)
-- [Documentazione](./DOCS.md)
 - [Esempi](#esempi)
+- [Download](#download)
+- [Documentazione](./DOCS.md)
+- [Compilazione](#compilazione)
 - [Autore](#autore)
 - [Licenza](#licenza)
 
@@ -20,11 +22,13 @@
 
 # Funzionalità
 
-- Common ([`common.hpp`](./vtsed/common.hpp))
-- Console ([`console.hpp`](./vtsed/console.hpp))
-- Controlli Dinamici ([`dcontrols.hpp`](./vtsed/dcontrols.hpp))
-- Controlli Statici ([`scontrols.hpp`](./vtsed/scontrols.hpp))
-- VTS ([`vts.hpp`](./vtsed/vts.hpp))
+| Nome               | Header          | Source          |
+| :----------------- | :-------------- | :-------------- |
+| Common             | `common.hpp`    | `common.cpp`    |
+| Console            | `console.hpp`   | `console.cpp`   |
+| Controlli Dinamici | `dcontrols.hpp` | `dcontrols.cpp` |
+| Controlli Statici  | `scontrols.hpp` | `scontrols.cpp` |
+| VTS                | `vts.hpp`       | `vts.cpp`       |
 
 
 
@@ -59,6 +63,20 @@
 > [Esempio](./examples/checklistbox/main.cpp)
 
 ![CheckListBox](./assets/checklistbox.png)
+
+
+
+# Download
+
+L'ultima versione di VTSEd può essere scaricata da [GitHub](https://github.com/reallukee/vtsed/releases).
+
+
+
+# Compilazione
+
+## Windows
+
+## Unix-Like
 
 
 

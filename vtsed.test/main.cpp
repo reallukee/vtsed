@@ -7,7 +7,7 @@ int main()
     if (!enableVTS())
         return -1;
 
-    // initConsole();
+    initConsole();
 
     char k = _getch();
 
