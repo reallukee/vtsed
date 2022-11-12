@@ -1,3 +1,7 @@
+<p align="center">
+<img alt="Logo" src="./assets/vtsed.png" width="128px" height="128px" />
+</p>
+
 <h1 align="center">VTSEd</h1>
 
 <p align="center">

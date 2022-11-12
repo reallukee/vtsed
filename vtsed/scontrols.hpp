@@ -48,11 +48,12 @@
 #define VTSED_API __declspec(dllimport)
 #endif  // VTSED_LIBRARY
 
+// Standard.
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cstring>
+// Solo Windows.
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -66,40 +67,43 @@ using namespace std;
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)
+    extern "C"
+    {
+        #if defined(_WIN32) || defined(_WIN64)
 
-    // ##
-    // ##   Box
-    // ##
+        // ##
+        // ##   Box
+        // ##
 
-    #pragma region Box
+        #pragma region Box
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    void VTSED_API box(string* content, int ysize, string title, int x, int y);
+        void VTSED_API box(string* content, int ysize, string title, int x, int y);
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
     
-    #pragma endregion
+        #pragma endregion
 
 
-    // ##
-    // ##   Table
-    // ##
+        // ##
+        // ##   Table
+        // ##
 
-    #pragma region Table
+        #pragma region Table
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    void VTSED_API table(string* content[], int ysize, int xsize, int x, int y);
+        void VTSED_API table(string* content[], int ysize, int xsize, int x, int y);
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
     
-    #pragma endregion
+        #pragma endregion
 
-    #endif
+        #endif
+    }
 }

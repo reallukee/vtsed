@@ -48,11 +48,12 @@
 #define VTSED_API __declspec(dllimport)
 #endif  // VTSED_LIBRARY
 
+// Standard.
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cstring>
+// Solo Windows.
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -62,174 +63,177 @@ using namespace std;
 
 namespace vtsed
 {
-    // ##
-    // ##   RGBCOLOR
-    // ##
-
-    #pragma region RGBCOLOR
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #ifndef RGBCOLOR_STRUCT // RGBCOLOR_STRUCT
-    #define RGBCOLOR_STRUCT
-
-    //
-    //  RGBCOLOR
-    //
-    //  Rappresenta un colore a 24bit in formato RGB.
-    //
-
-    struct VTSED_API RGBCOLOR
+    extern "C"
     {
-        short r = 0;
-        short b = 0;
-        short g = 0;
+        // ##
+        // ##   RGBCOLOR
+        // ##
 
-        // Costruttori Struttura.
+        #pragma region RGBCOLOR
 
-        RGBCOLOR(short r, short g, short b);
-        RGBCOLOR(short c);
-        RGBCOLOR();
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-        // Metodi.
+        #ifndef RGBCOLOR_STRUCT // RGBCOLOR_STRUCT
+        #define RGBCOLOR_STRUCT
 
-        string toString();
-    };
+        //
+        //  RGBCOLOR
+        //
+        //  Rappresenta un colore a 24bit in formato RGB.
+        //
 
-    #endif  // RGBCOLOR_STRUCT
+        struct VTSED_API RGBCOLOR
+        {
+            short r = 0;
+            short b = 0;
+            short g = 0;
 
+            // Costruttori Struttura.
 
-    RGBCOLOR VTSED_API rgbFrom(short r, short g, short b);
-    RGBCOLOR VTSED_API rgbFrom(short c);
+            RGBCOLOR(short r, short g, short b);
+            RGBCOLOR(short c);
+            RGBCOLOR();
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+            // Metodi.
 
-    #pragma endregion
+            string toString();
+        };
 
-
-    // ##
-    // ##   HEXCOLOR
-    // ##
-
-    #pragma region HEXCOLOR
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #ifndef HEXCOLOR_STRUCT // HEXCOLOR_STRUCT
-    #define HEXCOLOR_STRUCT
-
-    //
-    //  HEXCOLOR
-    //
-    //  Rappresenta un colore a 24bit in formato HEX.
-    //
-
-    struct VTSED_API HEXCOLOR
-    {
-        string r = "00";
-        string g = "00";
-        string b = "00";
-
-        // Costruttori Struttura.
-
-        HEXCOLOR(string r, string g, string b);
-        HEXCOLOR(string c);
-        HEXCOLOR();
-
-        // Metodi.
-
-        string toString();
-    };
+        #endif  // RGBCOLOR_STRUCT
 
 
-    HEXCOLOR VTSED_API hexFrom(string r, string g, string b);
-    HEXCOLOR VTSED_API hexFrom(string c);
+        RGBCOLOR VTSED_API rgbFrom(short r, short g, short b);
+        RGBCOLOR VTSED_API rgbFrom(short c);
 
-    #endif  // HEXCOLOR_STRUCT
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
+        #pragma endregion
 
 
-    // ##
-    // ##   POINT
-    // ##
+        // ##
+        // ##   HEXCOLOR
+        // ##
 
-    #pragma region POINT
+        #pragma region HEXCOLOR
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #ifndef POINT_STRUCT // POINT_STRUCT
-    #define POINT_STRUCT
+        #ifndef HEXCOLOR_STRUCT // HEXCOLOR_STRUCT
+        #define HEXCOLOR_STRUCT
 
-    struct VTSED_API POINT
-    {
-        short x;
-        short y;
+        //
+        //  HEXCOLOR
+        //
+        //  Rappresenta un colore a 24bit in formato HEX.
+        //
 
-        // Costruttori Struttura.
-        POINT(short x, short y);
-        POINT(short c);
-        POINT();
+        struct VTSED_API HEXCOLOR
+        {
+            string r = "00";
+            string g = "00";
+            string b = "00";
 
-        // Metodi.
+            // Costruttori Struttura.
 
-        string toString();
-    };
+            HEXCOLOR(string r, string g, string b);
+            HEXCOLOR(string c);
+            HEXCOLOR();
 
-    #endif  // POINT_STRUCT
+            // Metodi.
 
-
-    POINT VTSED_API pointFrom(short x, short y);
-    POINT VTSED_API pointFrom(short c);
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
+            string toString();
+        };
 
 
-    // ##
-    // ##   SIZE
-    // ##
+        HEXCOLOR VTSED_API hexFrom(string r, string g, string b);
+        HEXCOLOR VTSED_API hexFrom(string c);
 
-    #pragma region SIZE
+        #endif  // HEXCOLOR_STRUCT
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #ifndef SIZE_STRUCT // SIZE_STRUCT
-    #define SIZE_STRUCT
-
-    struct VTSED_API SIZE
-    {
-        short width;
-        short height;
-
-        // Costruttori Struttura.
-        SIZE(short width, short height);
-        SIZE(short size);
-        SIZE();
-
-        // Metodi.
-
-        string toString();
-    };
-
-    #endif  // SIZE_STRUCT
+        #pragma endregion
 
 
-    SIZE VTSED_API SIZEFrom(short width, short height);
-    SIZE VTSED_API SIZEFrom(short size);
+        // ##
+        // ##   POINT
+        // ##
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        #pragma region POINT
 
-    #pragma endregion
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #ifndef POINT_STRUCT // POINT_STRUCT
+        #define POINT_STRUCT
+
+        struct VTSED_API POINT
+        {
+            short x;
+            short y;
+
+            // Costruttori Struttura.
+            POINT(short x, short y);
+            POINT(short c);
+            POINT();
+
+            // Metodi.
+
+            string toString();
+        };
+
+        #endif  // POINT_STRUCT
+
+
+        POINT VTSED_API pointFrom(short x, short y);
+        POINT VTSED_API pointFrom(short c);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
+        // ##   SIZE
+        // ##
+
+        #pragma region SIZE
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #ifndef SIZE_STRUCT // SIZE_STRUCT
+        #define SIZE_STRUCT
+
+        struct VTSED_API SIZE
+        {
+            short width;
+            short height;
+
+            // Costruttori Struttura.
+            SIZE(short width, short height);
+            SIZE(short size);
+            SIZE();
+
+            // Metodi.
+
+            string toString();
+        };
+
+        #endif  // SIZE_STRUCT
+
+
+        SIZE VTSED_API SIZEFrom(short width, short height);
+        SIZE VTSED_API SIZEFrom(short size);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+    }
 }

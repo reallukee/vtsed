@@ -48,11 +48,12 @@
 #define VTSED_API __declspec(dllimport)
 #endif  // VTSED_LIBRARY
 
+// Standard.
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cstring>
+// Solo Windows.
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -62,82 +63,85 @@ using namespace std;
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)
+    extern "C"
+    {
+        #if defined(_WIN32) || defined(_WIN64)
 
-    // ##
-    // ##   Cursor
-    // ##
+        // ##
+        // ##   Cursor
+        // ##
 
-    #pragma region Cursor
+        #pragma region Cursor
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    void VTSED_API setCursorPosition(int x, int y);
-    COORD VTSED_API getCursorPosition();
+        void VTSED_API setCursorPosition(int x, int y);
+        COORD VTSED_API getCursorPosition();
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #pragma endregion
-
-
-    // ##
-    // ##   Write At
-    // ##
-
-    #pragma region Write At
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    void VTSED_API writeAt(int x, int y, string str);
-    void VTSED_API writeAt(int x, int y, char* str);
-    void VTSED_API writeAtCenter(int y, string str);
-    void VTSED_API writeAtCenter(int y, char* str);
-    void VTSED_API writeAtRight(int y, string str);
-    void VTSED_API writeAtRight(int y, char* str);
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
+        #pragma endregion
 
 
-    // ##
-    // ##   Color
-    // ##
+        // ##
+        // ##   Write At
+        // ##
 
-    #pragma region Color
+        #pragma region Write At
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #define BLACK        0     // Nero
-    #define DARKBLUE     1     // Blu Scuro
-    #define DARKGREEN    2     // Verde Scuro
-    #define DARKCYAN     3     // Ciano Scuro
-    #define DARKRED      4     // Rosso Scuro
-    #define DARKMAGENTA  5     // Magenta Scuro
-    #define DARKYELLOW   6     // Giallo Scuro
-    #define DARKGRAY     7     // Grigio Scuro
-    #define GRAY         8     // Grigio
-    #define BLUE         9     // Blu
-    #define GREEN        10    // Verde
-    #define CYAN         11    // Ciano
-    #define RED          12    // Rosso
-    #define MAGENTA      13    // Magenta
-    #define YELLOW       14    // Giallo
-    #define WHITE        15    // Bianco
+        void VTSED_API writeAt(int x, int y, string str);
+        void VTSED_API writeAt(int x, int y, char* str);
+        void VTSED_API writeAtCenter(int y, string str);
+        void VTSED_API writeAtCenter(int y, char* str);
+        void VTSED_API writeAtRight(int y, string str);
+        void VTSED_API writeAtRight(int y, char* str);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
 
 
-    void VTSED_API setForegroundColorWin32(int c);
-    void VTSED_API setBackgroundColorWin32(int c);
+        // ##
+        // ##   Color
+        // ##
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        #pragma region Color
 
-    #pragma endregion
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #endif
+        #define BLACK        0     // Nero
+        #define DARKBLUE     1     // Blu Scuro
+        #define DARKGREEN    2     // Verde Scuro
+        #define DARKCYAN     3     // Ciano Scuro
+        #define DARKRED      4     // Rosso Scuro
+        #define DARKMAGENTA  5     // Magenta Scuro
+        #define DARKYELLOW   6     // Giallo Scuro
+        #define DARKGRAY     7     // Grigio Scuro
+        #define GRAY         8     // Grigio
+        #define BLUE         9     // Blu
+        #define GREEN        10    // Verde
+        #define CYAN         11    // Ciano
+        #define RED          12    // Rosso
+        #define MAGENTA      13    // Magenta
+        #define YELLOW       14    // Giallo
+        #define WHITE        15    // Bianco
+
+
+        void VTSED_API setForegroundColorWin32(int c);
+        void VTSED_API setBackgroundColorWin32(int c);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+        #endif
+    }
 }

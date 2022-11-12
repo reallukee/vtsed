@@ -1,0 +1,36 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+    <TemplateData>
+        <Name>VTSEd Console Application</Name>
+        <Description>VTSEd Console Application</Description>
+        <ProjectType>VC</ProjectType>
+        <ProjectSubType>Console</ProjectSubType>
+        <SortOrder>1000</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>default</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <Icon>__TemplateIcon.png</Icon>
+        <PreviewImage>__PreviewImage.png</PreviewImage>
+    </TemplateData>
+    <TemplateContent>
+        <Project TargetFileName="default.vcxproj" File="default.vcxproj" ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x64.dll">DLL\vtsed-d-x64.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x86.dll">DLL\vtsed-d-x86.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-x64.dll">DLL\vtsed-x64.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-x86.dll">DLL\vtsed-x86.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="main.cpp">main.cpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="common.hpp">INCLUDE\common.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="console.hpp">INCLUDE\console.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="dcontrols.hpp">INCLUDE\dcontrols.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="scontrols.hpp">INCLUDE\scontrols.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vts.hpp">INCLUDE\vts.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed.hpp">INCLUDE\vtsed.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x64.lib">LIB\vtsed-d-x64.lib</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x86.lib">LIB\vtsed-d-x86.lib</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-x64.lib">LIB\vtsed-x64.lib</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-x86.lib">LIB\vtsed-x86.lib</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">default.vcxproj.filters</ProjectItem>
+        </Project>
+    </TemplateContent>
+</VSTemplate>

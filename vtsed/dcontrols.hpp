@@ -48,11 +48,12 @@
 #define VTSED_API __declspec(dllimport)
 #endif  // VTSED_LIBRARY
 
+// Standard.
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cstring>
+// Solo Windows.
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -66,228 +67,231 @@ using namespace std;
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)
-
-    // ##
-    // ##   Single Control
-    // ##
-
-    #pragma region Single Control
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    class VTSED_API singleControl
+    extern "C"
     {
+        #if defined(_WIN32) || defined(_WIN64)
 
-    private:
+        // ##
+        // ##   Single Control
+        // ##
 
-        short x = 4;
-        short y = 2;
-        string* options = NULL;
-        bool* optionsState = NULL;
-        int selectedOption = 1;
-        int currentOption = 1;
-        int optionsCount = 0;
-        RGBCOLOR optionForeColor = rgbFrom(240);
-        RGBCOLOR optionBackColor = rgbFrom(12);
-        RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
-        RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
-        RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
-        RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
-        RGBCOLOR disabledOptionForeColor = rgbFrom(120);
-        RGBCOLOR disabledOptionBackColor = rgbFrom(12);
+        #pragma region Single Control
 
-        int loop();
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    public:
+        class VTSED_API singleControl
+        {
 
-        void setX(int value);
-        int getX();
-        void setY(int value);
-        int getY();
-        void setOptions(string* value);
-        string* getOptions();
-        void setOptionsState(bool* value);
-        bool* getOptionsState();
-        void setSelectedOption(int value);
-        int getSelectedOption();
-        void setCurrentOption(int value);
-        int getCurrentOption();
-        void setOptionsCount(int value);
-        int getOptionsCount();
-        void setOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getOptionForeColor();
-        void setOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getOptionBackColor();
-        void setSelectedOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getSelectedOptionForeColor();
-        void setSelectedOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getSelectedOptionBackColor();
-        void setCurrentOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getCurrentOptionForeColor();
-        void setCurrentOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getCurrentOptionBackColor();
-        void setDisabledOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getDisabledOptionForeColor();
-        void setDisabledOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getDisabledOptionBackColor();
+        private:
 
-        int call();
-        virtual void draw();
-        void up();
-        void down();
-        void top();
-        void bottom();
+            short x = 4;
+            short y = 2;
+            string* options = NULL;
+            bool* optionsState = NULL;
+            int selectedOption = 1;
+            int currentOption = 1;
+            int optionsCount = 0;
+            RGBCOLOR optionForeColor = rgbFrom(240);
+            RGBCOLOR optionBackColor = rgbFrom(12);
+            RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
+            RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
+            RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
+            RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
+            RGBCOLOR disabledOptionForeColor = rgbFrom(120);
+            RGBCOLOR disabledOptionBackColor = rgbFrom(12);
 
-    };
+            int loop();
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        public:
 
-    #pragma endregion
+            void setX(int value);
+            int getX();
+            void setY(int value);
+            int getY();
+            void setOptions(string* value);
+            string* getOptions();
+            void setOptionsState(bool* value);
+            bool* getOptionsState();
+            void setSelectedOption(int value);
+            int getSelectedOption();
+            void setCurrentOption(int value);
+            int getCurrentOption();
+            void setOptionsCount(int value);
+            int getOptionsCount();
+            void setOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getOptionForeColor();
+            void setOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getOptionBackColor();
+            void setSelectedOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getSelectedOptionForeColor();
+            void setSelectedOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getSelectedOptionBackColor();
+            void setCurrentOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getCurrentOptionForeColor();
+            void setCurrentOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getCurrentOptionBackColor();
+            void setDisabledOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getDisabledOptionForeColor();
+            void setDisabledOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getDisabledOptionBackColor();
 
+            int call();
+            virtual void draw();
+            void up();
+            void down();
+            void top();
+            void bottom();
 
-    // ##
-    // ##   List Box
-    // ##
+        };
 
-    #pragma region List Box
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    class VTSED_API listBox : public singleControl
-    {
-
-    private:
-
-        char separator = '-';
-
-    public:
-
-        void setSeparator(char value);
-        char getSeparator();
-
-        void draw() override;
-
-    };
-
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
+        #pragma endregion
 
 
-    // ##
-    // ##   Multi Control
-    // ##
+        // ##
+        // ##   List Box
+        // ##
 
-    #pragma region Multi Control
+        #pragma region List Box
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    class multiControl
-    {
+        class VTSED_API listBox : public singleControl
+        {
 
-    private:
+        private:
 
-        short x = 4;
-        short y = 2;
-        string* options = NULL;
-        bool* optionsState = NULL;
-        int* selectedOptions = NULL;
-        int currentOption = 1;
-        int optionsCount = 0;
-        RGBCOLOR optionForeColor = rgbFrom(240);
-        RGBCOLOR optionBackColor = rgbFrom(12);
-        RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
-        RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
-        RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
-        RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
-        RGBCOLOR disabledOptionForeColor = rgbFrom(120);
-        RGBCOLOR disabledOptionBackColor = rgbFrom(12);
+            char separator = '-';
 
-        int* loop();
+        public:
 
-    public:
+            void setSeparator(char value);
+            char getSeparator();
 
-        void setX(int value);
-        int getX();
-        void setY(int value);
-        int getY();
-        void setOptions(string* value);
-        string* getOptions();
-        void setOptionsState(bool* value);
-        bool* getOptionsState();
-        void setSelectedOptions(int* value);
-        int* getSelectedOptions();
-        void setCurrentOption(int value);
-        int getCurrentOption();
-        void setOptionsCount(int value);
-        int getOptionsCount();
-        void setOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getOptionForeColor();
-        void setOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getOptionBackColor();
-        void setSelectedOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getSelectedOptionForeColor();
-        void setSelectedOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getSelectedOptionBackColor();
-        void setCurrentOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getCurrentOptionForeColor();
-        void setCurrentOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getCurrentOptionBackColor();
-        void setDisabledOptionForeColor(RGBCOLOR value);
-        RGBCOLOR getDisabledOptionForeColor();
-        void setDisabledOptionBackColor(RGBCOLOR value);
-        RGBCOLOR getDisabledOptionBackColor();
+            void draw() override;
 
-        int* call();
-        virtual void draw();
-        void up();
-        void down();
-        void top();
-        void bottom();
+        };
 
-    };
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
-
-    #pragma endregion
+        #pragma endregion
 
 
-    // ##
-    // ##   Check List Box
-    // ##
+        // ##
+        // ##   Multi Control
+        // ##
 
-    #pragma region Check List Box
+        #pragma region Multi Control
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    class checkListBox : public multiControl
-    {
+        class multiControl
+        {
 
-    private:
+        private:
 
-        char separator = '-';
+            short x = 4;
+            short y = 2;
+            string* options = NULL;
+            bool* optionsState = NULL;
+            int* selectedOptions = NULL;
+            int currentOption = 1;
+            int optionsCount = 0;
+            RGBCOLOR optionForeColor = rgbFrom(240);
+            RGBCOLOR optionBackColor = rgbFrom(12);
+            RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
+            RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
+            RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
+            RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
+            RGBCOLOR disabledOptionForeColor = rgbFrom(120);
+            RGBCOLOR disabledOptionBackColor = rgbFrom(12);
 
-    public:
+            int* loop();
 
-        void setSeparator(char value);
-        char getSeparator();
+        public:
 
-        void draw() override;
+            void setX(int value);
+            int getX();
+            void setY(int value);
+            int getY();
+            void setOptions(string* value);
+            string* getOptions();
+            void setOptionsState(bool* value);
+            bool* getOptionsState();
+            void setSelectedOptions(int* value);
+            int* getSelectedOptions();
+            void setCurrentOption(int value);
+            int getCurrentOption();
+            void setOptionsCount(int value);
+            int getOptionsCount();
+            void setOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getOptionForeColor();
+            void setOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getOptionBackColor();
+            void setSelectedOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getSelectedOptionForeColor();
+            void setSelectedOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getSelectedOptionBackColor();
+            void setCurrentOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getCurrentOptionForeColor();
+            void setCurrentOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getCurrentOptionBackColor();
+            void setDisabledOptionForeColor(RGBCOLOR value);
+            RGBCOLOR getDisabledOptionForeColor();
+            void setDisabledOptionBackColor(RGBCOLOR value);
+            RGBCOLOR getDisabledOptionBackColor();
 
-    };
+            int* call();
+            virtual void draw();
+            void up();
+            void down();
+            void top();
+            void bottom();
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        };
 
-    #pragma endregion
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-    #endif
+        #pragma endregion
+
+
+        // ##
+        // ##   Check List Box
+        // ##
+
+        #pragma region Check List Box
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        class checkListBox : public multiControl
+        {
+
+        private:
+
+            char separator = '-';
+
+        public:
+
+            void setSeparator(char value);
+            char getSeparator();
+
+            void draw() override;
+
+        };
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+        #endif
+    }
 }
