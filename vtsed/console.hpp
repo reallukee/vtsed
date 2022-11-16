@@ -63,7 +63,7 @@ using namespace std;
 
 namespace vtsed
 {
-    extern "C"
+    extern "C++"
     {
         #if defined(_WIN32) || defined(_WIN64)
 

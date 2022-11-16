@@ -65,7 +65,7 @@ using namespace std;
 
 namespace vtsed
 {
-    extern "C"
+    extern "C++"
     {
         // ##
         // ##   Basics
@@ -236,20 +236,20 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         #define SCREEN_COLOR_BLACK        0     // Nero
-        #define SCREEN_COLOR_DARKBLUE     1     // Blu Scuro
+        #define SCREEN_COLOR_DARKRED      1     // Rosso Scuro
         #define SCREEN_COLOR_DARKGREEN    2     // Verde Scuro
-        #define SCREEN_COLOR_DARKCYAN     3     // Ciano Scuro
-        #define SCREEN_COLOR_DARKRED      4     // Rosso Scuro
+        #define SCREEN_COLOR_DARKYELLOW   3     // Giallo Scuro
+        #define SCREEN_COLOR_DARKBLUE     4     // Blu Scuro
         #define SCREEN_COLOR_DARKMAGENTA  5     // Magenta Scuro
-        #define SCREEN_COLOR_DARKYELLOW   6     // Giallo Scuro
+        #define SCREEN_COLOR_DARKCYAN     6     // Ciano Scuro
         #define SCREEN_COLOR_DARKGRAY     7     // Grigio Scuro
         #define SCREEN_COLOR_GRAY         8     // Grigio
-        #define SCREEN_COLOR_BLUE         9     // Blu
+        #define SCREEN_COLOR_RED          9     // Rosso
         #define SCREEN_COLOR_GREEN        10    // Verde
-        #define SCREEN_COLOR_CYAN         11    // Ciano
-        #define SCREEN_COLOR_RED          12    // Rosso
+        #define SCREEN_COLOR_YELLOW       11    // Giallo
+        #define SCREEN_COLOR_BLUE         12    // Blu
         #define SCREEN_COLOR_MAGENTA      13    // Magenta
-        #define SCREEN_COLOR_YELLOW       14    // Giallo
+        #define SCREEN_COLOR_CYAN         14    // Ciano
         #define SCREEN_COLOR_WHITE        15    // Bianco
 
 
@@ -334,22 +334,22 @@ namespace vtsed
         //
 
         const HEXCOLOR modterm[16] = {
-            hexFrom("11", "11", "11"),
-            hexFrom("00", "16", "64"),
-            hexFrom("20", "40", "32"),
-            hexFrom("00", "80", "80"),
-            hexFrom("A0", "20", "20"),
-            hexFrom("A0", "20", "A0"),
-            hexFrom("FF", "C8", "20"),
-            hexFrom("20", "20", "20"),
-            hexFrom("E6", "E6", "E6"),
-            hexFrom("10", "30", "A0"),
-            hexFrom("40", "80", "64"),
-            hexFrom("3C", "BE", "BE"),
-            hexFrom("D8", "46", "46"),
-            hexFrom("C8", "4B", "C8"),
-            hexFrom("FF", "D2", "46"),
-            hexFrom("FF", "FF", "FF"),
+            hexFrom("11", "11", "11"),  // Nero
+            hexFrom("10", "30", "A0"),  // Blu
+            hexFrom("3C", "5F", "46"),  // Verde
+            hexFrom("00", "80", "80"),  // Ciano
+            hexFrom("A5", "2D", "2D"),  // Rosso
+            hexFrom("87", "0A", "7D"),  // Magenta
+            hexFrom("FF", "C8", "20"),  // Giallo
+            hexFrom("FF", "00", "FF"),  // Grigio
+            hexFrom("E6", "E6", "E6"),  // Grigio Chiaro
+            hexFrom("05", "55", "B4"),  // Blu Chiaro
+            hexFrom("55", "96", "69"),  // Verde Chiaro
+            hexFrom("3C", "BE", "BE"),  // Ciano Chiaro
+            hexFrom("D8", "46", "46"),  // Rosso Chiaro
+            hexFrom("C8", "32", "C8"),  // Magenta Chiaro
+            hexFrom("FF", "D2", "46"),  // Giallo Chiaro
+            hexFrom("FF", "FF", "FF"),  // Bianco
         };
 
 
