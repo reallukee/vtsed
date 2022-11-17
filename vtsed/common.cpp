@@ -19,6 +19,60 @@
 namespace vtsed
 {
     // ##
+    // ##   Conversions
+    // ##
+
+    #pragma region Conversions
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    string decToHex(unsigned dec)
+    {
+        string hex = "";
+
+        while (dec != 0)
+        {
+            int t = dec % 16;
+
+            if (t > 9)
+                hex = (char)(65 + t - 10) + hex;
+            else
+                hex = to_string(t) + hex;
+
+            dec = dec / 16;
+        }
+
+        return hex;
+    }
+
+
+    unsigned hexToDec(string hex)
+    {
+        unsigned dec = 0;
+
+        for (int i = 0; i < hex.size(); i++)
+        {
+            int t = hex[i];
+
+            if (t > 64)
+                t = (unsigned)(t - 55);
+            else
+                t = (unsigned)(t - 48);
+
+            dec += t * pow(16, i);
+        }
+
+        return dec;
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
     // ##   RGBCOLOR
     // ##
 
@@ -84,6 +138,12 @@ namespace vtsed
     RGBCOLOR rgbFrom(short c)
     {
         return RGBCOLOR(c, c, c);
+    }
+
+
+    RGBCOLOR rgbFromHex(HEXCOLOR hex)
+    {
+        return rgbFrom(hexToDec(hex.r), hexToDec(hex.g), hexToDec(hex.b));
     }
 
     //////////////////////////////////////////////////
@@ -158,6 +218,12 @@ namespace vtsed
     HEXCOLOR hexFrom(string c)
     {
         return HEXCOLOR(c, c, c);
+    }
+
+
+    HEXCOLOR hexFromRgb(RGBCOLOR rgb)
+    {
+        return hexFrom(decToHex(rgb.r), decToHex(rgb.g), decToHex(rgb.b));
     }
 
     //////////////////////////////////////////////////

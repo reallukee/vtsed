@@ -66,6 +66,24 @@ namespace vtsed
     extern "C++"
     {
         // ##
+        // ##   Conversions
+        // ##
+
+        #pragma region Conversions
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        string VTSED_API decToHex(unsigned dec);
+        unsigned VTSED_API hexToDec(string hex);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
         // ##   RGBCOLOR
         // ##
 
@@ -105,6 +123,7 @@ namespace vtsed
 
         RGBCOLOR VTSED_API rgbFrom(short r, short g, short b);
         RGBCOLOR VTSED_API rgbFrom(short c);
+        RGBCOLOR VTSED_API rgbFromHex(HEXCOLOR hex);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -150,6 +169,7 @@ namespace vtsed
 
         HEXCOLOR VTSED_API hexFrom(string r, string g, string b);
         HEXCOLOR VTSED_API hexFrom(string c);
+        HEXCOLOR VTSED_API hexFromRgb(RGBCOLOR rgb);
 
         #endif  // HEXCOLOR_STRUCT
 

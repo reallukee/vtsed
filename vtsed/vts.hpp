@@ -119,16 +119,16 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API cursorUp(int n);
-        void VTSED_API cursorDown(int n);
-        void VTSED_API cursorRight(int n);
-        void VTSED_API cursorLeft(int n);
-        void VTSED_API cursorUpLine(int n);
-        void VTSED_API cursorPreviousLine(int n);
-        void VTSED_API cursorHorizontalAbs(int n);
-        void VTSED_API cursorVerticalAbs(int n);
-        void VTSED_API setCursorPositionCUP(int x, int y);
-        void VTSED_API setCursorPositionHVP(int x, int y);
+        void VTSED_API cursorUp(unsigned n = 0);
+        void VTSED_API cursorDown(unsigned n = 0);
+        void VTSED_API cursorRight(unsigned n = 0);
+        void VTSED_API cursorLeft(unsigned n = 0);
+        void VTSED_API cursorUpLine(unsigned n = 0);
+        void VTSED_API cursorPreviousLine(unsigned n = 0);
+        void VTSED_API cursorHorizontalAbs(unsigned n = 0);
+        void VTSED_API cursorVerticalAbs(unsigned n = 0);
+        void VTSED_API setCursorPositionCUP(unsigned x, unsigned y);
+        void VTSED_API setCursorPositionHVP(unsigned x, unsigned y);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -172,7 +172,7 @@ namespace vtsed
         #define CURSOR_SHAPE_STEADY_BAR         6
 
 
-        void VTSED_API cursorShape(int c);
+        void VTSED_API cursorShape(unsigned c);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -189,8 +189,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API scrollUp(int n);
-        void VTSED_API scrollDown(int n);
+        void VTSED_API scrollUp(unsigned n);
+        void VTSED_API scrollDown(unsigned n);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -212,13 +212,13 @@ namespace vtsed
         #define TEXT_MODIFICATION_ERASE_ENTIRE       2
 
 
-        void VTSED_API insertCharacter(int n);
-        void VTSED_API deleteCharacter(int n);
-        void VTSED_API eraseCharacter(int n);
-        void VTSED_API insertLine(int n);
-        void VTSED_API deleteLine(int n);
-        void VTSED_API eraseInDisplay(int n);
-        void VTSED_API eraseInLine(int n);
+        void VTSED_API insertCharacter(unsigned n);
+        void VTSED_API deleteCharacter(unsigned n);
+        void VTSED_API eraseCharacter(unsigned n);
+        void VTSED_API insertLine(unsigned n);
+        void VTSED_API deleteLine(unsigned n);
+        void VTSED_API eraseInDisplay(unsigned n);
+        void VTSED_API eraseInLine(unsigned n);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////

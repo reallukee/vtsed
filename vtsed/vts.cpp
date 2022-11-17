@@ -141,61 +141,61 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorUp(int n)
+    void cursorUp(unsigned n)
     {
         cout << "\x1b[" << n << "A";
     }
 
 
-    void cursorDown(int n)
+    void cursorDown(unsigned n)
     {
         cout << "\x1b[" << n << "B";
     }
 
 
-    void cursorRight(int n)
+    void cursorRight(unsigned n)
     {
         cout << "\x1b[" << n << "C";
     }
 
 
-    void cursorLeft(int n)
+    void cursorLeft(unsigned n)
     {
         cout << "\x1b[" << n << "D";
     }
 
 
-    void cursorUpLine(int n)
+    void cursorUpLine(unsigned n)
     {
         cout << "\x1b[" << n << "E";
     }
 
 
-    void cursorPreviousLine(int n)
+    void cursorPreviousLine(unsigned n)
     {
         cout << "\x1b[" << n << "F";
     }
 
 
-    void cursorHorizontalAbs(int n)
+    void cursorHorizontalAbs(unsigned n)
     {
         cout << "\x1b[" << n << "G";
     }
 
 
-    void cursorVerticalAbs(int n)
+    void cursorVerticalAbs(unsigned n)
     {
         cout << "\x1b[" << n << "d";
     }
 
 
-    void setCursorPositionCUP(int x, int y)
+    void setCursorPositionCUP(unsigned x, unsigned y)
     {
         cout << "\x1b[" << y << ";" << x << "H";
     }
 
 
-    void setCursorPositionHVP(int x, int y)
+    void setCursorPositionHVP(unsigned x, unsigned y)
     {
         cout << "\x1b[" << y << ";" << x << "f";
     }
@@ -247,7 +247,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorShape(int c)
+    void cursorShape(unsigned c)
     {
         if (c >= 0 && c <= 6)
             cout << "\x1b[" << c << "\x20q";
@@ -270,13 +270,13 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void scrollUp(int n)
+    void scrollUp(unsigned n)
     {
         cout << "\x1b[" << n << "S";
     }
 
 
-    void scrollDown(int n)
+    void scrollDown(unsigned n)
     {
         cout << "\x1b[" << n << "T";
     }
@@ -296,44 +296,44 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void insertCharacter(int n)
+    void insertCharacter(unsigned n)
     {
         cout << "\x1b[" << n << "@";
     }
 
 
-    void deleteCharacter(int n)
+    void deleteCharacter(unsigned n)
     {
         cout << "\x1b[" << n << "P";
     }
 
 
-    void eraseCharacter(int n)
+    void eraseCharacter(unsigned n)
     {
         cout << "\x1b[" << n << "X";
     }
 
 
-    void insertLine(int n)
+    void insertLine(unsigned n)
     {
         cout << "\x1b[" << n << "L";
     }
 
 
-    void deleteLine(int n)
+    void deleteLine(unsigned n)
     {
         cout << "\x1b[" << n << "M";
     }
 
 
-    void eraseInDisplay(int n)
+    void eraseInDisplay(unsigned n)
     {
         if (n >= 0 && n <= 2)
             cout << "\x1b[" << n << "J";
     }
 
 
-    void eraseInLine(int n)
+    void eraseInLine(unsigned n)
     {
         if (n >= 0 && n <= 2)
             cout << "\x1b[" << n << "K";

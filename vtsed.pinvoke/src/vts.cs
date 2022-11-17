@@ -234,6 +234,82 @@ namespace VTSEd
 
 
         // ##
+        // ##   Foreground Color
+        // ##
+
+        #region Foreground Color
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        [DllImport(Core.DLL)]
+        public static extern string setForegroundColor(int r, int g, int b);
+
+
+        [DllImport(Core.DLL)]
+        public static extern string setForegroundColor(int c);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string setForegroundColorById(int id);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string sFC(int r, int g, int b);
+
+
+        [DllImport(Core.DLL)]
+        public static extern string sFC(int c);
+
+
+        [DllImport(Core.DLL)]
+        public static extern string sFCById(int id);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #endregion
+
+
+        // ##
+        // ##   Background Color
+        // ##
+
+        #region Background Color
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        [DllImport(Core.DLL)]
+        public static extern string setBackgroundColor(int r, int g, int b);
+
+
+        [DllImport(Core.DLL)]
+        public static extern string setBackgroundColor(int c);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string setBackgroundColorById(int id);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string sBC(int r, int g, int b);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string sBC(int c);
+        
+        
+        [DllImport(Core.DLL)]
+        public static extern string sBCById(int id);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #endregion
+
+
+        // ##
         // ##   Mode Changes
         // ##
 
