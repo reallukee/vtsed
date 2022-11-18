@@ -2,6 +2,15 @@
 
 using namespace vtsed;
 
+#define PLAY    1
+#define OPTIONS 2
+#define ABOUT   3
+#define QUIT    5
+
+void myOnCallStart();
+void myOnCallEnd();
+bool myOnDraw(int index, string option, bool state, bool selected, bool current);
+
 int main()
 {
     string options[] = {
@@ -32,6 +41,10 @@ int main()
     myListBox.setOptionsCount(7);
     myListBox.setX(4);
     myListBox.setY(8);
+
+    myListBox.onCallStart = myOnCallStart;
+    myListBox.onCallEnd = myOnCallEnd;
+    myListBox.onDraw = myOnDraw;
 
     bool doLoop = true;
 
@@ -74,19 +87,19 @@ int main()
 
         switch (r)
         {
-        case 1:
+        case PLAY:
             cout << "Play              ";
             break;
 
-        case 2:
+        case OPTIONS:
             cout << "Options           ";
             break;
 
-        case 3:
+        case ABOUT:
             cout << "About             ";
             break;
 
-        case 5:
+        case QUIT:
             doLoop = false;
             break;
 
@@ -96,4 +109,40 @@ int main()
     }
 
     return 0;
+}
+
+
+void myOnCallStart()
+{
+    cout << "Chiamata Iniziata!" << endl;
+}
+
+
+void myOnCallEnd()
+{
+    cout << "Chiamata Terminata!" << endl;
+}
+
+
+bool myOnDraw(int index, string option, bool state, bool selected, bool current)
+{
+    if (index == QUIT)
+    {
+        if (current)
+        {
+            cout << sFC(RGBCOLOR(240));
+            cout << sBC(RGBCOLOR(205, 55, 55));
+        }
+        else
+        {
+            cout << sFC(RGBCOLOR(205, 55, 55));
+            cout << sBC(RGBCOLOR(12));
+        }
+
+        cout << option;
+
+        return false;
+    }
+
+    return true;
 }

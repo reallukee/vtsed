@@ -211,11 +211,22 @@ namespace vtsed
 
     int singleControl::call()
     {
+        if (onCallStart != nullptr)
+            onCallStart();
+
         cursorVisible(false);
+
         draw();
+
         int R = loop();
+
         cursorVisible(true);
+
         cout << sgr(SGR_DEFAULT);
+
+        if (onCallEnd != nullptr)
+            onCallEnd();
+
         return R;
     }
 
@@ -368,41 +379,53 @@ namespace vtsed
     {
         for (int i = 0; i < getOptionsCount(); i++)
         {
+            bool d = true;
+
             setCursorPosition(getX(), getY() + i);
 
-            if (getOptionsState()[i])
+            if (onDraw != nullptr)
+                d = onDraw(i,
+                    getOptions()[i],
+                    getOptionsState()[i],
+                    (i == getCurrentOption()), 
+                    (i == getSelectedOption()));
+
+            if (d)
             {
-                if (i == getSelectedOption())
+                if (getOptionsState()[i])
                 {
-                    if (i == getCurrentOption())
+                    if (i == getSelectedOption())
+                    {
+                        if (i == getCurrentOption())
+                        {
+                            cout << sFC(getCurrentOptionForeColor());
+                            cout << sBC(getCurrentOptionBackColor());
+                        }
+                        else
+                        {
+                            cout << sFC(getSelectedOptionForeColor());
+                            cout << sBC(getSelectedOptionBackColor());
+                        }
+                    }
+                    else if (i == getCurrentOption())
                     {
                         cout << sFC(getCurrentOptionForeColor());
                         cout << sBC(getCurrentOptionBackColor());
                     }
                     else
                     {
-                        cout << sFC(getSelectedOptionForeColor());
-                        cout << sBC(getSelectedOptionBackColor());
+                        cout << sFC(getOptionForeColor());
+                        cout << sBC(getOptionBackColor());
                     }
-                }
-                else if (i == getCurrentOption())
-                {
-                    cout << sFC(getCurrentOptionForeColor());
-                    cout << sBC(getCurrentOptionBackColor());
                 }
                 else
                 {
-                    cout << sFC(getOptionForeColor());
-                    cout << sBC(getOptionBackColor());
+                    cout << sFC(getDisabledOptionForeColor());
+                    cout << sBC(getDisabledOptionBackColor());
                 }
-            }
-            else
-            {
-                cout << sFC(getDisabledOptionForeColor());
-                cout << sBC(getDisabledOptionBackColor());
-            }
 
-            cout << getOptions()[i];
+                cout << getOptions()[i];
+            }
         }
     }
 
@@ -603,11 +626,22 @@ namespace vtsed
 
     int* multiControl::call()
     {
+        if (onCallStart != nullptr)
+            onCallStart();
+
         cursorVisible(false);
+
         draw();
+
         int* R = loop();
+
         cursorVisible(true);
+
         cout << sgr(SGR_DEFAULT);
+
+        if (onCallEnd != nullptr)
+            onCallEnd();
+
         return R;
     }
 
@@ -768,53 +802,65 @@ namespace vtsed
     {
         for (int i = 0; i < getOptionsCount(); i++)
         {
+            bool d = true;
+
             setCursorPosition(getX(), getY() + i);
 
-            if (getOptionsState()[i])
+            if (onDraw != nullptr)
+                d = onDraw(i,
+                    getOptions()[i],
+                    getOptionsState()[i],
+                    getSelectedOptions()[i],
+                    (i == getCurrentOption()));
+
+            if (d)
             {
-                if (getSelectedOptions()[i])
+                if (getOptionsState()[i])
                 {
-                    if (i == getCurrentOption())
+                    if (getSelectedOptions()[i])
+                    {
+                        if (i == getCurrentOption())
+                        {
+                            cout << sFC(getCurrentOptionForeColor());
+                            cout << sBC(getCurrentOptionBackColor());
+                        }
+                        else
+                        {
+                            cout << sFC(getSelectedOptionForeColor());
+                            cout << sBC(getSelectedOptionBackColor());
+                        }
+                    }
+                    else if (i == getCurrentOption())
                     {
                         cout << sFC(getCurrentOptionForeColor());
                         cout << sBC(getCurrentOptionBackColor());
                     }
                     else
                     {
-                        cout << sFC(getSelectedOptionForeColor());
-                        cout << sBC(getSelectedOptionBackColor());
+                        cout << sFC(getOptionForeColor());
+                        cout << sBC(getOptionBackColor());
                     }
                 }
-                else if (i == getCurrentOption())
-                {
-                    cout << sFC(getCurrentOptionForeColor());
-                    cout << sBC(getCurrentOptionBackColor());
-                }
                 else
                 {
-                    cout << sFC(getOptionForeColor());
-                    cout << sBC(getOptionBackColor());
+                    cout << sFC(getDisabledOptionForeColor());
+                    cout << sBC(getDisabledOptionBackColor());
                 }
-            }
-            else
-            {
-                cout << sFC(getDisabledOptionForeColor());
-                cout << sBC(getDisabledOptionBackColor());
-            }
 
-            if (getOptions()[i][0] != separator)
-            {
-                if (getSelectedOptions()[i])
+                if (getOptions()[i][0] != separator)
                 {
-                    cout << " ( * ) ";
+                    if (getSelectedOptions()[i])
+                    {
+                        cout << " ( * ) ";
+                    }
+                    else
+                    {
+                        cout << " (   ) ";
+                    }
                 }
-                else
-                {
-                    cout << " (   ) ";
-                }
-            }
 
-            cout << getOptions()[i];
+                cout << getOptions()[i];
+            }       
         }
     }
 

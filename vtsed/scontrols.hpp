@@ -105,5 +105,29 @@ namespace vtsed
         #pragma endregion
 
         #endif
+
+
+        class VTSED_API gridRow
+        {
+
+        public:
+
+            void draw();
+
+            void(*onDraw)() = nullptr;
+
+        };
+
+
+        class VTSED_API gridCol
+        {
+
+        public:
+
+            void draw();
+
+            void(*onDraw)() = nullptr;
+
+        };
     }
 }

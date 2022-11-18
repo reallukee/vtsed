@@ -123,7 +123,6 @@ namespace vtsed
 
         RGBCOLOR VTSED_API rgbFrom(short r, short g, short b);
         RGBCOLOR VTSED_API rgbFrom(short c);
-        RGBCOLOR VTSED_API rgbFromHex(HEXCOLOR hex);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -169,7 +168,6 @@ namespace vtsed
 
         HEXCOLOR VTSED_API hexFrom(string r, string g, string b);
         HEXCOLOR VTSED_API hexFrom(string c);
-        HEXCOLOR VTSED_API hexFromRgb(RGBCOLOR rgb);
 
         #endif  // HEXCOLOR_STRUCT
 
@@ -177,6 +175,12 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         #pragma endregion
+
+
+
+        RGBCOLOR VTSED_API rgbFromHex(HEXCOLOR hex);
+        HEXCOLOR VTSED_API hexFromRgb(RGBCOLOR rgb);
+
 
 
         // ##

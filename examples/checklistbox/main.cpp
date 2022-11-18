@@ -2,6 +2,16 @@
 
 using namespace vtsed;
 
+#define APPLES  1
+#define BANANAS 2
+#define ORANGES 3
+#define PEACHES 4
+#define KIWI    5
+
+void myOnCallStart();
+void myOnCallEnd();
+bool myOnDraw(int index, string option, bool state, bool selected, bool current);
+
 int main()
 {
     string options[] = {
@@ -41,7 +51,72 @@ int main()
     myCheckListBox.setSelectedOptions(selectedOptions);
     myCheckListBox.setOptionsCount(7);
 
-    myCheckListBox.call();
+    myCheckListBox.onCallStart = myOnCallStart;
+    myCheckListBox.onCallEnd = myOnCallEnd;
+    myCheckListBox.onDraw = myOnDraw;
+
+    bool doLoop = true;
+
+    while (doLoop)
+    {
+        int r = myCheckListBox.call()[0];
+    }
 
     return 0;
+}
+
+
+void myOnCallStart()
+{
+    cout << "Chiamata Iniziata!" << endl;
+}
+
+
+void myOnCallEnd()
+{
+    cout << "Chiamata Terminata!" << endl;
+}
+
+
+bool myOnDraw(int index, string option, bool state, bool selected, bool current)
+{
+    if (index == KIWI)
+    {
+        if (current)
+        {
+            if (selected)
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(60, 125, 60));
+                cout << " ( * ) ";
+            }
+            else
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(75, 160, 80));
+                cout << " (   ) ";
+            }
+        }
+        else
+        {
+            if (selected)
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(50, 110, 50));
+                cout << " ( * ) ";
+            }
+            else
+            {
+                cout << sFC(RGBCOLOR(50, 110, 50));
+                cout << sBC(RGBCOLOR(12));
+                cout << " (   ) ";
+            }
+        }
+
+        cout << option;
+
+        return false;
+    }
+
+    return true;
 }

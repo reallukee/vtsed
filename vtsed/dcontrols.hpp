@@ -89,7 +89,7 @@ namespace vtsed
             short y = 2;
             string* options = NULL;
             bool* optionsState = NULL;
-            int selectedOption = 1;
+            int selectedOption = NULL;
             int currentOption = 1;
             int optionsCount = 0;
             RGBCOLOR optionForeColor = rgbFrom(240);
@@ -142,6 +142,11 @@ namespace vtsed
             void down();
             void top();
             void bottom();
+
+            void(*onCallStart)() = nullptr;
+            void(*onCallEnd)() = nullptr;
+            bool(*onDraw)(int index, string option, bool state, 
+                bool selected, bool current) = nullptr;
 
         };
 
@@ -253,6 +258,11 @@ namespace vtsed
             void down();
             void top();
             void bottom();
+
+            void(*onCallStart)() = nullptr;
+            void(*onCallEnd)() = nullptr;
+            bool(*onDraw)(int index, string option, bool state,
+                bool selected, bool current) = nullptr;
 
         };
 
