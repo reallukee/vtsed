@@ -88,7 +88,7 @@ namespace vtsed
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         // Ottengo le informazioni del buffer dello screen.
         GetConsoleScreenBufferInfo(hOut, &csbi);
-        setCursorPosition((csbi.dwSize.X - str.size()) / 2, y);
+        setCursorPosition((csbi.dwSize.X - (int)str.size()) / 2, y);
         cout << str;
     }
 
@@ -100,7 +100,7 @@ namespace vtsed
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         // Ottengo le informazioni del buffer dello screen.
         GetConsoleScreenBufferInfo(hOut, &csbi);
-        setCursorPosition((csbi.dwSize.X - strlen(str)) / 2, y);
+        setCursorPosition((csbi.dwSize.X - (int)strlen(str)) / 2, y);
         cout << str;
     }
 
@@ -112,7 +112,7 @@ namespace vtsed
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         // Ottengo le informazioni del buffer dello screen.
         GetConsoleScreenBufferInfo(hOut, &csbi);
-        setCursorPosition(csbi.dwSize.X - str.size(), y);
+        setCursorPosition(csbi.dwSize.X - (int)str.size(), y);
         cout << str;
     }
 
@@ -124,7 +124,7 @@ namespace vtsed
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         // Ottengo le informazioni del buffer dello screen.
         GetConsoleScreenBufferInfo(hOut, &csbi);
-        setCursorPosition(csbi.dwSize.X - strlen(str), y);
+        setCursorPosition(csbi.dwSize.X - (int)strlen(str), y);
         cout << str;
     }
 

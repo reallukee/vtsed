@@ -79,13 +79,13 @@ namespace vtsed
 
     void singleControl::setSelectedOption(int value)
     {
-        selectedOption = value;
+        selectedOptions[0] = value;
     }
 
 
     int singleControl::getSelectedOption()
     {
-        return selectedOption;
+        return selectedOptions[0];
     }
 
 
@@ -209,6 +209,22 @@ namespace vtsed
     }
 
 
+    singleControl::singleControl()
+    {
+        options = NULL;
+        optionsState = NULL;
+        selectedOptions = new int[1];
+    }
+
+
+    singleControl::~singleControl()
+    {
+        // delete options;
+        // delete optionsState;
+        // delete selectedOptions;
+    }
+
+
     int singleControl::call()
     {
         if (onCallStart != nullptr)
@@ -302,28 +318,28 @@ namespace vtsed
                 case 'W':
                 case 'w':
                     up();
-                    selectedOption = currentOption;
+                    selectedOptions[0] = currentOption;
                     break;
 
                 case 80:
                 case 'S':
                 case 's':
                     down();
-                    selectedOption = currentOption;
+                    selectedOptions[0] = currentOption;
                     break;
 
                 case 73:
                 case 'T':
                 case 't':
                     top();
-                    selectedOption = currentOption;
+                    selectedOptions[0] = currentOption;
                     break;
 
                 case 81:
                 case 'B':
                 case 'b':
                     bottom();
-                    selectedOption = currentOption;
+                    selectedOptions[0] = currentOption;
                     break;
 
                 case 28:
@@ -339,7 +355,7 @@ namespace vtsed
             draw();
         }
 
-        return selectedOption;
+        return selectedOptions[0];
     }
 
 
@@ -621,6 +637,22 @@ namespace vtsed
     RGBCOLOR multiControl::getDisabledOptionBackColor()
     {
         return disabledOptionBackColor;
+    }
+
+
+    multiControl::multiControl()
+    {
+        options = NULL;
+        optionsState = NULL;
+        selectedOptions = new int[1];
+    }
+
+
+    multiControl::~multiControl()
+    {
+        // delete options;
+        // delete optionsState;
+        // delete selectedOptions;
     }
 
 

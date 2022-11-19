@@ -7,10 +7,12 @@ if exist ..\vtsed\x64 rmdir /q /s ..\vtsed\x64
 if exist ..\vtsed\x86 rmdir /q /s ..\vtsed\x86
 if exist ..\vtsed.test\x64 rmdir /q /s ..\vtsed.test\x64
 if exist ..\vtsed.test\x86 rmdir /q /s ..\vtsed.test\x86
-if exist ..\examples\box\x86 rmdir /q /s ..\examples\box\x86
-if exist ..\examples\box\x64 rmdir /q /s ..\examples\box\x64
 if exist ..\examples\checklistbox\x64 rmdir /q /s ..\examples\checklistbox\x64
 if exist ..\examples\checklistbox\x86 rmdir /q /s ..\examples\checklistbox\x86
+if exist ..\examples\gridcol\x86 rmdir /q /s ..\examples\gridcol\x86
+if exist ..\examples\gridcol\x64 rmdir /q /s ..\examples\gridrcol\x64
+if exist ..\examples\gridrow\x86 rmdir /q /s ..\examples\gridrow\x86
+if exist ..\examples\gridrow\x64 rmdir /q /s ..\examples\gridrow\x64
 if exist ..\examples\listbox\x86 rmdir /q /s ..\examples\listbox\x86
 if exist ..\examples\listbox\x64 rmdir /q /s ..\examples\listbox\x64
 if exist ..\examples\table\x86 rmdir /q /s ..\examples\table\x86

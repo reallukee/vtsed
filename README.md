@@ -38,22 +38,6 @@
 
 # Esempi
 
-## Controllo `Box`
-
-> [Esempio](./examples/box/main.cpp)
-
-![Box](./assets/box.png)
-
-
-
-## Controllo `Table`
-
-> [Esempio](./examples/table/main.cpp)
-
-![Table](./assets/table.png)
-
-
-
 ## Controllo `ListBox`
 
 > [Esempio](./examples/listbox/main.cpp)
@@ -67,6 +51,18 @@
 > [Esempio](./examples/checklistbox/main.cpp)
 
 ![CheckListBox](./assets/checklistbox.png)
+
+
+
+## Controllo `GridRow`
+
+> [Esempio](./examples/gridrow/main.cpp)
+
+
+
+## Controllo `GridCol`
+
+> [Esempio](./examples/gridcol/main.cpp)
 
 
 

@@ -72,62 +72,116 @@ namespace vtsed
         #if defined(_WIN32) || defined(_WIN64)
 
         // ##
-        // ##   Box
+        // ##   Grid Row
         // ##
 
-        #pragma region Box
+        #pragma region Grid Row
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
-
-        void VTSED_API box(string* content, int ysize, string title, int x, int y);
-
-        //////////////////////////////////////////////////
-        //////////////////////////////////////////////////
-    
-        #pragma endregion
-
-
-        // ##
-        // ##   Table
-        // ##
-
-        #pragma region Table
-
-        //////////////////////////////////////////////////
-        //////////////////////////////////////////////////
-
-        void VTSED_API table(string* content[], int ysize, int xsize, int x, int y);
-
-        //////////////////////////////////////////////////
-        //////////////////////////////////////////////////
-    
-        #pragma endregion
-
-        #endif
-
 
         class VTSED_API gridRow
         {
 
+        private:
+
+            int* maxLen = nullptr;
+
+            unsigned short x = 4;
+            unsigned short y = 2;
+            string** content = NULL;
+            int ySize = -1;
+            int xSize = -1;
+            RGBCOLOR foreColor = rgbFrom(240);
+            RGBCOLOR backColor = rgbFrom(12);
+
+            void updateConfig();
+            void gap(int currentLen, int maxLen, int currentCol);
+
         public:
+
+            ~gridRow();
+
+            void setX(unsigned short x);
+            unsigned short getX();
+            void setY(unsigned short y);
+            unsigned short getY();
+            void setContent(string* content[], int xSize, int ySize);
+            string** getContent();
+            int getXSize();
+            int getYSize();
+            void setForeColor(RGBCOLOR foreColor);
+            RGBCOLOR getForeColor();
+            void setBackColor(RGBCOLOR backColor);
+            RGBCOLOR getBackColor();
 
             void draw();
 
-            void(*onDraw)() = nullptr;
+            bool(*onDraw)(string content, int row) = nullptr;
 
         };
 
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
+        // ##   Grid Col
+        // ##
+
+        #pragma region Grid Col
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
         class VTSED_API gridCol
         {
 
+        private:
+
+            int* maxLen = nullptr;
+
+            unsigned short x = 4;
+            unsigned short y = 2;
+            string** content = NULL;
+            int ySize = -1;
+            int xSize = -1;
+            RGBCOLOR foreColor = rgbFrom(240);
+            RGBCOLOR backColor = rgbFrom(12);
+
+            void updateConfig();
+            void gap(int currentLen, int maxLen, int currentCol);
+
         public:
+
+            ~gridCol();
+
+            void setX(unsigned short x);
+            unsigned short getX();
+            void setY(unsigned short y);
+            unsigned short getY();
+            void setContent(string* content[], int xSize, int ySize);
+            string** getContent();
+            int getXSize();
+            int getYSize();
+            void setForeColor(RGBCOLOR foreColor);
+            RGBCOLOR getForeColor();
+            void setBackColor(RGBCOLOR backColor);
+            RGBCOLOR getBackColor();
 
             void draw();
 
-            void(*onDraw)() = nullptr;
+            bool(*onDraw)(string content, int col) = nullptr;
 
         };
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+        #endif
     }
 }

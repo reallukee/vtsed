@@ -2,6 +2,9 @@
 
 using namespace vtsed;
 
+#define EXIT_OK      0
+#define EXIT_ERROR   -1
+
 #define APPLES  1
 #define BANANAS 2
 #define ORANGES 3
@@ -14,6 +17,9 @@ bool myOnDraw(int index, string option, bool state, bool selected, bool current)
 
 int main()
 {
+    if (!enableVTS())
+        return EXIT_ERROR;
+
     string options[] = {
         "---------",
         " Apples  ",
@@ -60,9 +66,11 @@ int main()
     while (doLoop)
     {
         int r = myCheckListBox.call()[0];
+
+        doLoop = false;
     }
 
-    return 0;
+    return EXIT_OK;
 }
 
 

@@ -35,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\vtsed\vtsed.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\vtsed\common.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -51,6 +48,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\vtsed\vts.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\vtsed.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

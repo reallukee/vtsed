@@ -2,6 +2,9 @@
 
 using namespace vtsed;
 
+#define EXIT_OK      0
+#define EXIT_ERROR   -1
+
 #define PLAY    1
 #define OPTIONS 2
 #define ABOUT   3
@@ -13,6 +16,9 @@ bool myOnDraw(int index, string option, bool state, bool selected, bool current)
 
 int main()
 {
+    if (!enableVTS())
+        return EXIT_ERROR;
+
     string options[] = {
         "-------------",
         " (P) Play    ",
@@ -108,7 +114,7 @@ int main()
         }
     }
 
-    return 0;
+    return EXIT_OK;
 }
 
 

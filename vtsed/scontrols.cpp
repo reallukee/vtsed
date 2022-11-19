@@ -21,72 +21,142 @@ namespace vtsed
     #if defined(_WIN32) || defined(_WIN64)
 
     // ##
-    // ##   Box
+    // ##   Grid Row
     // ##
 
-    #pragma region Box
+    #pragma region Grid Row
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void box(string* content, int ysize, string title, int x, int y)
+    unsigned short gridRow::getX()
     {
-        designateCharacter(true);
+        return x;
+    }
 
-        int maxLenght = title.size();
 
-        for (int i = 0; i < ysize; i++)
-            if (content[i].size() > maxLenght)
-                maxLenght = content[i].size();
+    void gridRow::setX(unsigned short x)
+    {
+        this->x = x;
+    }
 
-        setCursorPosition(x, y);
 
-        for (int j = 0; j < maxLenght - title.size() + 3; j++)
+    unsigned short gridRow::getY()
+    {
+        return y;
+    }
+
+
+    void gridRow::setY(unsigned short y)
+    {
+        this->y = y;
+    }
+
+
+    void gridRow::setContent(string* content[], int xSize, int ySize)
+    {
+        this->content = content;
+        this->xSize = xSize;
+        this->ySize = ySize;
+        updateConfig();
+    }
+
+
+    string** gridRow::getContent()
+    {
+        return content;
+    }
+
+
+    int gridRow::getXSize()
+    {
+        return xSize;
+    }
+
+
+    int gridRow::getYSize()
+    {
+        return ySize;
+    }
+
+
+    void gridRow::setForeColor(RGBCOLOR foreColor)
+    {
+        this->foreColor = foreColor;
+    }
+
+
+    RGBCOLOR gridRow::getForeColor()
+    {
+        return foreColor;
+    }
+
+
+    void gridRow::setBackColor(RGBCOLOR backColor)
+    {
+        this->backColor = backColor;
+    }
+
+
+    RGBCOLOR gridRow::getBackColor()
+    {
+        return backColor;
+    }
+
+
+    gridRow::~gridRow()
+    {
+        // delete[] content;
+        delete maxLen;
+    }
+
+
+    void gridRow::updateConfig()
+    {
+        maxLen = new int[xSize];
+
+        for (int i = 0; i < xSize; i++)
         {
-            if (j == 0)
+            int t = 0;
+
+            for (int j = 0; j < ySize; j++)
+                if ((int)content[j][i].size() > t)
+                    t = (int)content[j][i].size();
+
+            maxLen[i] = t;
+        }
+    }
+
+
+    void gridRow::gap(int currentLen, int maxLen, int currentCol)
+    {
+        for (int i = currentLen; i < maxLen; i++)
+            cout << " ";
+
+        if (currentCol != xSize - 1)
+            cout << " ";
+    }
+
+
+    void gridRow::draw()
+    {
+        for (int j = 0; j < ySize; j++)
+        {
+            setCursorPosition(x, y + j);
+
+            for (int i = 0; i < xSize; i++)
             {
-                cout << "lq";
-                designateCharacter(false);
-                cout << title;
-                designateCharacter(true);
-            }
-            else if (j == maxLenght - title.size() + 2)
-                cout << "k";
-            else
-                cout << "q";
-        }
+                bool d = true;
 
-        for (int i = 0; i < ysize; i++)
-        {
-            setCursorPosition(x, y + 1 + i);
+                if (onDraw != nullptr)
+                    d = onDraw(content[j][i], j);
 
-            cout << "x ";
-            designateCharacter(false);
-            cout << content[i];
-            designateCharacter(true);
+                if (d)
+                    cout << sFC(foreColor) << sBC(backColor) << content[j][i];
 
-            for (int j = content[i].size(); j < maxLenght + 2; j++)
-            {
-                if (j == maxLenght + 1)
-                    cout << "x";
-                else
-                    cout << " ";
+                gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
         }
-
-        setCursorPosition(x, y + 1 + ysize);
-
-        for (int j = 0; j < maxLenght + 4; j++)
-        {
-            if (j == 0)
-                cout << "m";
-            else if (j == maxLenght + 3)
-                cout << "j";
-            else
-                cout << "q";
-        }
-
-        designateCharacter(false);
     }
 
     //////////////////////////////////////////////////
@@ -96,104 +166,142 @@ namespace vtsed
 
 
     // ##
-    // ##   Table
+    // ##   Grid Col
     // ##
 
-    #pragma region Table
+    #pragma region Grid Col
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void table(string* content[], int ysize, int xsize, int x, int y)
+    unsigned short gridCol::getX()
     {
-        designateCharacter(true);
+        return x;
+    }
 
-        int* maxColWidth = new int[xsize];
 
-        for (int j = 0; j < ysize; j++)
-            for (int i = 0; i < xsize; i++)
-                maxColWidth[j, i] = 0;
+    void gridCol::setX(unsigned short x)
+    {
+        this->x = x;
+    }
 
-        for (int j = 0; j < ysize; j++)
-            for (int i = 0; i < xsize; i++)
-                if (maxColWidth[i] < content[j][i].size())
-                    maxColWidth[i] = content[j][i].size();
 
-        for (int j = 0; j < ysize; j++)
+    unsigned short gridCol::getY()
+    {
+        return y;
+    }
+
+
+    void gridCol::setY(unsigned short y)
+    {
+        this->y = y;
+    }
+
+
+    void gridCol::setContent(string* content[], int xSize, int ySize)
+    {
+        this->content = content;
+        this->xSize = xSize;
+        this->ySize = ySize;
+        updateConfig();
+    }
+
+
+    string** gridCol::getContent()
+    {
+        return content;
+    }
+
+
+    int gridCol::getXSize()
+    {
+        return xSize;
+    }
+
+
+    int gridCol::getYSize()
+    {
+        return ySize;
+    }
+
+
+    void gridCol::setForeColor(RGBCOLOR foreColor)
+    {
+        this->foreColor = foreColor;
+    }
+
+
+    RGBCOLOR gridCol::getForeColor()
+    {
+        return foreColor;
+    }
+
+
+    void gridCol::setBackColor(RGBCOLOR backColor)
+    {
+        this->backColor = backColor;
+    }
+
+
+    RGBCOLOR gridCol::getBackColor()
+    {
+        return backColor;
+    }
+
+
+    gridCol::~gridCol()
+    {
+        // delete[] content;
+        delete maxLen;
+    }
+
+
+    void gridCol::updateConfig()
+    {
+        maxLen = new int[xSize];
+
+        for (int i = 0; i < xSize; i++)
         {
-            setCursorPosition(x, y + j * 2);
-            
-            if (j == 0)
+            int t = 0;
+
+            for (int j = 0; j < ySize; j++)
+                if ((int)content[j][i].size() > t)
+                    t = (int)content[j][i].size();
+
+            maxLen[i] = t;
+        }
+    }
+
+
+    void gridCol::gap(int currentLen, int maxLen, int currentCol)
+    {
+        for (int i = currentLen; i < maxLen; i++)
+            cout << " ";
+
+        if (currentCol != xSize - 1)
+            cout << " ";
+    }
+
+
+    void gridCol::draw()
+    {
+        for (int j = 0; j < ySize; j++)
+        {
+            setCursorPosition(x, y + j);
+
+            for (int i = 0; i < xSize; i++)
             {
-                for (int i = 0; i < xsize; i++)
-                {
-                    if (i == 0)
-                        cout << "l";
+                bool d = true;
 
-                    for (int z = 0; z < maxColWidth[i] + 2; z++)
-                        cout << "q";
+                if (onDraw != nullptr)
+                    d = onDraw(content[j][i], i);
 
-                    if (i == xsize - 1)
-                        cout << "k";
-                    else
-                        cout << "w";
-                }
-            }
+                if (d)
+                    cout << sFC(foreColor) << sBC(backColor) << content[j][i];
 
-            setCursorPosition(x, y + j * 2 + 1);
-
-            for (int i = 0; i < xsize; i++)
-            {
-                cout << "x ";
-                designateCharacter(false);
-                cout << content[j][i] << " ";
-                designateCharacter(true);
-
-                for (int z = content[j][i].size(); z < maxColWidth[i]; z++)
-                    cout << " ";
-
-                if (i == xsize - 1)
-                    cout << "x";
-            }
-
-            setCursorPosition(x, y + j * 2 + 2);
-
-            for (int i = 0; i < xsize; i++)
-            {
-                if (j == ysize - 1)
-                {
-                    if (i == 0)
-                        cout << "m";
-                }
-                else
-                {
-                    if (i == 0)
-                        cout << "t";
-                }
-
-                for (int z = 0; z < maxColWidth[i] + 2; z++)
-                    cout << "q";
-
-                if (j == ysize - 1)
-                {
-                    if (i == xsize - 1)
-                        cout << "j";
-                    else
-                        cout << "v";
-                }
-                else
-                {
-                    if (i == xsize - 1)
-                        cout << "u";
-                    else
-                        cout << "n";
-                }
+                gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
         }
-
-        designateCharacter(false);
-
-        delete[] maxColWidth;
     }
 
     //////////////////////////////////////////////////

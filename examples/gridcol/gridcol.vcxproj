@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{12ba178f-6e92-4676-9b42-04a22c75723c}</ProjectGuid>
-    <RootNamespace>table</RootNamespace>
+    <ProjectGuid>{9365241b-cf38-4f9a-85b0-bf4258e2eb0c}</ProjectGuid>
+    <RootNamespace>gridcol</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

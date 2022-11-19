@@ -4,20 +4,16 @@
 
 > 💡 I controlli statici sono controlli testuali che non presentano una fase interattiva.
 
-- [Controllo Box](#controllo-box)
-- [Controllo Table](#controllo-table)
+- [Controllo GridRow](#controllo-gridrow)
+- [Controllo GridCol](#controllo-gridcol)
 
-# Controllo `Box`
+# Controllo `GridRow`
 
-> [Esempio](../examples/box/main.cpp)
+> [Esempio](../examples/gridrow/main.cpp)
 
-![Box](../assets/box.png)
+# Controllo `GridCol`
 
-# Controllo `Table`
-
-> [Esempio](../examples/table/main.cpp)
-
-![Table](../assets/table.png)
+> [Esempio](../examples/gridcol/main.cpp)
 
 ---
 

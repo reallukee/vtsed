@@ -89,7 +89,7 @@ namespace vtsed
             short y = 2;
             string* options = NULL;
             bool* optionsState = NULL;
-            int selectedOption = NULL;
+            int* selectedOptions = NULL;
             int currentOption = 1;
             int optionsCount = 0;
             RGBCOLOR optionForeColor = rgbFrom(240);
@@ -104,6 +104,9 @@ namespace vtsed
             int loop();
 
         public:
+
+            singleControl();
+            ~singleControl();
 
             void setX(int value);
             int getX();
@@ -220,6 +223,9 @@ namespace vtsed
             int* loop();
 
         public:
+
+            multiControl();
+            ~multiControl();
 
             void setX(int value);
             int getX();
