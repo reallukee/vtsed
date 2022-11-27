@@ -19,8 +19,10 @@
 
 #include "common.hpp"
 #include "console.hpp"
+#include "cmf.hpp"
 #include "dcontrols.hpp"
 #include "scontrols.hpp"
 #include "vts.hpp"
+#include "vts2.hpp"
 
 #endif  // VTSED_API_EXPOSER

@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="cmf.hpp" />
     <ClInclude Include="common.hpp" />
     <ClInclude Include="console.hpp" />
     <ClInclude Include="dcontrols.hpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="vts.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="vts2.hpp" />
     <ClInclude Include="vtsed.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

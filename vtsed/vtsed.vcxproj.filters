@@ -39,6 +39,12 @@
     <ClInclude Include="scontrols.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="cmf.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="vts2.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vts.cpp">

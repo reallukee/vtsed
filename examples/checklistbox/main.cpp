@@ -21,13 +21,13 @@ int main()
         return EXIT_ERROR;
 
     string options[] = {
-        "---------",
+        "----------------",
         " Apples  ",
         " Bananas ",
         " Oranges ",
         " Peaches ",
         " Kiwi    ",
-        "---------",
+        "----------------",
     };
 
     bool optionsState[] = {

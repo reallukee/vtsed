@@ -2,14 +2,17 @@
 
 using namespace vtsed;
 
+#define EXIT_OK      0
+#define EXIT_ERROR   -1
+
 int main()
 {
     if (!enableVTS())
-        return -1;
+        return EXIT_ERROR;
 
     initConsole();
 
     char k = _getch();
 
-    return 0;
+    return EXIT_OK;
 }

@@ -104,6 +104,25 @@ namespace vtsed
     }
 
 
+    gridRow::gridRow()
+    {
+        this->content = NULL;
+        this->xSize = -1;
+        this->ySize = -1;
+        this->x = defaultX;
+        this->y = defaultY;
+    }
+
+
+    gridRow::gridRow(string* content[], int xSize, int ySize)
+    {
+        this->content = content;
+        this->xSize = xSize;
+        this->ySize = ySize;
+        updateConfig();
+    }
+
+
     gridRow::~gridRow()
     {
         // delete[] content;
@@ -113,6 +132,8 @@ namespace vtsed
 
     void gridRow::updateConfig()
     {
+        delete maxLen;
+     
         maxLen = new int[xSize];
 
         for (int i = 0; i < xSize; i++)
@@ -148,7 +169,7 @@ namespace vtsed
             {
                 bool d = true;
 
-                if (onDraw != nullptr)
+                if (onDraw != NULL)
                     d = onDraw(content[j][i], j);
 
                 if (d)
@@ -157,6 +178,81 @@ namespace vtsed
                 gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
         }
+    }
+
+
+    int gridRow::getWidth()
+    {
+        int t = xSize - 1;
+
+        for (int i = 0; i < xSize; i++)
+            t += maxLen[i];
+
+        return t;
+    }
+
+
+    int gridRow::getHeight()
+    {
+        return ySize;
+    }
+
+
+    bool defaultGridRowOnDraw(string content, int row)
+    {
+        if (row == 0)
+        {
+            cout << sFC(RGBCOLOR(240));
+            cout << sBC(RGBCOLOR(0, 128, 128));
+        }
+        else
+        {
+            if (row % 2 == 0)
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(150));
+            }
+            else
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(100));
+            }
+        }
+
+        cout << content;
+
+        return false;
+    }
+
+
+    void sbsGridRow::resetDraw()
+    {
+        current = 0;
+    }
+
+
+    void sbsGridRow::drawNext(string content[], int maxLen[], int xSize)
+    {
+        setCursorPosition(getX(), getY() + current);
+
+        for (int i = 0; i < xSize; i++)
+        {
+            bool d = true;
+
+            if (onDrawNext != NULL)
+                d = onDrawNext(content[i], current);
+
+            if (d)
+                cout << sFC(getForeColor()) << sBC(getBackColor()) << content[i];
+
+            for (int j = (int)content[i].size(); j < maxLen[i]; j++)
+                cout << " ";
+
+            if (i != xSize - 1)
+                cout << " ";
+        }
+
+        current++;
     }
 
     //////////////////////////////////////////////////
@@ -249,6 +345,25 @@ namespace vtsed
     }
 
 
+    gridCol::gridCol()
+    {
+        this->content = NULL;
+        this->xSize = -1;
+        this->ySize = -1;
+        this->x = defaultX;
+        this->y = defaultY;
+    }
+
+
+    gridCol::gridCol(string* content[], int xSize, int ySize)
+    {
+        this->content = content;
+        this->xSize = xSize;
+        this->ySize = ySize;
+        updateConfig();
+    }
+
+
     gridCol::~gridCol()
     {
         // delete[] content;
@@ -258,6 +373,8 @@ namespace vtsed
 
     void gridCol::updateConfig()
     {
+        delete maxLen;
+
         maxLen = new int[xSize];
 
         for (int i = 0; i < xSize; i++)
@@ -293,7 +410,7 @@ namespace vtsed
             {
                 bool d = true;
 
-                if (onDraw != nullptr)
+                if (onDraw != NULL)
                     d = onDraw(content[j][i], i);
 
                 if (d)
@@ -302,6 +419,81 @@ namespace vtsed
                 gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
         }
+    }
+
+
+    int gridCol::getWidth()
+    {
+        int t = xSize - 1;
+
+        for (int i = 0; i < xSize; i++)
+            t += maxLen[i];
+
+        return t;
+    }
+
+
+    int gridCol::getHeight()
+    {
+        return ySize;
+    }
+
+
+    bool defaultGridColOnDraw(string content, int col)
+    {
+        if (col == 0)
+        {
+            cout << sFC(RGBCOLOR(240));
+            cout << sBC(RGBCOLOR(0, 128, 128));
+        }
+        else
+        {
+            if (col % 2 == 0)
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(150));
+            }
+            else
+            {
+                cout << sFC(RGBCOLOR(240));
+                cout << sBC(RGBCOLOR(100));
+            }
+        }
+
+        cout << content;
+
+        return false;
+    }
+
+
+    void sbsGridCol::resetDraw()
+    {
+        current = 0;
+    }
+
+
+    void sbsGridCol::drawNext(string content[], int maxLen[], int xSize)
+    {
+        setCursorPosition(getX(), getY() + current);
+
+        for (int i = 0; i < xSize; i++)
+        {
+            bool d = true;
+
+            if (onDrawNext != NULL)
+                d = onDrawNext(content[i], i);
+
+            if (d)
+                cout << sFC(getForeColor()) << sBC(getBackColor()) << content[i];
+
+            for (int j = (int)content[i].size(); j < maxLen[i]; j++)
+                cout << " ";
+
+            if (i != xSize - 1)
+                cout << " ";
+        }
+
+        current++;
     }
 
     //////////////////////////////////////////////////

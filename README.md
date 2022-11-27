@@ -2,7 +2,7 @@
 <img alt="Logo" src="./assets/vtsed.png" width="128px" height="128px" />
 </p>
 
-<h1 align="center">VTSEd</h1>
+<h1 align="center"><b>VTSEd</b></h1>
 
 <p align="center">
 🧙‍♂️ Una libreria che migliora la tua applicazione console C++
@@ -30,13 +30,18 @@
 | :----------------- | :-------------- | :-------------- |
 | Common             | `common.hpp`    | `common.cpp`    |
 | Console            | `console.hpp`   | `console.cpp`   |
+| CMF                | `cmf.hpp`       | `cmf.cpp`       |
 | Controlli Dinamici | `dcontrols.hpp` | `dcontrols.cpp` |
 | Controlli Statici  | `scontrols.hpp` | `scontrols.cpp` |
 | VTS                | `vts.hpp`       | `vts.cpp`       |
+| VTS2               | `vts2.hpp`      | `vts2.cpp`      |
 
 
 
 # Esempi
+
+<div style="width: 100%; display: flex">
+<div style="width: 100%; display: block; margin: 10px;">
 
 ## Controllo `ListBox`
 
@@ -44,7 +49,9 @@
 
 ![ListBox](./assets/listbox.png)
 
+</div>
 
+<div style="width: 100%; display: block; margin: 10px;">
 
 ## Controllo `CheckListBox`
 
@@ -52,17 +59,30 @@
 
 ![CheckListBox](./assets/checklistbox.png)
 
+</div>
+</div>
 
+<div style="width: 100%; display: flex">
+<div style="width: 100%; display: block; margin: 10px;">
 
-## Controllo `GridRow`
+## Controllo `GridRow` e `sbsGridRow`
 
 > [Esempio](./examples/gridrow/main.cpp)
 
+![GridRow](./assets/gridrow.png)
 
+</div>
 
-## Controllo `GridCol`
+<div style="width: 100%; display: block; margin: 10px;">
+
+## Controllo `GridCol` e `sbsGridCol`
 
 > [Esempio](./examples/gridcol/main.cpp)
+
+![GridCol](./assets/gridcol.png)
+
+</div>
+</div>
 
 
 

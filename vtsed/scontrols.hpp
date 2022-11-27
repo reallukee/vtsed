@@ -80,6 +80,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
+        bool VTSED_API defaultGridRowOnDraw(string content, int row);
+
         class VTSED_API gridRow
         {
 
@@ -87,8 +89,8 @@ namespace vtsed
 
             int* maxLen = nullptr;
 
-            unsigned short x = 4;
-            unsigned short y = 2;
+            unsigned short x = defaultX;
+            unsigned short y = defaultY;
             string** content = NULL;
             int ySize = -1;
             int xSize = -1;
@@ -99,6 +101,12 @@ namespace vtsed
             void gap(int currentLen, int maxLen, int currentCol);
 
         public:
+
+            const int defaultX = 4;
+            const int defaultY = 2;
+
+            gridRow();
+            gridRow(string* content[], int xSize, int ySize);
 
             ~gridRow();
 
@@ -114,10 +122,29 @@ namespace vtsed
             RGBCOLOR getForeColor();
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
+            int getWidth();
+            int getHeight();
 
             void draw();
 
-            bool(*onDraw)(string content, int row) = nullptr;
+            bool(*onDraw)(string content, int row) = defaultGridRowOnDraw;
+
+        };
+
+
+        class sbsGridRow : private gridRow
+        {
+
+        private:
+
+            int current;
+
+        public:
+
+            void resetDraw();
+            void drawNext(string content[], int maxLen[], int xSize);
+
+            bool(*onDrawNext)(string content, int row) = defaultGridRowOnDraw;
 
         };
 
@@ -136,6 +163,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
+        bool VTSED_API defaultGridColOnDraw(string content, int col);
+
         class VTSED_API gridCol
         {
 
@@ -143,8 +172,8 @@ namespace vtsed
 
             int* maxLen = nullptr;
 
-            unsigned short x = 4;
-            unsigned short y = 2;
+            unsigned short x = defaultX;
+            unsigned short y = defaultY;
             string** content = NULL;
             int ySize = -1;
             int xSize = -1;
@@ -155,6 +184,12 @@ namespace vtsed
             void gap(int currentLen, int maxLen, int currentCol);
 
         public:
+
+            const int defaultX = 4;
+            const int defaultY = 2;
+
+            gridCol();
+            gridCol(string* content[], int xSize, int ySize);
 
             ~gridCol();
 
@@ -170,10 +205,29 @@ namespace vtsed
             RGBCOLOR getForeColor();
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
+            int getWidth();
+            int getHeight();
 
             void draw();
 
-            bool(*onDraw)(string content, int col) = nullptr;
+            bool(*onDraw)(string content, int col) = defaultGridColOnDraw;
+
+        };
+
+
+        class sbsGridCol : private gridCol
+        {
+
+        private:
+
+            int current;
+
+        public:
+
+            void resetDraw();
+            void drawNext(string content[], int maxLen[], int xSize);
+
+            bool(*onDrawNext)(string content, int col) = defaultGridColOnDraw;
 
         };
 
