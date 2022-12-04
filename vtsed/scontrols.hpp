@@ -19,7 +19,7 @@
 //
 //  #define VTSED_LIBRARY
 //
-//  De commentare la costante VTSED_LIBRARY o
+//  Decommentare la costante VTSED_LIBRARY o
 //  definire la costante VTSED_LIBRARY nella
 //  sezione "C/C++ > PREPROCESSORE" per
 //  compilare questo HEADER con destinazione
@@ -89,8 +89,8 @@ namespace vtsed
 
             int* maxLen = nullptr;
 
-            unsigned short x = defaultX;
-            unsigned short y = defaultY;
+            unsigned x = defaultX;
+            unsigned y = defaultY;
             string** content = NULL;
             int ySize = -1;
             int xSize = -1;
@@ -102,27 +102,35 @@ namespace vtsed
 
         public:
 
-            const int defaultX = 4;
-            const int defaultY = 2;
+            const unsigned defaultX = 4;
+            const unsigned defaultY = 2;
 
             gridRow();
             gridRow(string* content[], int xSize, int ySize);
 
             ~gridRow();
 
-            void setX(unsigned short x);
-            unsigned short getX();
-            void setY(unsigned short y);
-            unsigned short getY();
+            void setX(unsigned x);
+            unsigned getX();
+
+            void setY(unsigned y);
+            unsigned getY();
+
             void setContent(string* content[], int xSize, int ySize);
             string** getContent();
+
             int getXSize();
+
             int getYSize();
+
             void setForeColor(RGBCOLOR foreColor);
             RGBCOLOR getForeColor();
+
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
+
             int getWidth();
+
             int getHeight();
 
             void draw();
@@ -172,8 +180,8 @@ namespace vtsed
 
             int* maxLen = nullptr;
 
-            unsigned short x = defaultX;
-            unsigned short y = defaultY;
+            unsigned x = defaultX;
+            unsigned y = defaultY;
             string** content = NULL;
             int ySize = -1;
             int xSize = -1;
@@ -185,27 +193,35 @@ namespace vtsed
 
         public:
 
-            const int defaultX = 4;
-            const int defaultY = 2;
+            const unsigned defaultX = 4;
+            const unsigned defaultY = 2;
 
             gridCol();
             gridCol(string* content[], int xSize, int ySize);
 
             ~gridCol();
 
-            void setX(unsigned short x);
-            unsigned short getX();
-            void setY(unsigned short y);
-            unsigned short getY();
+            void setX(unsigned x);
+            unsigned getX();
+
+            void setY(unsigned y);
+            unsigned getY();
+
             void setContent(string* content[], int xSize, int ySize);
             string** getContent();
+
             int getXSize();
+
             int getYSize();
+
             void setForeColor(RGBCOLOR foreColor);
             RGBCOLOR getForeColor();
+
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
+
             int getWidth();
+
             int getHeight();
 
             void draw();

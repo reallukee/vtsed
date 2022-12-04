@@ -19,11 +19,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtsed.test", "vtsed.test\vt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default", "templates\default\default.vcxproj", "{D37C5538-21E2-4923-98D7-848886F52C31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vtsed.pinvoke", "vtsed.pinvoke\vtsed.pinvoke.csproj", "{C80C5BCB-6DA5-4EB7-BC89-0088D87F2A76}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3E8E54D2-6AAC-4A5F-8E3C-3C0BE7B4DB04} = {3E8E54D2-6AAC-4A5F-8E3C-3C0BE7B4DB04}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gridrow", "examples\gridrow\gridrow.vcxproj", "{8B91538D-FC5C-4BF9-A1E0-958F207C961C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gridcol", "examples\gridcol\gridcol.vcxproj", "{9365241B-CF38-4F9A-85B0-BF4258E2EB0C}"
@@ -72,10 +67,6 @@ Global
 		{D37C5538-21E2-4923-98D7-848886F52C31}.Debug|x86.ActiveCfg = Debug|Win32
 		{D37C5538-21E2-4923-98D7-848886F52C31}.Release|x64.ActiveCfg = Release|x64
 		{D37C5538-21E2-4923-98D7-848886F52C31}.Release|x86.ActiveCfg = Release|Win32
-		{C80C5BCB-6DA5-4EB7-BC89-0088D87F2A76}.Debug|x64.ActiveCfg = Debug|x64
-		{C80C5BCB-6DA5-4EB7-BC89-0088D87F2A76}.Debug|x86.ActiveCfg = Debug|x86
-		{C80C5BCB-6DA5-4EB7-BC89-0088D87F2A76}.Release|x64.ActiveCfg = Release|x64
-		{C80C5BCB-6DA5-4EB7-BC89-0088D87F2A76}.Release|x86.ActiveCfg = Release|x86
 		{8B91538D-FC5C-4BF9-A1E0-958F207C961C}.Debug|x64.ActiveCfg = Debug|x64
 		{8B91538D-FC5C-4BF9-A1E0-958F207C961C}.Debug|x64.Build.0 = Debug|x64
 		{8B91538D-FC5C-4BF9-A1E0-958F207C961C}.Debug|x86.ActiveCfg = Debug|Win32

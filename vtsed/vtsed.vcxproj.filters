@@ -65,10 +65,24 @@
     <ClCompile Include="scontrols.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="vts2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="cmf.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="vtsed.rc">
       <Filter>File di risorse</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\vtsed.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

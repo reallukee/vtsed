@@ -174,6 +174,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cmf.cpp" />
     <ClCompile Include="common.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="dcontrols.cpp" />
@@ -185,9 +186,16 @@
     </ClCompile>
     <ClCompile Include="scontrols.cpp" />
     <ClCompile Include="vts.cpp" />
+    <ClCompile Include="vts2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="vtsed.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\vtsed.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

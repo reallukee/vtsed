@@ -13,9 +13,11 @@ set dll=..\templates\default\dll
 
 copy %src%\common.hpp %include%
 copy %src%\console.hpp %include%
+copy %src%\cmf.hpp %include%
 copy %src%\dcontrols.hpp %include%
 copy %src%\scontrols.hpp %include%
 copy %src%\vts.hpp %include%
+copy %src%\vts2.hpp %include%
 copy %src%\vtsed.hpp %include%
 
 copy %bin64debug%\vtsed-d-x64.lib %lib%

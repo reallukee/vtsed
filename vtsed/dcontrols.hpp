@@ -19,7 +19,7 @@
 //
 //  #define VTSED_LIBRARY
 //
-//  De commentare la costante VTSED_LIBRARY o
+//  Decommentare la costante VTSED_LIBRARY o
 //  definire la costante VTSED_LIBRARY nella
 //  sezione "C/C++ > PREPROCESSORE" per
 //  compilare questo HEADER con destinazione
@@ -85,57 +85,74 @@ namespace vtsed
 
         private:
 
-            short x = 4;
-            short y = 2;
+            unsigned short x;
+            unsigned short y;
             string* options = NULL;
             bool* optionsState = NULL;
             int* selectedOptions = NULL;
-            int currentOption = 1;
-            int optionsCount = 0;
-            RGBCOLOR optionForeColor = rgbFrom(240);
-            RGBCOLOR optionBackColor = rgbFrom(12);
-            RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
-            RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
-            RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
-            RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
-            RGBCOLOR disabledOptionForeColor = rgbFrom(120);
-            RGBCOLOR disabledOptionBackColor = rgbFrom(12);
+            int currentOption;
+            int optionsCount;
+            RGBCOLOR optionForeColor;
+            RGBCOLOR optionBackColor;
+            RGBCOLOR selectedOptionForeColor;
+            RGBCOLOR selectedOptionBackColor;
+            RGBCOLOR currentOptionForeColor;
+            RGBCOLOR currentOptionBackColor;
+            RGBCOLOR disabledOptionForeColor;
+            RGBCOLOR disabledOptionBackColor;
 
             int loop();
 
         public:
 
+            const unsigned defaultX = 4;
+            const unsigned defaultY = 2;
+
             singleControl();
             ~singleControl();
 
-            void setX(int value);
-            int getX();
-            void setY(int value);
-            int getY();
+            void setX(unsigned value);
+            unsigned getX();
+
+            void setY(unsigned value);
+            unsigned getY();
+
             void setOptions(string* value);
             string* getOptions();
+
             void setOptionsState(bool* value);
             bool* getOptionsState();
+
             void setSelectedOption(int value);
             int getSelectedOption();
+
             void setCurrentOption(int value);
             int getCurrentOption();
+
             void setOptionsCount(int value);
             int getOptionsCount();
+
             void setOptionForeColor(RGBCOLOR value);
             RGBCOLOR getOptionForeColor();
+
             void setOptionBackColor(RGBCOLOR value);
             RGBCOLOR getOptionBackColor();
+
             void setSelectedOptionForeColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionForeColor();
+
             void setSelectedOptionBackColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionBackColor();
+
             void setCurrentOptionForeColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionForeColor();
+
             void setCurrentOptionBackColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionBackColor();
+
             void setDisabledOptionForeColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionForeColor();
+
             void setDisabledOptionBackColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionBackColor();
 
@@ -146,10 +163,13 @@ namespace vtsed
             void top();
             void bottom();
 
-            void(*onCallStart)() = nullptr;
-            void(*onCallEnd)() = nullptr;
+            void(*onCallStart)() = NULL;
+            void(*onCallEnd)() = NULL;
+            void(*onSelectedChange)(int selected) = NULL;
+            void(*onCurrentChange)(int current) = NULL;
+            void(*onUnknownCommand)(char command) = NULL;
             bool(*onDraw)(int index, string option, bool state, 
-                bool selected, bool current) = nullptr;
+                bool selected, bool current) = NULL;
 
         };
 
@@ -204,57 +224,74 @@ namespace vtsed
 
         private:
 
-            short x = 4;
-            short y = 2;
+            unsigned x;
+            unsigned y;
             string* options = NULL;
             bool* optionsState = NULL;
             int* selectedOptions = NULL;
-            int currentOption = 1;
-            int optionsCount = 0;
-            RGBCOLOR optionForeColor = rgbFrom(240);
-            RGBCOLOR optionBackColor = rgbFrom(12);
-            RGBCOLOR selectedOptionForeColor = rgbFrom(65, 130, 115);
-            RGBCOLOR selectedOptionBackColor = rgbFrom(40, 80, 70);
-            RGBCOLOR currentOptionForeColor = rgbFrom(10, 70, 125);
-            RGBCOLOR currentOptionBackColor = rgbFrom(35, 170, 240);
-            RGBCOLOR disabledOptionForeColor = rgbFrom(120);
-            RGBCOLOR disabledOptionBackColor = rgbFrom(12);
+            int currentOption;
+            int optionsCount;
+            RGBCOLOR optionForeColor;
+            RGBCOLOR optionBackColor;
+            RGBCOLOR selectedOptionForeColor;
+            RGBCOLOR selectedOptionBackColor;
+            RGBCOLOR currentOptionForeColor;
+            RGBCOLOR currentOptionBackColor;
+            RGBCOLOR disabledOptionForeColor;
+            RGBCOLOR disabledOptionBackColor;
 
             int* loop();
 
         public:
 
+            const unsigned defaultX = 4;
+            const unsigned defaultY = 2;
+
             multiControl();
             ~multiControl();
 
-            void setX(int value);
-            int getX();
-            void setY(int value);
-            int getY();
+            void setX(unsigned value);
+            unsigned getX();
+
+            void setY(unsigned value);
+            unsigned getY();
+
             void setOptions(string* value);
             string* getOptions();
+
             void setOptionsState(bool* value);
             bool* getOptionsState();
+
             void setSelectedOptions(int* value);
             int* getSelectedOptions();
+
             void setCurrentOption(int value);
             int getCurrentOption();
+
             void setOptionsCount(int value);
             int getOptionsCount();
+
             void setOptionForeColor(RGBCOLOR value);
             RGBCOLOR getOptionForeColor();
+
             void setOptionBackColor(RGBCOLOR value);
             RGBCOLOR getOptionBackColor();
+
             void setSelectedOptionForeColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionForeColor();
+
             void setSelectedOptionBackColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionBackColor();
+
             void setCurrentOptionForeColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionForeColor();
+
             void setCurrentOptionBackColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionBackColor();
+
             void setDisabledOptionForeColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionForeColor();
+
             void setDisabledOptionBackColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionBackColor();
 
@@ -265,10 +302,13 @@ namespace vtsed
             void top();
             void bottom();
 
-            void(*onCallStart)() = nullptr;
-            void(*onCallEnd)() = nullptr;
+            void(*onCallStart)() = NULL;
+            void(*onCallEnd)() = NULL;
+            void(*onSelectedChange)(int selected) = NULL;
+            void(*onCurrentChange)(int current) = NULL;
+            void(*onUnknownCommand)(char command) = NULL;
             bool(*onDraw)(int index, string option, bool state,
-                bool selected, bool current) = nullptr;
+                bool selected, bool current) = NULL;
 
         };
 

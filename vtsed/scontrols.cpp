@@ -29,25 +29,25 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    unsigned short gridRow::getX()
+    unsigned gridRow::getX()
     {
         return x;
     }
 
 
-    void gridRow::setX(unsigned short x)
+    void gridRow::setX(unsigned x)
     {
         this->x = x;
     }
 
 
-    unsigned short gridRow::getY()
+    unsigned gridRow::getY()
     {
         return y;
     }
 
 
-    void gridRow::setY(unsigned short y)
+    void gridRow::setY(unsigned y)
     {
         this->y = y;
     }
@@ -270,25 +270,25 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    unsigned short gridCol::getX()
+    unsigned gridCol::getX()
     {
         return x;
     }
 
 
-    void gridCol::setX(unsigned short x)
+    void gridCol::setX(unsigned x)
     {
         this->x = x;
     }
 
 
-    unsigned short gridCol::getY()
+    unsigned gridCol::getY()
     {
         return y;
     }
 
 
-    void gridCol::setY(unsigned short y)
+    void gridCol::setY(unsigned y)
     {
         this->y = y;
     }

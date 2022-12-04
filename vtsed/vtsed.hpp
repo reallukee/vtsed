@@ -17,6 +17,14 @@
 #ifndef VTSED_API_EXPOSER   // VTSED_API_EXPOSER
 #define VTSED_API_EXPOSER
 
+#ifdef VTSED_LIBRARY
+#define MODE "PROGRAM"
+#else
+#define MODE "LIBRARY"
+#endif  // VTSED_LIBRARY
+
+#define VERSION "1.0.0@221202"
+
 #include "common.hpp"
 #include "console.hpp"
 #include "cmf.hpp"

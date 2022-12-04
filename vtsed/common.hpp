@@ -19,7 +19,7 @@
 //
 //  #define VTSED_LIBRARY
 //
-//  De commentare la costante VTSED_LIBRARY o
+//  Decommentare la costante VTSED_LIBRARY o
 //  definire la costante VTSED_LIBRARY nella
 //  sezione "C/C++ > PREPROCESSORE" per
 //  compilare questo HEADER con destinazione

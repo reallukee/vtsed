@@ -15,6 +15,7 @@
     </TemplateData>
     <TemplateContent>
         <Project TargetFileName="default.vcxproj" File="default.vcxproj" ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x64.dll">DLL\vtsed-d-x64.dll</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x86.dll">DLL\vtsed-d-x86.dll</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-x64.dll">DLL\vtsed-x64.dll</ProjectItem>
@@ -22,9 +23,11 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="main.cpp">main.cpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="common.hpp">INCLUDE\common.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="console.hpp">INCLUDE\console.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="cmf.hpp">INCLUDE\cmf.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="dcontrols.hpp">INCLUDE\dcontrols.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="scontrols.hpp">INCLUDE\scontrols.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vts.hpp">INCLUDE\vts.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="vts2.hpp">INCLUDE\vts2.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed.hpp">INCLUDE\vtsed.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x64.lib">LIB\vtsed-d-x64.lib</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vtsed-d-x86.lib">LIB\vtsed-d-x86.lib</ProjectItem>

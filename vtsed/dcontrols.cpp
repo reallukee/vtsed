@@ -29,25 +29,25 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void singleControl::setX(int value)
+    void singleControl::setX(unsigned value)
     {
         x = value;
     }
 
 
-    int singleControl::getX()
+    unsigned singleControl::getX()
     {
         return x;
     }
 
 
-    void singleControl::setY(int value)
+    void singleControl::setY(unsigned value)
     {
         y = value;
     }
 
 
-    int singleControl::getY()
+    unsigned singleControl::getY()
     {
         return y;
     }
@@ -211,9 +211,21 @@ namespace vtsed
 
     singleControl::singleControl()
     {
+        x = defaultX;
+        y = defaultY;
         options = NULL;
         optionsState = NULL;
         selectedOptions = new int[1];
+        currentOption = 1;
+        optionsCount = 0;
+        optionForeColor = rgbFrom(240);
+        optionBackColor = rgbFrom(12);
+        selectedOptionForeColor = rgbFrom(65, 130, 115);
+        selectedOptionBackColor = rgbFrom(40, 80, 70);
+        currentOptionForeColor = rgbFrom(10, 70, 125);
+        currentOptionBackColor = rgbFrom(35, 170, 240);
+        disabledOptionForeColor = rgbFrom(120);
+        disabledOptionBackColor = rgbFrom(12);
     }
 
 
@@ -308,48 +320,77 @@ namespace vtsed
             char key = _getch();
 
             if (key == '\xE0')
-            {
                 key = _getch();
-            }
 
             switch (key)
             {
-                case 72:
-                case 'W':
-                case 'w':
-                    up();
-                    selectedOptions[0] = currentOption;
-                    break;
+            case 72:
+            case 'W':
+            case 'w':
+                up();
+                selectedOptions[0] = currentOption;
 
-                case 80:
-                case 'S':
-                case 's':
-                    down();
-                    selectedOptions[0] = currentOption;
-                    break;
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
 
-                case 73:
-                case 'T':
-                case 't':
-                    top();
-                    selectedOptions[0] = currentOption;
-                    break;
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
 
-                case 81:
-                case 'B':
-                case 'b':
-                    bottom();
-                    selectedOptions[0] = currentOption;
-                    break;
+                break;
 
-                case 28:
-                case 'X':
-                case 'x':
-                    doLoop = false;
-                    break;
+            case 80:
+            case 'S':
+            case 's':
+                down();
+                selectedOptions[0] = currentOption;
 
-                default:
-                    return key * -1;
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
+                break;
+
+            case 73:
+            case 'T':
+            case 't':
+                top();
+                selectedOptions[0] = currentOption;
+
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
+                break;
+
+            case 81:
+            case 'B':
+            case 'b':
+                bottom();
+                selectedOptions[0] = currentOption;
+
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
+                break;
+
+            case 28:
+            case 'X':
+            case 'x':
+                doLoop = false;
+                break;
+
+            default:
+                if (onUnknownCommand != NULL)
+                    onUnknownCommand(key);
+
+                return key * -1;
             }
 
             draw();
@@ -460,25 +501,25 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void multiControl::setX(int value)
+    void multiControl::setX(unsigned value)
     {
         x = value;
     }
 
 
-    int multiControl::getX()
+    unsigned multiControl::getX()
     {
         return x;
     }
 
 
-    void multiControl::setY(int value)
+    void multiControl::setY(unsigned value)
     {
         y = value;
     }
 
 
-    int multiControl::getY()
+    unsigned multiControl::getY()
     {
         return y;
     }
@@ -642,9 +683,21 @@ namespace vtsed
 
     multiControl::multiControl()
     {
+        x = defaultX;
+        y = defaultY;
         options = NULL;
         optionsState = NULL;
         selectedOptions = new int[1];
+        currentOption = 1;
+        optionsCount = 0;
+        optionForeColor = rgbFrom(240);
+        optionBackColor = rgbFrom(12);
+        selectedOptionForeColor = rgbFrom(65, 130, 115);
+        selectedOptionBackColor = rgbFrom(40, 80, 70);
+        currentOptionForeColor = rgbFrom(10, 70, 125);
+        currentOptionBackColor = rgbFrom(35, 170, 240);
+        disabledOptionForeColor = rgbFrom(120);
+        disabledOptionBackColor = rgbFrom(12);
     }
 
 
@@ -749,36 +802,60 @@ namespace vtsed
             case 'W':
             case 'w':
                 up();
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
                 break;
 
             case 80:
             case 'S':
             case 's':
                 down();
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
                 break;
 
             case 73:
             case 'T':
             case 't':
                 top();
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
                 break;
 
             case 81:
             case 'B':
             case 'b':
                 bottom();
+
+                if (onCurrentChange != NULL)
+                    onCurrentChange(currentOption);
+
                 break;
 
             case 75:
             case 'A':
             case 'a':
                 selectedOptions[currentOption] = false;
+
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
+
                 break;
 
             case 77:
             case 'D':
             case 'd':
                 selectedOptions[currentOption] = true;
+
+                if (onSelectedChange != NULL)
+                    onSelectedChange(selectedOptions[0]);
+
                 break;
 
             case 28:
@@ -788,6 +865,9 @@ namespace vtsed
                 break;
 
             default:
+                if (onUnknownCommand != NULL)
+                    onUnknownCommand(key);
+
                 return new int { key * -1 };
             }
 

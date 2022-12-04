@@ -3,8 +3,8 @@
 //
 //  Migliora la tua Applicazione Console!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo progetto Ã¨ distribuito sotto licenza MIT.
+//  Questo progetto Ã¨ disponibile su GitHub.
 //
 //  Repository:     https://github.com/reallukee/vtsed/
 //  Descrizione:    CMF
@@ -19,7 +19,7 @@
 //
 //  #define VTSED_LIBRARY
 //
-//  De commentare la costante VTSED_LIBRARY o
+//  Decommentare la costante VTSED_LIBRARY o
 //  definire la costante VTSED_LIBRARY nella
 //  sezione "C/C++ > PREPROCESSORE" per
 //  compilare questo HEADER con destinazione
@@ -69,9 +69,21 @@ namespace vtsed
 {
     extern "C++"
     {
-        string elaborateCmf(string str);
-        string* elaborateArrayCmf(string array[]);
-        string delaborateCmf(string str);
-        string* delaborateArrayCmf(string array[]);
+        // ##
+        // ##   Basics
+        // ##
+
+        #pragma region Basics
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        string VTSED_API elaborateCmf(string str);
+        string VTSED_API delaborateCmf(string str);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
     }
 }

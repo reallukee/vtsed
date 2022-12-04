@@ -162,11 +162,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\cmf.hpp" />
     <ClInclude Include="include\common.hpp" />
     <ClInclude Include="include\console.hpp" />
     <ClInclude Include="include\dcontrols.hpp" />
     <ClInclude Include="include\scontrols.hpp" />
     <ClInclude Include="include\vts.hpp" />
+    <ClInclude Include="include\vts2.hpp" />
     <ClInclude Include="include\vtsed.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +176,7 @@
     <None Include="dll\vtsed-d-x86.dll" />
     <None Include="dll\vtsed-x64.dll" />
     <None Include="dll\vtsed-x86.dll" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\vtsed-d-x64.lib" />

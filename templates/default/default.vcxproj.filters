@@ -16,6 +16,9 @@
     <Filter Include="Dipendenze">
       <UniqueIdentifier>{6bd14c01-a87d-44d9-8a84-d7b1af562e85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\VTSEd">
+      <UniqueIdentifier>{6ca4462d-d0ca-43ed-a38d-ba54ba00582a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,22 +27,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\common.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
     <ClInclude Include="include\console.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
     <ClInclude Include="include\dcontrols.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
     <ClInclude Include="include\scontrols.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vts.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
     <ClInclude Include="include\vtsed.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vts.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cmf.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vts2.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +64,7 @@
     <None Include="dll\vtsed-x86.dll">
       <Filter>Dipendenze</Filter>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\vtsed-d-x64.lib">

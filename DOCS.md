@@ -6,6 +6,8 @@
 
 - [Common](./docs/common.md)
 - [Console](./docs/console.md)
+- [CMF](./docs/cmf.md)
 - [Controlli Dinamici](./docs/dcontrols.md)
 - [Controlli Statici](./docs/scontrols.md)
 - [VTS](./docs/vts.md)
+- [VTS2](./docs/vt2.md)

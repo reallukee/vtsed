@@ -3,8 +3,8 @@
 //
 //  Migliora la tua Applicazione Console!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo progetto Ã¨ distribuito sotto licenza MIT.
+//  Questo progetto Ã¨ disponibile su GitHub.
 //
 //  Repository:     https://github.com/reallukee/vtsed/
 //  Descrizione:    VTS2
@@ -19,7 +19,7 @@
 //
 //  #define VTSED_LIBRARY
 //
-//  De commentare la costante VTSED_LIBRARY o
+//  Decommentare la costante VTSED_LIBRARY o
 //  definire la costante VTSED_LIBRARY nella
 //  sezione "C/C++ > PREPROCESSORE" per
 //  compilare questo HEADER con destinazione
@@ -67,29 +67,33 @@ namespace vtsed
 {
     extern "C++"
     {
-        #define SGR_BOLD                0x0001
-        #define SGR_FAINT               0x0002
-        #define SGR_ITALIC              0x0004
-        #define SGR_UNDERLINE           0x0008
-        #define SGR_DOUBLE_UNDERLINE    0x0010
-        #define SGR_BLINKING            0x0020
-        #define SGR_NEGATIVE            0x0040
-        #define SGR_HIDDEN              0x0080
-        #define SGR_STRIKEOUT           0x0100
+        // ##
+        // ##   Basics
+        // ##
+
+        #pragma region Basics
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #define SGR2_DEFAULT            0x0000
+        #define SGR2_BOLD               0x0001
+        #define SGR2_FAINT              0x0002
+        #define SGR2_ITALIC             0x0004
+        #define SGR2_UNDERLINE          0x0008
+        #define SGR2_DOUBLE_UNDERLINE   0x0010
+        #define SGR2_BLINKING           0x0020
+        #define SGR2_NEGATIVE           0x0040
+        #define SGR2_HIDDEN             0x0080
+        #define SGR2_STRIKEOUT          0x0100
 
 
-        unsigned sgr;
+        void VTSED_API setSgr(unsigned _sgr_, unsigned code);
+        bool VTSED_API getSgr(unsigned _sgr_, unsigned code);
 
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-        void setSgr(unsigned code)
-        {
-
-        }
-
-
-        bool getSgr(unsigned code)
-        {
-
-        }
+        #pragma endregion
     }
 }
