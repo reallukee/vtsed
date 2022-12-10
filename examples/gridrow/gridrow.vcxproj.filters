@@ -33,6 +33,12 @@
     <ClCompile Include="..\..\vtsed\common.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\vtsed\cmf.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\vtsed\vts2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\vtsed\common.hpp">
@@ -51,6 +57,12 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\vtsed\vtsed.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\cmf.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vtsed\vts2.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

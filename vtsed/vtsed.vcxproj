@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;VTSED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -112,7 +112,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;VTSED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -129,7 +129,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;VTSED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -146,7 +146,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;VTSED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -163,7 +163,7 @@
     <ClInclude Include="dcontrols.hpp" />
     <ClInclude Include="scontrols.hpp" />
     <ClInclude Include="vts.hpp" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="pch.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="vts2.hpp" />
     <ClInclude Include="vtsed.hpp">

@@ -11,8 +11,10 @@
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
+//  Leggere README.md per maggiori informazioni.
+//
 
-#include "pch.h"
+#include "pch.hpp"
 
 #include "dcontrols.hpp"
 
@@ -419,6 +421,12 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    listBox::listBox()
+    {
+        separator = '-';
+    }
+
 
     void listBox::setSeparator(char value)
     {
@@ -897,6 +905,12 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    checkListBox::checkListBox()
+    {
+        separator = '-';
+    }
+
 
     void checkListBox::setSeparator(char value)
     {

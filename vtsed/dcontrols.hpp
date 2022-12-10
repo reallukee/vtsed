@@ -11,49 +11,39 @@
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
+//  Leggere README.md per maggiori informazioni.
+//
 
 #pragma once
 
 //
-//  /!\ IMPORTANTE!
-//
-//  #define VTSED_LIBRARY
-//
-//  Decommentare la costante VTSED_LIBRARY o
-//  definire la costante VTSED_LIBRARY nella
-//  sezione "C/C++ > PREPROCESSORE" per
-//  compilare questo HEADER con destinazione
-//  Dynamic Link Library (DLL).
-//
-//  Quando definire VTSED_LIBARY?
-//
-//  1.  Si sta compilando VTSED come una
-//      Dynamic Link Library (DLL).
-//  2.  Si sta compilando un progetto che
-//      utilizza direttamente il codice di
-//      VTSED.
-//
-//  Quando non definire VTSED_LIBRARY?
-// 
-//  1.  Si sta compilando VTSED come una
-//      Static Library (LIB).
-//  2.  Si sta compilando un progetto che
-//      utilizza indirettamente il codice
-//      di VTSED.
+// Esposizione.
 //
 
-#ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-#define VTSED_API __declspec(dllexport)
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
+        #define VTSED_API __declspec(dllexport)
+    #else
+        #define VTSED_API __declspec(dllimport)
+    #endif  // VTSED_LIBRARY
 #else
-#define VTSED_API __declspec(dllimport)
-#endif  // VTSED_LIBRARY
+    #define VTSED_API
+#endif  // _WIN32 || _WIN64
 
-// Standard.
+//
+// Intestazioni Standard.
+//
+
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-// Solo Windows.
+
+//
+// Intestazioni Windows.
+//
+
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -79,6 +69,35 @@ namespace vtsed
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
+
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta la classe base 'SingleControl' che permette la
+        //  creazione di un controllo dinamico a restituzione singola.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  +--------+
+        //  | CALLER |
+        //  +--------+
+        //    ^
+        //    |
+        //  +-------------+     +------------------+    +--------+
+        //  | CALL        | <-> | LOOP             | -> | DRAW   |
+        //  |             |     |                  |    |        |
+        //  ( onCallStart )     ( onSelectedChange )    ( onDraw )
+        //  ( onCallEnd   )     ( onCurrentChange  )    +--------+
+        //  +-------------+     ( onUnknownCommand )
+        //                      +------------------+
+        //                        |
+        //                        v
+        //  +--------------------------+
+        //  | UP, DOWN, TOP, BOTTOM... |
+        //  +--------------------------+
+        //
 
         class VTSED_API singleControl
         {
@@ -168,7 +187,7 @@ namespace vtsed
             void(*onSelectedChange)(int selected) = NULL;
             void(*onCurrentChange)(int current) = NULL;
             void(*onUnknownCommand)(char command) = NULL;
-            bool(*onDraw)(int index, string option, bool state, 
+            bool(*onDraw)(int index, string option, bool state,
                 bool selected, bool current) = NULL;
 
         };
@@ -193,9 +212,11 @@ namespace vtsed
 
         private:
 
-            char separator = '-';
+            char separator;
 
         public:
+
+            listBox();
 
             void setSeparator(char value);
             char getSeparator();
@@ -218,6 +239,35 @@ namespace vtsed
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
+
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta la classe base 'MultiControl' che permette la
+        //  creazione di un controllo dinamico a restituzione multipla.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  +--------+
+        //  | CALLER |
+        //  +--------+
+        //    ^
+        //    |
+        //  +-------------+     +------------------+    +--------+
+        //  | CALL        | <-> | LOOP             | -> | DRAW   |
+        //  |             |     |                  |    |        |
+        //  ( onCallStart )     ( onSelectedChange )    ( onDraw )
+        //  ( onCallEnd   )     ( onCurrentChange  )    +--------+
+        //  +-------------+     ( onUnknownCommand )
+        //                      +------------------+
+        //                        |
+        //                        v
+        //  +--------------------------+
+        //  | UP, DOWN, TOP, BOTTOM... |
+        //  +--------------------------+
+        //
 
         class multiControl
         {
@@ -332,9 +382,11 @@ namespace vtsed
 
         private:
 
-            char separator = '-';
+            char separator;
 
         public:
+
+            checkListBox();
 
             void setSeparator(char value);
             char getSeparator();

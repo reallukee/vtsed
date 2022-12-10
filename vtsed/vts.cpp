@@ -11,8 +11,10 @@
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
+//  Leggere README.md per maggiori informazioni.
+//
 
-#include "pch.h"
+#include "pch.hpp"
 
 #include "vts.hpp"
 
@@ -34,7 +36,6 @@ namespace vtsed
         if (!enableVTS())
             return false;
 
-        setScreenColor(modterm);
         sgr(SGR_DEFAULT);
         return true;
     }
@@ -45,7 +46,6 @@ namespace vtsed
         if (!enableVTS())
             return false;
 
-        setScreenColor(conhost);
         sgr(SGR_DEFAULT);
         return true;
     }
@@ -189,9 +189,21 @@ namespace vtsed
     }
 
 
+    void VTSED_API setCursorPositionCUP()
+    {
+        cout << "\x1b[;H";
+    }
+
+
     void setCursorPositionCUP(unsigned x, unsigned y)
     {
         cout << "\x1b[" << y << ";" << x << "H";
+    }
+
+
+    void VTSED_API setCursorPositionHVP()
+    {
+        cout << "\x1b[;f";
     }
 
 
@@ -270,9 +282,21 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
+    void scrollUp()
+    {
+        cout << "\x1b[S";
+    }
+
+
     void scrollUp(unsigned n)
     {
         cout << "\x1b[" << n << "S";
+    }
+
+
+    void scrollDown()
+    {
+        cout << "\x1b[T";
     }
 
 
@@ -326,6 +350,12 @@ namespace vtsed
     }
 
 
+    void eraseInDisplay()
+    {
+        cout << "\x1b[J";
+    }
+
+
     void eraseInDisplay(unsigned n)
     {
         if (n >= 0 && n <= 2)
@@ -333,10 +363,36 @@ namespace vtsed
     }
 
 
+    void eraseInLine()
+    {
+        cout << "\x1b[K";
+    }
+
+
     void eraseInLine(unsigned n)
     {
         if (n >= 0 && n <= 2)
             cout << "\x1b[" << n << "K";
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
+    // ##   Link
+    // ##
+
+    #pragma region "Link"
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void link(string link, string text)
+    {
+        cout << "\x1b]8;;" << link << "\x1b\\" << text << "\x1b]8;;\x1b\\";
     }
 
     //////////////////////////////////////////////////
@@ -356,28 +412,118 @@ namespace vtsed
 
     void setScreenColor(int i, string r, string g, string b)
     {
-        if (i >= 0 && i <= 16)
-        {
-            cout << "\x1b]4;" << i << ";rgb:" << r << "/";
-            cout << g << "/" << b << "\x1b\x5c";
-        }
+        if (i >= 0 && i <= 255)
+            cout << "\x1b]4;" << i << ";rgb:" << r << "/" << g << "/" << b << "\x1b\x5c";
     }
 
 
     void setScreenColor(int i, HEXCOLOR color)
     {
-        if (i >= 0 && i <= 16)
-        {
-            cout << "\x1b]4;" << i << ";rgb:" << color.r << "/";
-            cout << color.g << "/" << color.b << "\x1b\x5c";
-        }
+        if (i >= 0 && i <= 255)
+            cout << "\x1b]4;" << i << ";rgb:" << color.r << "/" << color.g << "/" << color.b << "\x1b\x5c";
     }
 
 
-    void setScreenColor(const HEXCOLOR palette[16])
+    void setScreenColor(int i, string color)
+    {
+        if (i >= 0 && i <= 255)
+            cout << "\x1b]4;" << i << ";" << color << "\x1b\x5c";
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
+    // ##   Palette
+    // ##
+
+    #pragma region "Palette"
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void setPalette(const HEXCOLOR color[16])
     {
         for (int i = 0; i < 16; i++)
-            setScreenColor(i, palette[i]);
+            setScreenColor(i, color[i]);
+    }
+
+
+    void setPalette(const string color[16])
+    {
+        for (int i = 0; i < 16; i++)
+            setScreenColor(i, color[i]);
+    }
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #pragma endregion
+
+
+    // ##
+    // ##   Default Colors
+    // ##
+
+    #pragma region "Default Colors"
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void setDefaultForegroundColor(string r, string g, string b)
+    {
+        cout << "\x1b]10;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+    }
+
+
+    void setDefaultForegroundColor(HEXCOLOR color)
+    {
+        setDefaultForegroundColor(color.r, color.g, color.b);
+    }
+
+
+    void setDefaultForegroundColor(string color)
+    {
+        cout << "\x1b]10;" << color << "\x1b\\";
+    }
+
+
+    void setDefaultBackgroundColor(string r, string g, string b)
+    {
+        cout << "\x1b]11;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+    }
+
+
+    void setDefaultBackgroundColor(HEXCOLOR color)
+    {
+        setDefaultBackgroundColor(color.r, color.g, color.b);
+    }
+
+
+    void setDefaultBackgroundColor(string color)
+    {
+        cout << "\x1b]11;" << color << "\x1b\\";
+    }
+
+
+    void setDefaultCursorColor(string r, string g, string b)
+    {
+        cout << "\x1b]12;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+    }
+
+
+    void setDefaultCursorColor(HEXCOLOR color)
+    {
+        setDefaultCursorColor(color.r, color.g, color.b);
+    }
+
+
+    void setDefaultCursorColor(string color)
+    {
+        cout << "\x1b]12;" << color << "\x1b\\";
     }
 
     //////////////////////////////////////////////////
@@ -417,12 +563,6 @@ namespace vtsed
     }
 
 
-    string setForegroundColor(int c)
-    {
-        return setForegroundColor(c, c, c);
-    }
-
-
     string setForegroundColorById(int id)
     {
         // L'ID non può essere negativo e maggiore di 256.
@@ -444,12 +584,6 @@ namespace vtsed
     string sFC(RGBCOLOR color)
     {
         return setForegroundColor(color.r, color.g, color.b);
-    }
-
-
-    string sFC(int c)
-    {
-        return setForegroundColor(c, c, c);
     }
 
 
@@ -495,12 +629,6 @@ namespace vtsed
     }
 
 
-    string setBackgroundColor(int c)
-    {
-        return setBackgroundColor(c, c, c);
-    }
-
-
     string setBackgroundColorById(int id)
     {
         // L'ID non può essere negativo e maggiore di 256.
@@ -522,12 +650,6 @@ namespace vtsed
     string sBC(RGBCOLOR color)
     {
         return setBackgroundColor(color.r, color.g, color.b);
-    }
-
-
-    string sBC(int c)
-    {
-        return setBackgroundColor(c, c, c);
     }
 
 
@@ -637,7 +759,7 @@ namespace vtsed
     }
 
 
-    void cursorHorizontalTab(int n)
+    void cursorForwardsTab(int n)
     {
         cout << "\x1b[" << n << "I";
     }
@@ -697,6 +819,12 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    void VTSED_API scrollingMargin()
+    {
+        cout << "\x1b[;r";
+    }
+
 
     void scrollingMargin(int t, int b)
     {

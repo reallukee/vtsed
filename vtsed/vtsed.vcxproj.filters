@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="pch.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="vts.hpp">

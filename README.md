@@ -5,6 +5,10 @@
 <h1 align="center"><b>VTSEd</b></h1>
 
 <p align="center">
+<img alt="License" src="https://img.shields.io/github/license/reallukee/vtsed?label=License" />
+</p>
+
+<p align="center">
 🧙‍♂️ Una libreria che migliora la tua applicazione console C++
 </p>
 

@@ -12,6 +12,8 @@ int main()
 
     initConsole();
 
+    cout << "Hello, World!" << endl;
+
     char k = _getch();
 
     return EXIT_OK;

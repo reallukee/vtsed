@@ -141,19 +141,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\vtsed\cmf.cpp" />
     <ClCompile Include="..\..\vtsed\common.cpp" />
     <ClCompile Include="..\..\vtsed\console.cpp" />
     <ClCompile Include="..\..\vtsed\dcontrols.cpp" />
     <ClCompile Include="..\..\vtsed\scontrols.cpp" />
     <ClCompile Include="..\..\vtsed\vts.cpp" />
+    <ClCompile Include="..\..\vtsed\vts2.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\vtsed\cmf.hpp" />
     <ClInclude Include="..\..\vtsed\common.hpp" />
     <ClInclude Include="..\..\vtsed\console.hpp" />
     <ClInclude Include="..\..\vtsed\dcontrols.hpp" />
     <ClInclude Include="..\..\vtsed\scontrols.hpp" />
     <ClInclude Include="..\..\vtsed\vts.hpp" />
+    <ClInclude Include="..\..\vtsed\vts2.hpp" />
     <ClInclude Include="..\..\vtsed\vtsed.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

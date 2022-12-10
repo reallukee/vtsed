@@ -11,49 +11,39 @@
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
+//  Leggere README.md per maggiori informazioni.
+//
 
 #pragma once
 
 //
-//  /!\ IMPORTANTE!
-//
-//  #define VTSED_LIBRARY
-//
-//  Decommentare la costante VTSED_LIBRARY o
-//  definire la costante VTSED_LIBRARY nella
-//  sezione "C/C++ > PREPROCESSORE" per
-//  compilare questo HEADER con destinazione
-//  Dynamic Link Library (DLL).
-//
-//  Quando definire VTSED_LIBARY?
-//
-//  1.  Si sta compilando VTSED come una
-//      Dynamic Link Library (DLL).
-//  2.  Si sta compilando un progetto che
-//      utilizza direttamente il codice di
-//      VTSED.
-//
-//  Quando non definire VTSED_LIBRARY?
-// 
-//  1.  Si sta compilando VTSED come una
-//      Static Library (LIB).
-//  2.  Si sta compilando un progetto che
-//      utilizza indirettamente il codice
-//      di VTSED.
+// Esposizione.
 //
 
-#ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-#define VTSED_API __declspec(dllexport)
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
+        #define VTSED_API __declspec(dllexport)
+    #else
+        #define VTSED_API __declspec(dllimport)
+    #endif  // VTSED_LIBRARY
 #else
-#define VTSED_API __declspec(dllimport)
-#endif  // VTSED_LIBRARY
+    #define VTSED_API
+#endif  // _WIN32 || _WIN64
 
-// Standard.
+//
+// Intestazioni Standard.
+//
+
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
-// Solo Windows.
+
+//
+// Intestazioni Windows.
+//
+
 #if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <windows.h>
@@ -75,6 +65,13 @@ namespace vtsed
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
+
+        #define CSI "0x1b[" // Sequenza CSI
+        #define OSC "0x1b]" // Sequenza OSC
+        #define ESC "0x1b"  // Carattere ESC
+        #define ST  "0x5C"  // Carattere ST
+        #define SP  "0x20"  // Carattere SP
+
 
         #if defined(_WIN32) || defined(_WIN64)
 
@@ -127,7 +124,9 @@ namespace vtsed
         void VTSED_API cursorPreviousLine(unsigned n = 0);
         void VTSED_API cursorHorizontalAbs(unsigned n = 0);
         void VTSED_API cursorVerticalAbs(unsigned n = 0);
+        void VTSED_API setCursorPositionCUP();
         void VTSED_API setCursorPositionCUP(unsigned x, unsigned y);
+        void VTSED_API setCursorPositionHVP();
         void VTSED_API setCursorPositionHVP(unsigned x, unsigned y);
 
         //////////////////////////////////////////////////
@@ -189,7 +188,9 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
+        void VTSED_API scrollUp();
         void VTSED_API scrollUp(unsigned n);
+        void VTSED_API scrollDown();
         void VTSED_API scrollDown(unsigned n);
 
         //////////////////////////////////////////////////
@@ -212,13 +213,32 @@ namespace vtsed
         #define TEXT_MODIFICATION_ERASE_ENTIRE       2
 
 
-        void VTSED_API insertCharacter(unsigned n);
-        void VTSED_API deleteCharacter(unsigned n);
-        void VTSED_API eraseCharacter(unsigned n);
-        void VTSED_API insertLine(unsigned n);
-        void VTSED_API deleteLine(unsigned n);
+        void VTSED_API insertCharacter(unsigned n = 0);
+        void VTSED_API deleteCharacter(unsigned n = 0);
+        void VTSED_API eraseCharacter(unsigned n = 0);
+        void VTSED_API insertLine(unsigned n = 0);
+        void VTSED_API deleteLine(unsigned n = 0);
+        void VTSED_API eraseInDisplay();
         void VTSED_API eraseInDisplay(unsigned n);
+        void VTSED_API eraseInLine();
         void VTSED_API eraseInLine(unsigned n);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
+        // ##   Link
+        // ##
+
+        #pragma region "Link"
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        void VTSED_API link(string link, string text);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -253,109 +273,52 @@ namespace vtsed
         #define SCREEN_COLOR_WHITE        15    // Bianco
 
 
-        //
-        //  Rappresenta una Raccolta di Colori a 16bit
-        //  di Windows ConHost.
-        //
-
-        const HEXCOLOR conhost[16] = {
-            hexFrom("12", "12", "12"),
-            hexFrom("C5", "0F", "1F"),
-            hexFrom("13", "A1", "0E"),
-            hexFrom("C1", "9C", "00"),
-            hexFrom("00", "37", "DA"),
-            hexFrom("88", "17", "98"),
-            hexFrom("3A", "96", "DD"),
-            hexFrom("CC", "CC", "CC"),
-            hexFrom("76", "76", "76"),
-            hexFrom("E7", "48", "56"),
-            hexFrom("16", "C6", "0C"),
-            hexFrom("F9", "F1", "A5"),
-            hexFrom("3B", "78", "FF"),
-            hexFrom("B4", "00", "9E"),
-            hexFrom("61", "D6", "D6"),
-            hexFrom("F2", "F2", "F2"),
-        };
-
-
-        //
-        //  Rappresenta una Raccolta di Colori a 16bit
-        //  di Windows Terminal.
-        //
-
-        const HEXCOLOR terminal[16] = {
-            hexFrom("00", "00", "00"),
-            hexFrom("C2", "36", "21"),
-            hexFrom("25", "BC", "24"),
-            hexFrom("AD", "AD", "27"),
-            hexFrom("49", "2E", "E1"),
-            hexFrom("D3", "38", "D3"),
-            hexFrom("33", "BB", "C8"),
-            hexFrom("CB", "CC", "CD"),
-            hexFrom("81", "83", "83"),
-            hexFrom("FC", "39", "1F"),
-            hexFrom("31", "E7", "22"),
-            hexFrom("EA", "EC", "23"),
-            hexFrom("58", "33", "FF"),
-            hexFrom("F9", "35", "F8"),
-            hexFrom("14", "F0", "F0"),
-            hexFrom("E9", "EB", "EB"),
-        };
-
-
-        //
-        //  Rappresenta una Raccolta di Colori a 16bit
-        //  Classici.
-        //
-
-        const HEXCOLOR classic[16] = {
-            hexFrom("00", "00", "00"),
-            hexFrom("00", "00", "80"),
-            hexFrom("00", "80", "00"),
-            hexFrom("00", "80", "80"),
-            hexFrom("80", "00", "00"),
-            hexFrom("80", "00", "80"),
-            hexFrom("80", "80", "00"),
-            hexFrom("56", "56", "56"),
-            hexFrom("AA", "AA", "AA"),
-            hexFrom("55", "55", "FF"),
-            hexFrom("55", "FF", "55"),
-            hexFrom("55", "FF", "FF"),
-            hexFrom("FF", "55", "55"),
-            hexFrom("FF", "55", "FF"),
-            hexFrom("FF", "FF", "55"),
-            hexFrom("FF", "FF", "FF"),
-        };
-
-
-        //
-        //  Rappresenta una Raccolta di Colori a 16bit
-        //  Moderni.
-        //
-
-        const HEXCOLOR modterm[16] = {
-            hexFrom("11", "11", "11"),  // Nero
-            hexFrom("10", "30", "A0"),  // Blu
-            hexFrom("3C", "5F", "46"),  // Verde
-            hexFrom("00", "80", "80"),  // Ciano
-            hexFrom("A5", "2D", "2D"),  // Rosso
-            hexFrom("87", "0A", "7D"),  // Magenta
-            hexFrom("FF", "C8", "20"),  // Giallo
-            hexFrom("FF", "00", "FF"),  // Grigio
-            hexFrom("E6", "E6", "E6"),  // Grigio Chiaro
-            hexFrom("05", "55", "B4"),  // Blu Chiaro
-            hexFrom("55", "96", "69"),  // Verde Chiaro
-            hexFrom("3C", "BE", "BE"),  // Ciano Chiaro
-            hexFrom("D8", "46", "46"),  // Rosso Chiaro
-            hexFrom("C8", "32", "C8"),  // Magenta Chiaro
-            hexFrom("FF", "D2", "46"),  // Giallo Chiaro
-            hexFrom("FF", "FF", "FF"),  // Bianco
-        };
-
-
         void VTSED_API setScreenColor(int i, string r, string g, string b);
         void VTSED_API setScreenColor(int i, HEXCOLOR color);
-        void VTSED_API setScreenColor(const HEXCOLOR colors[16]);
+        void VTSED_API setScreenColor(int i, string color);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
+        // ##   Palette
+        // ##
+
+        #pragma region "Palette"
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        void VTSED_API setPalette(const HEXCOLOR color[16]);
+        void VTSED_API setPalette(const string color[16]);
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+
+
+        // ##
+        // ##   Default Colors
+        // ##
+
+        #pragma region "Default Colors"
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        void VTSED_API setDefaultForegroundColor(string r, string g, string b);
+        void VTSED_API setDefaultForegroundColor(HEXCOLOR color);
+        void VTSED_API setDefaultForegroundColor(string color);
+        void VTSED_API setDefaultBackgroundColor(string r, string g, string b);
+        void VTSED_API setDefaultBackgroundColor(HEXCOLOR color);
+        void VTSED_API setDefaultBackgroundColor(string color);
+        void VTSED_API setDefaultCursorColor(string r, string g, string b);
+        void VTSED_API setDefaultCursorColor(HEXCOLOR color);
+        void VTSED_API setDefaultCursorColor(string color);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -420,20 +383,6 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        //
-        //  Generic
-        //
-
-        #define ESC                         "0x1b"  // Carattere ESC
-        #define CSI                         "0x1b[" // Sequenza CSI
-        #define OSC                         "0x1b]" // Sequenza OSC
-        #define ST                          "0x5C"  // Carattere ST
-        #define SP                          "0x20"  // Carattere SP
-
-        //
-        //  Text Style
-        //
-
         #define SGR_DEFAULT                 0   // Default
         #define SGR_BOLD                    1   // Grassetto On
         #define SGR_NO_BOLD                 22  // Grassetto Off
@@ -453,11 +402,6 @@ namespace vtsed
         #define SGR_NO_HIDDEN               28  // Nascosto Off
         #define SGR_STRIKEOUT               9   // Sbarrato On
         #define SGR_NO_STRIKEOUT            29  // Sbarrato Off
-
-        //
-        //  8 Bit Colors
-        //
-
         #define SGR_FG_BLACK                30  // Nero Primo Piano
         #define SGR_FG_RED                  31  // Rosso Primo Piano
         #define SGR_FG_GREEN                32  // Verde Primo Piano
@@ -476,11 +420,6 @@ namespace vtsed
         #define SGR_BK_CYAN                 46  // Ciano Sfondo
         #define SGR_BK_WHITE                47  // Biano Sfondo
         #define SGR_BK_DEFAULT              49  // Default Sfondo
-
-        //
-        //  16 Bit Colors
-        //
-
         #define SGR_FG_BRIGHT_BLACK         90  // Nero Primo Piano Luminoso
         #define SGR_FG_BRIGHT_RED           91  // Rosso Primo Piano Luminoso
         #define SGR_FG_BRIGHT_GREEN         92  // Verde Primo Piano Luminoso
@@ -553,8 +492,8 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         void VTSED_API horizontalTab();
-        void VTSED_API cursorHorizontalTab(int n);
-        void VTSED_API cursorBackwardsTab(int n);
+        void VTSED_API cursorForewardsTab(int n = 1);
+        void VTSED_API cursorBackwardsTab(int n = 1);
         void VTSED_API tabClearCurrentColumn();
         void VTSED_API tabClearAllColumns();
 
@@ -603,6 +542,7 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
+        void VTSED_API scrollingMargin();
         void VTSED_API scrollingMargin(int t, int b);
 
         //////////////////////////////////////////////////
