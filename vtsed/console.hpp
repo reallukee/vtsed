@@ -44,10 +44,10 @@
 // Intestazioni Windows.
 //
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <conio.h>
-#include <windows.h>
-#endif
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #include <conio.h>
+    #include <windows.h>
+#endif  // _WIN32 || _WIN64
 
 using namespace std;
 
@@ -55,7 +55,7 @@ namespace vtsed
 {
     extern "C++"
     {
-        #if defined(_WIN32) || defined(_WIN64)
+        #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
 
         // ##
         // ##   Cursor
@@ -106,22 +106,22 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        #define BLACK        0     // Nero
-        #define DARKBLUE     1     // Blu Scuro
-        #define DARKGREEN    2     // Verde Scuro
-        #define DARKCYAN     3     // Ciano Scuro
-        #define DARKRED      4     // Rosso Scuro
-        #define DARKMAGENTA  5     // Magenta Scuro
-        #define DARKYELLOW   6     // Giallo Scuro
-        #define DARKGRAY     7     // Grigio Scuro
-        #define GRAY         8     // Grigio
-        #define BLUE         9     // Blu
-        #define GREEN        10    // Verde
-        #define CYAN         11    // Ciano
-        #define RED          12    // Rosso
-        #define MAGENTA      13    // Magenta
-        #define YELLOW       14    // Giallo
-        #define WHITE        15    // Bianco
+        #define WIN32_BLACK         0   // Nero
+        #define WIN32_DARKBLUE      1   // Blu Scuro
+        #define WIN32_DARKGREEN     2   // Verde Scuro
+        #define WIN32_DARKCYAN      3   // Ciano Scuro
+        #define WIN32_DARKRED       4   // Rosso Scuro
+        #define WIN32_DARKMAGENTA   5   // Magenta Scuro
+        #define WIN32_DARKYELLOW    6   // Giallo Scuro
+        #define WIN32_DARKGRAY      7   // Grigio Scuro
+        #define WIN32_GRAY          8   // Grigio
+        #define WIN32_BLUE          9   // Blu
+        #define WIN32_GREEN         10  // Verde
+        #define WIN32_CYAN          11  // Ciano
+        #define WIN32_RED           12  // Rosso
+        #define WIN32_MAGENTA       13  // Magenta
+        #define WIN32_YELLOW        14  // Giallo
+        #define WIN32_WHITE         15  // Bianco
 
 
         void VTSED_API setForegroundColorWin32(int c);
@@ -132,6 +132,6 @@ namespace vtsed
 
         #pragma endregion
 
-        #endif
+        #endif  // _WIN32 || _WIN64
     }
 }

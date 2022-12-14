@@ -164,7 +164,7 @@
     <ClInclude Include="scontrols.hpp" />
     <ClInclude Include="vts.hpp" />
     <ClInclude Include="pch.hpp" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource.hpp" />
     <ClInclude Include="vts2.hpp" />
     <ClInclude Include="vtsed.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

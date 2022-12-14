@@ -44,10 +44,10 @@
 // Intestazioni Windows.
 //
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <conio.h>
-#include <windows.h>
-#endif
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #include <conio.h>
+    #include <windows.h>
+#endif  // _WIN32 || _WIN64
 
 using namespace std;
 

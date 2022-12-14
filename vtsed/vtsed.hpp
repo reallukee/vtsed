@@ -17,15 +17,15 @@
 #pragma once
 
 #ifndef VTSED_API_EXPOSER   // VTSED_API_EXPOSER
-#define VTSED_API_EXPOSER
+    #define VTSED_API_EXPOSER
 
-#ifdef VTSED_LIBRARY  // VTSED_LIBRARY
-    #define MODE "PROGRAM"
-#else
-    #define MODE "LIBRARY"
+    #ifdef VTSED_LIBRARY  // VTSED_LIBRARY
+        #define MODE "PROGRAM"
+    #else
+        #define MODE "LIBRARY"
 #endif  // VTSED_LIBRARY
 
-#define VERSION "1.0.0@221210"
+#define VERSION "1.0.0"
 
 #include "common.hpp"
 #include "console.hpp"

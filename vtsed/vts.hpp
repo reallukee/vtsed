@@ -44,10 +44,10 @@
 // Intestazioni Windows.
 //
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <conio.h>
-#include <windows.h>
-#endif
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #include <conio.h>
+    #include <windows.h>
+#endif  // _WIN32 || _WIN64
 
 using namespace std;
 
@@ -73,14 +73,14 @@ namespace vtsed
         #define SP  "0x20"  // Carattere SP
 
 
-        #if defined(_WIN32) || defined(_WIN64)
+        #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
 
         bool VTSED_API initConsole();
         bool VTSED_API dinitConsole();
         bool VTSED_API enableVTS();
         bool VTSED_API disableVTS();
 
-        #endif
+        #endif  // _WIN32 || _WIN64
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -273,6 +273,156 @@ namespace vtsed
         #define SCREEN_COLOR_WHITE        15    // Bianco
 
 
+        #define BLACK                   "Black"
+        #define NAVY                    "Navy"
+        #define DARKBLUE                "DarkBlue"
+        #define MEDIUMBLUE              "MediumBlue"
+        #define BLUE                    "Blue"
+        #define DARKGREEN               "DarkGreen"
+        #define GREEN                   "Green"
+        #define TEAL                    "Teal"
+        #define DARKCYAN                "DarkCyan"
+        #define DEEPSKYBLUE             "DeepSkyBlue"
+        #define DARKTURQUOISE           "DarkTurquoise"
+        #define MEDIUMSPRINGGREEN       "MediumSpringGreen"
+        #define LIME                    "Lime"
+        #define SPRINGGREEN             "SpringGreen"
+        #define AQUA                    "Aqua"
+        #define CYAN                    "Cyan"
+        #define MIDNIGHTBLUE            "MidnightBlue"
+        #define DODGERBLUE              "DodgerBlue"
+        #define LIGHTSEAGREEN           "LightSeaGreen"
+        #define FORESTGREEN             "ForestGreen"
+        #define SEAGREEN                "SeaGreen"
+        #define DARKSLATEGRAY           "DarkSlateGray"
+        #define DARKSLATEGREY           "DarkSlateGrey"
+        #define LIMEGREEN               "LimeGreen"
+        #define MEDIUMSEAGREEN          "MediumSeaGreen"
+        #define TURQUOISE               "Turquoise"
+        #define ROYALBLUE               "RoyalBlue"
+        #define STEELBLUE               "SteelBlue"
+        #define DARKSLATEBLUE           "DarkSlateBlue"
+        #define MEDIUMTURQUOISE         "MediumTurquoise"
+        #define INDIGO                  "Indigo"
+        #define DARKOLIVEGREEN          "DarkOliveGreen"
+        #define CADETBLUE               "CadetBlue"
+        #define CORNFLOWERBLUE          "CornflowerBlue"
+        #define REBECCAPURPLE           "RebeccaPurple"
+        #define MEDIUMAQUAMARINE        "MediumAquaMarine"
+        #define DIMGRAY                 "DimGray"
+        #define DIMGREY                 "DimGrey"
+        #define SLATEBLUE               "SlateBlue"
+        #define OLIVEDRAB               "OliveDrab"
+        #define SLATEGRAY               "SlateGray"
+        #define SLATEGREY               "SlateGrey"
+        #define LIGHTSLATEGRAY          "LightSlateGray"
+        #define LIGHTSLATEGREY          "LightSlateGrey"
+        #define MEDIUMSLATEBLUE         "MediumSlateBlue"
+        #define LAWNGREEN               "LawnGreen"
+        #define CHARTREUSE              "Chartreuse"
+        #define AQUAMARINE              "Aquamarine"
+        #define MAROON                  "Maroon"
+        #define PURPLE                  "Purple"
+        #define OLIVE                   "Olive"
+        #define GRAY                    "Gray"
+        #define GREY                    "Grey"
+        #define SKYBLUE                 "SkyBlue"
+        #define LIGHTSKYBLUE            "LightSkyBlue"
+        #define BLUEVIOLET              "BlueViolet"
+        #define DARKRED                 "DarkRed"
+        #define DARKMAGENTA             "DarkMagenta"
+        #define SADDLEBROWN             "SaddleBrown"
+        #define DARKSEAGREEN            "DarkSeaGreen"
+        #define LIGHTGREEN              "LightGreen"
+        #define MEDIUMPURPLE            "MediumPurple"
+        #define DARKVIOLET              "DarkViolet"
+        #define PALEGREEN               "PaleGreen"
+        #define DARKORCHID              "DarkOrchid"
+        #define YELLOWGREEN             "YellowGreen"
+        #define SIENNA                  "Sienna"
+        #define BROWN                   "Brown"
+        #define DARKGRAY                "DarkGray"
+        #define DARKGREY                "DarkGrey"
+        #define LIGHTBLUE               "LightBlue"
+        #define GREENYELLOW             "GreenYellow"
+        #define PALETURQUOISE           "PaleTurquoise"
+        #define LIGHTSTEELBLUE          "LightSteelBlue"
+        #define POWDERBLUE              "PowderBlue"
+        #define FIREBRICK               "FireBrick"
+        #define DARKGOLDENROD           "DarkGoldenRod"
+        #define MEDIUMORCHID            "MediumOrchid"
+        #define ROSYBROWN               "RosyBrown"
+        #define DARKKHAKI               "DarkKhaki"
+        #define SILVER                  "Silver"
+        #define MEDIUMVIOLETRED         "MediumVioletRed"
+        #define INDIANRED               "IndianRed"
+        #define PERU                    "Peru"
+        #define CHOCOLATE               "Chocolate"
+        #define TAN                     "Tan"
+        #define LIGHTGRAY               "LightGray"
+        #define LIGHTGREY               "LightGrey"
+        #define THISTLE                 "Thistle"
+        #define ORCHID                  "Orchid"
+        #define GOLDENROD               "GoldenRod"
+        #define PALEVIOLETRED           "PaleVioletRed"
+        #define CRIMSON                 "Crimson"
+        #define GAINSBORO               "Gainsboro"
+        #define PLUM                    "Plum"
+        #define BURLYWOOD               "BurlyWood"
+        #define LIGHTCYAN               "LightCyan"
+        #define LAVENDER                "Lavender"
+        #define DARKSALMON              "DarkSalmon"
+        #define VIOLET                  "Violet"
+        #define PALEGOLDENROD           "PaleGoldenRod"
+        #define LIGHTCORAL              "LightCoral"
+        #define KHAKI                   "Khaki"
+        #define ALICEBLUE               "AliceBlue"
+        #define HONEYDEW                "HoneyDew"
+        #define AZURE                   "Azure"
+        #define SANDYBROWN              "SandyBrown"
+        #define WHEAT                   "Wheat"
+        #define BEIGE                   "Beige"
+        #define WHITESMOKE              "WhiteSmoke"
+        #define MINTCREAM               "MintCream"
+        #define GHOSTWHITE              "GhostWhite"
+        #define SALMON                  "Salmon"
+        #define ANTIQUEWHITE            "AntiqueWhite"
+        #define LINEN                   "Linen"
+        #define LIGHTGOLDENRODYELLOW    "LightGoldenRodYellow"
+        #define OLDLACE                 "OldLace"
+        #define RED                     "Red"
+        #define FUCHSIA                 "Fuchsia"
+        #define MAGENTA                 "Magenta"
+        #define DEEPPINK                "DeepPink"
+        #define ORANGERED               "OrangeRed"
+        #define TOMATO                  "Tomato"
+        #define HOTPINK                 "HotPink"
+        #define CORAL                   "Coral"
+        #define DARKORANGE              "DarkOrange"
+        #define LIGHTSALMON             "LightSalmon"
+        #define ORANGE                  "Orange"
+        #define LIGHTPINK               "LightPink"
+        #define PINK                    "Pink"
+        #define GOLD                    "Gold"
+        #define PEACHPUFF               "PeachPuff"
+        #define NAVAJOWHITE             "NavajoWhite"
+        #define MOCCASIN                "Moccasin"
+        #define BISQUE                  "Bisque"
+        #define MISTYROSE               "MistyRose"
+        #define BLANCHEDALMOND          "BlanchedAlmond"
+        #define PAPAYAWHIP              "PapayaWhip"
+        #define LAVENDERBLUSH           "LavenderBlush"
+        #define SEASHELL                "SeaShell"
+        #define CORNSILK                "Cornsilk"
+        #define LEMONCHIFFON            "LemonChiffon"
+        #define FLORALWHITE             "FloralWhite"
+        #define SNOW                    "Snow"
+        #define YELLOW                  "Yellow"
+        #define LIGHTYELLOW             "LightYellow"
+        #define IVORY                   "Ivory"
+        #define WHITE                   "White"
+
+
         void VTSED_API setScreenColor(int i, string r, string g, string b);
         void VTSED_API setScreenColor(int i, HEXCOLOR color);
         void VTSED_API setScreenColor(int i, string color);
@@ -337,11 +487,9 @@ namespace vtsed
 
         string VTSED_API setForegroundColor(int r, int g, int b);
         string VTSED_API setForegroundColor(RGBCOLOR color);
-        string VTSED_API setForegroundColor(int c);
         string VTSED_API setForegroundColorById(int id);
         string VTSED_API sFC(int r, int g, int b);
         string VTSED_API sFC(RGBCOLOR color);
-        string VTSED_API sFC(int c);
         string VTSED_API sFCById(int id);
 
         //////////////////////////////////////////////////
@@ -361,11 +509,9 @@ namespace vtsed
 
         string VTSED_API setBackgroundColor(int r, int g, int b);
         string VTSED_API setBackgroundColor(RGBCOLOR color);
-        string VTSED_API setBackgroundColor(int c);
         string VTSED_API setBackgroundColorById(int id);
         string VTSED_API sBC(int r, int g, int b);
         string VTSED_API sBC(RGBCOLOR color);
-        string VTSED_API sBC(int c);
         string VTSED_API sBCById(int id);
 
         //////////////////////////////////////////////////

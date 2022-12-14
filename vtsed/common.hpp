@@ -44,10 +44,10 @@
 // Intestazioni Windows.
 //
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <conio.h>
-#include <windows.h>
-#endif
+#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+    #include <conio.h>
+    #include <windows.h>
+#endif  // _WIN32 || _WIN64
 
 using namespace std;
 
@@ -93,18 +93,16 @@ namespace vtsed
 
         struct VTSED_API RGBCOLOR
         {
-            short r = 0;
-            short b = 0;
-            short g = 0;
+            short r;
+            short b;
+            short g;
 
             // Costruttori Struttura.
-
             RGBCOLOR(short r, short g, short b);
             RGBCOLOR(short c);
             RGBCOLOR();
 
             // Metodi.
-
             string toString();
         };
 
@@ -140,18 +138,16 @@ namespace vtsed
 
         struct VTSED_API HEXCOLOR
         {
-            string r = "00";
-            string g = "00";
-            string b = "00";
+            string r;
+            string g;
+            string b;
 
             // Costruttori Struttura.
-
             HEXCOLOR(string r, string g, string b);
             HEXCOLOR(string c);
             HEXCOLOR();
 
             // Metodi.
-
             string toString();
         };
 
@@ -196,7 +192,6 @@ namespace vtsed
             POINT();
 
             // Metodi.
-
             string toString();
         };
 
@@ -235,7 +230,6 @@ namespace vtsed
             SIZE();
 
             // Metodi.
-
             string toString();
         };
 

@@ -20,7 +20,7 @@
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)
+    #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
 
     // ##
     // ##   Single Control
@@ -995,5 +995,5 @@ namespace vtsed
 
     #pragma endregion
 
-    #endif
+    #endif  // _WIN32 || _WIN64
 }
