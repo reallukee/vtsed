@@ -27,7 +27,7 @@ LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 
 1 TEXTINCLUDE 
 BEGIN
-    "resource.h\0"
+    "resource.hpp\0"
 END
 
 2 TEXTINCLUDE 
@@ -70,9 +70,9 @@ BEGIN
             VALUE "CompanyName", "Realluke"
             VALUE "FileDescription", "VTSEd"
             VALUE "FileVersion", "1.0.0.0"
-            VALUE "InternalName", "vtsed.lib"
+            VALUE "InternalName", "vtsed"
             VALUE "LegalCopyright", "Realluke"
-            VALUE "OriginalFilename", "vtsed.lib"
+            VALUE "OriginalFilename", "vtsed"
             VALUE "ProductName", "VTSEd"
             VALUE "ProductVersion", "1.0.0.0"
         END

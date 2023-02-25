@@ -149,7 +149,7 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>B</kbd> o <kbd>
 Questo comando viene invocato quando l'utente preme i tasti <kbd>D</kbd> o <kbd>Right Arrow</kbd>.
 - `Deselect Command` Imposta l'opzione corrente come deselezionata.
 Questo comando viene invocato quando l'utente preme i tasti <kbd>A</kbd> o <kbd>Left Arrow</kbd>.
-- `Action Command` Restituisce all'entità chiamate l'indice corrispondente alla selezione.
+- `Action Command` Restituisce all'entità chiamante l'indice corrispondente alla selezione.
 Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>Enter</kbd>.
 
 
@@ -288,7 +288,7 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>B</kbd> o <kbd>
 Questo comando viene invocato quando l'utente preme i tasti <kbd>D</kbd> o <kbd>Right Arrow</kbd>.
 - `Deselect Command` Imposta l'opzione corrente come deselezionata.
 Questo comando viene invocato quando l'utente preme i tasti <kbd>A</kbd> o <kbd>Left Arrow</kbd>.
-- `Action Command` Restituisce all'entità chiamate l'indice corrispondente alla selezione.
+- `Action Command` Restituisce all'entità chiamante l'indice corrispondente alla selezione.
 Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>Enter</kbd>.
 
 

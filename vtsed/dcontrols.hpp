@@ -8,6 +8,8 @@
 //
 //  Repository:     https://github.com/reallukee/vtsed/
 //  Descrizione:    DYNAMIC CONTROL
+//                  Contiene le definizione di base dei controlli
+//                  dinamici e i controlli dinamici.
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
@@ -59,6 +61,14 @@ namespace vtsed
 {
     extern "C++"
     {
+
+        //
+        //  Presenza di metodi disponibili solo su Windows.
+        //
+        //  TODO: Porting su Linux e macOS. Sostituzione API
+        //        di Windows con VTS.
+        //
+
         #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
 
         // ##
@@ -77,20 +87,29 @@ namespace vtsed
         //  Rappresenta la classe base 'SingleControl' che permette la
         //  creazione di un controllo dinamico a restituzione singola.
         //
+        //  IMPORTANTE! Non vengono effettuati controlli sui puntatori
+        //  e non viene effettuato il disposing dei puntatori.
+        //
         //  FUNZIONAMENTO
         //  =============
         //
-        //  +--------+
-        //  | CALLER |
-        //  +--------+
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  +----------+
+        //  | * CALLER |
+        //  +----------+
         //    ^
         //    |
-        //  +-------------+     +------------------+    +--------+
-        //  | CALL        | <-> | LOOP             | -> | DRAW   |
-        //  |             |     |                  |    |        |
-        //  ( onCallStart )     ( onSelectedChange )    ( onDraw )
-        //  ( onCallEnd   )     ( onCurrentChange  )    +--------+
-        //  +-------------+     ( onUnknownCommand )
+        //  +-------------+     +------------------+     +--------+
+        //  | CALL        | <-> | LOOP             | --> | DRAW   |
+        //  |             |     |                  |     |        |
+        //  ( onCallStart )     ( onSelectedChange )     ( onDraw )
+        //  ( onCallEnd   )     ( onCurrentChange  )     +--------+
+        //  +-------------+     ( onKnownCommand   )
+        //                      ( onUnknownCommand )
         //                      +------------------+
         //                        |
         //                        v
@@ -106,11 +125,17 @@ namespace vtsed
 
             unsigned short x;
             unsigned short y;
+
+            int optionsCount;
+
             string* options = NULL;
             bool* optionsState = NULL;
             int* selectedOptions = NULL;
+
             int currentOption;
-            int optionsCount;
+
+            bool allowInterruption;
+
             RGBCOLOR optionForeColor;
             RGBCOLOR optionBackColor;
             RGBCOLOR selectedOptionForeColor;
@@ -124,6 +149,14 @@ namespace vtsed
 
         public:
 
+            const int UPCOMMAND             = 72;
+            const int DOWNCOMMAND           = 80;
+            const int TOPCOMMAND            = 73;
+            const int BOTTOMCOMMAND         = 81;
+            const int ENDCALLCOMMAND        = 28;
+            const int INTERRUPTCALLCOMMAND  = 27;
+            const int INTERRUPTIONCODE      = -123;
+
             const unsigned defaultX = 4;
             const unsigned defaultY = 2;
 
@@ -132,51 +165,47 @@ namespace vtsed
 
             void setX(unsigned value);
             unsigned getX();
-
             void setY(unsigned value);
             unsigned getY();
 
+            void setOptionsCount(int value);
+            int getOptionsCount();
+
             void setOptions(string* value);
             string* getOptions();
-
             void setOptionsState(bool* value);
             bool* getOptionsState();
-
             void setSelectedOption(int value);
             int getSelectedOption();
 
             void setCurrentOption(int value);
             int getCurrentOption();
 
-            void setOptionsCount(int value);
-            int getOptionsCount();
+            int firstIndex();
+            int lastIndex();
+
+            void setAllowInterruption(bool value);
+            bool getAllowInterruption();
 
             void setOptionForeColor(RGBCOLOR value);
             RGBCOLOR getOptionForeColor();
-
             void setOptionBackColor(RGBCOLOR value);
             RGBCOLOR getOptionBackColor();
-
             void setSelectedOptionForeColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionForeColor();
-
             void setSelectedOptionBackColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionBackColor();
-
             void setCurrentOptionForeColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionForeColor();
-
             void setCurrentOptionBackColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionBackColor();
-
             void setDisabledOptionForeColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionForeColor();
-
             void setDisabledOptionBackColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionBackColor();
 
             int call();
-            virtual void draw();
+            virtual void draw() = 0;
             void up();
             void down();
             void top();
@@ -186,6 +215,7 @@ namespace vtsed
             void(*onCallEnd)() = NULL;
             void(*onSelectedChange)(int selected) = NULL;
             void(*onCurrentChange)(int current) = NULL;
+            void(*onKnownCommand)(char command) = NULL;
             void(*onUnknownCommand)(char command) = NULL;
             bool(*onDraw)(int index, string option, bool state,
                 bool selected, bool current) = NULL;
@@ -250,17 +280,23 @@ namespace vtsed
         //  FUNZIONAMENTO
         //  =============
         //
-        //  +--------+
-        //  | CALLER |
-        //  +--------+
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  +----------+
+        //  | * CALLER |
+        //  +----------+
         //    ^
         //    |
-        //  +-------------+     +------------------+    +--------+
-        //  | CALL        | <-> | LOOP             | -> | DRAW   |
-        //  |             |     |                  |    |        |
-        //  ( onCallStart )     ( onSelectedChange )    ( onDraw )
-        //  ( onCallEnd   )     ( onCurrentChange  )    +--------+
-        //  +-------------+     ( onUnknownCommand )
+        //  +-------------+     +------------------+     +--------+
+        //  | CALL        | <-> | LOOP             | --> | DRAW   |
+        //  |             |     |                  |     |        |
+        //  ( onCallStart )     ( onSelectedChange )     ( onDraw )
+        //  ( onCallEnd   )     ( onCurrentChange  )     +--------+
+        //  +-------------+     ( onKnownCommand   )
+        //                      ( onUnknownCommand )
         //                      +------------------+
         //                        |
         //                        v
@@ -269,18 +305,24 @@ namespace vtsed
         //  +--------------------------+
         //
 
-        class multiControl
+        class VTSED_API multiControl
         {
 
         private:
 
             unsigned x;
             unsigned y;
+
+            int optionsCount;
+
             string* options = NULL;
             bool* optionsState = NULL;
             int* selectedOptions = NULL;
+
             int currentOption;
-            int optionsCount;
+
+            bool allowInterruption;
+
             RGBCOLOR optionForeColor;
             RGBCOLOR optionBackColor;
             RGBCOLOR selectedOptionForeColor;
@@ -293,6 +335,14 @@ namespace vtsed
             int* loop();
 
         public:
+            
+            const int UPCOMMAND = 72;
+            const int DOWNCOMMAND = 80;
+            const int TOPCOMMAND = 73;
+            const int BOTTOMCOMMAND = 81;
+            const int ENDCALLCOMMAND = 28;
+            const int INTERRUPTCALLCOMMAND = 27;
+            const int INTERRUPTIONCODE = -123;
 
             const unsigned defaultX = 4;
             const unsigned defaultY = 2;
@@ -302,24 +352,27 @@ namespace vtsed
 
             void setX(unsigned value);
             unsigned getX();
-
             void setY(unsigned value);
             unsigned getY();
 
+            void setOptionsCount(int value);
+            int getOptionsCount();
+
             void setOptions(string* value);
             string* getOptions();
-
             void setOptionsState(bool* value);
             bool* getOptionsState();
-
             void setSelectedOptions(int* value);
             int* getSelectedOptions();
 
             void setCurrentOption(int value);
             int getCurrentOption();
 
-            void setOptionsCount(int value);
-            int getOptionsCount();
+            int firstIndex();
+            int lastIndex();
+
+            void setAllowInterruption(bool value);
+            bool getAllowInterruption();
 
             void setOptionForeColor(RGBCOLOR value);
             RGBCOLOR getOptionForeColor();
@@ -356,6 +409,7 @@ namespace vtsed
             void(*onCallEnd)() = NULL;
             void(*onSelectedChange)(int selected) = NULL;
             void(*onCurrentChange)(int current) = NULL;
+            void(*onKnownCommand)(char command) = NULL;
             void(*onUnknownCommand)(char command) = NULL;
             bool(*onDraw)(int index, string option, bool state,
                 bool selected, bool current) = NULL;
@@ -377,7 +431,7 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        class checkListBox : public multiControl
+        class VTSED_API checkListBox : public multiControl
         {
 
         private:

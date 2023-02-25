@@ -189,7 +189,7 @@ namespace vtsed
     }
 
 
-    void VTSED_API setCursorPositionCUP()
+    void setCursorPositionCUP()
     {
         cout << "\x1b[;H";
     }
@@ -201,7 +201,7 @@ namespace vtsed
     }
 
 
-    void VTSED_API setCursorPositionHVP()
+    void setCursorPositionHVP()
     {
         cout << "\x1b[;f";
     }
@@ -820,7 +820,7 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void VTSED_API scrollingMargin()
+    void scrollingMargin()
     {
         cout << "\x1b[;r";
     }

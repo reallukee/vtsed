@@ -8,6 +8,8 @@
 //
 //  Repository:     https://github.com/reallukee/vtsed/
 //  Descrizione:    DYNAMIC CONTROL
+//                  Contiene le definizione di base dei controlli
+//                  dinamici e i controlli dinamici.
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
@@ -211,15 +213,45 @@ namespace vtsed
     }
 
 
+    int singleControl::firstIndex()
+    {
+        return 0;
+    }
+
+
+    int singleControl::lastIndex()
+    {
+        return optionsCount - 1;
+    }
+
+
+    void singleControl::setAllowInterruption(bool value)
+    {
+        allowInterruption = value;
+    }
+
+
+    bool singleControl::getAllowInterruption()
+    {
+        return allowInterruption;
+    }
+
+
     singleControl::singleControl()
     {
         x = defaultX;
         y = defaultY;
+
+        optionsCount = 0;
+
         options = NULL;
         optionsState = NULL;
         selectedOptions = new int[1];
+
         currentOption = 1;
-        optionsCount = 0;
+
+        allowInterruption = false;
+
         optionForeColor = rgbFrom(240);
         optionBackColor = rgbFrom(12);
         selectedOptionForeColor = rgbFrom(65, 130, 115);
@@ -263,6 +295,9 @@ namespace vtsed
 
     void singleControl::up()
     {
+        if (optionsCount <= 0)
+            return;
+
         if (currentOption - 1 >= 0)
             currentOption--;
         else
@@ -280,6 +315,9 @@ namespace vtsed
 
     void singleControl::down()
     {
+        if (optionsCount <= 0)
+            return;
+
         if (currentOption + 1 <= optionsCount - 1)
             currentOption++;
         else
@@ -297,6 +335,9 @@ namespace vtsed
 
     void singleControl::top()
     {
+        if (optionsCount <= 0)
+            return;
+
         currentOption = 0;
 
         while (!optionsState[currentOption])
@@ -306,6 +347,9 @@ namespace vtsed
 
     void singleControl::bottom()
     {
+        if (optionsCount <= 0)
+            return;
+
         currentOption = optionsCount - 1;
 
         while (!optionsState[currentOption])
@@ -317,9 +361,11 @@ namespace vtsed
     {
         bool doLoop = true;
 
+        char key;
+
         while (doLoop)
         {
-            char key = _getch();
+            key = _getch();
 
             if (key == '\xE0')
                 key = _getch();
@@ -368,7 +414,7 @@ namespace vtsed
 
                 break;
 
-            case 81:
+            case 74:
             case 'B':
             case 'b':
                 bottom();
@@ -388,23 +434,34 @@ namespace vtsed
                 doLoop = false;
                 break;
 
+            case 27:
+            case 'Q':
+            case 'q':
+                if (allowInterruption)
+                    doLoop = false;
+
+                break;
+
             default:
                 if (onUnknownCommand != NULL)
                     onUnknownCommand(key);
 
-                return key * -1;
+                if (allowInterruption)
+                    return key * -1;
+
+                break;
             }
+
+            if (onKnownCommand != NULL)
+                onKnownCommand(key);
 
             draw();
         }
 
+        if (key == INTERRUPTCALLCOMMAND)
+            return INTERRUPTIONCODE;
+        
         return selectedOptions[0];
-    }
-
-
-    void singleControl::draw()
-    {
-        cout << ":)" << endl;
     }
 
     //////////////////////////////////////////////////
@@ -689,15 +746,45 @@ namespace vtsed
     }
 
 
+    int multiControl::firstIndex()
+    {
+        return 0;
+    }
+
+
+    int multiControl::lastIndex()
+    {
+        return optionsCount - 1;
+    }
+
+
+    void multiControl::setAllowInterruption(bool value)
+    {
+        allowInterruption = value;
+    }
+
+
+    bool multiControl::getAllowInterruption()
+    {
+        return allowInterruption;
+    }
+
+
     multiControl::multiControl()
     {
         x = defaultX;
         y = defaultY;
+
+        optionsCount = 0;
+
         options = NULL;
         optionsState = NULL;
         selectedOptions = new int[1];
+
         currentOption = 1;
-        optionsCount = 0;
+
+        allowInterruption = false;
+
         optionForeColor = rgbFrom(240);
         optionBackColor = rgbFrom(12);
         selectedOptionForeColor = rgbFrom(65, 130, 115);
@@ -741,6 +828,9 @@ namespace vtsed
 
     void multiControl::up()
     {
+        if (optionsCount <= 0)
+            return;
+
         if (currentOption - 1 >= 0)
             currentOption--;
         else
@@ -758,6 +848,9 @@ namespace vtsed
 
     void multiControl::down()
     {
+        if (optionsCount <= 0)
+            return;
+
         if (currentOption + 1 <= optionsCount - 1)
             currentOption++;
         else
@@ -775,6 +868,9 @@ namespace vtsed
 
     void multiControl::top()
     {
+        if (optionsCount <= 0)
+            return;
+
         currentOption = 0;
 
         while (!optionsState[currentOption])
@@ -784,6 +880,9 @@ namespace vtsed
 
     void multiControl::bottom()
     {
+        if (optionsCount <= 0)
+            return;
+
         currentOption = optionsCount - 1;
 
         while (!optionsState[currentOption])
@@ -795,14 +894,14 @@ namespace vtsed
     {
         bool doLoop = true;
 
+        char key;
+
         while (doLoop)
         {
-            char key = _getch();
+            key = _getch();
 
             if (key == '\xE0')
-            {
                 key = _getch();
-            }
 
             switch (key)
             {
@@ -836,7 +935,7 @@ namespace vtsed
 
                 break;
 
-            case 81:
+            case 74:
             case 'B':
             case 'b':
                 bottom();
@@ -872,15 +971,30 @@ namespace vtsed
                 doLoop = false;
                 break;
 
+            case 27:
+            case 'Q':
+            case 'q':
+                if (allowInterruption)
+                    doLoop = false;
+
             default:
                 if (onUnknownCommand != NULL)
                     onUnknownCommand(key);
 
-                return new int { key * -1 };
+                if (allowInterruption)
+                    return new int { key * -1 };
+
+                break;
             }
+
+            if (onKnownCommand != NULL)
+                onKnownCommand(key);
 
             draw();
         }
+
+        if (key == INTERRUPTCALLCOMMAND)
+            return new int[1] { INTERRUPTIONCODE };
 
         return selectedOptions;
     }

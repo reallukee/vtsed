@@ -20,9 +20,9 @@
     #define VTSED_API_EXPOSER
 
     #ifdef VTSED_LIBRARY  // VTSED_LIBRARY
-        #define MODE "PROGRAM"
-    #else
         #define MODE "LIBRARY"
+    #else
+        #define MODE "PROGRAM"
 #endif  // VTSED_LIBRARY
 
 #define VERSION "1.0.0"
