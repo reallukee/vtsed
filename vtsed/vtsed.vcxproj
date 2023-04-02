@@ -161,6 +161,8 @@
     <ClInclude Include="common.hpp" />
     <ClInclude Include="console.hpp" />
     <ClInclude Include="dcontrols.hpp" />
+    <ClInclude Include="pinvoke.hpp" />
+    <ClInclude Include="preprocessor.hpp" />
     <ClInclude Include="scontrols.hpp" />
     <ClInclude Include="vts.hpp" />
     <ClInclude Include="pch.hpp" />
@@ -184,6 +186,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="pinvoke.cpp" />
     <ClCompile Include="scontrols.cpp" />
     <ClCompile Include="vts.cpp" />
     <ClCompile Include="vts2.cpp" />

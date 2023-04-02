@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione\VTSEd">
+      <UniqueIdentifier>{4d7d4820-9ee3-4d34-9013-0ace6e4bf90c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\VTSEd">
+      <UniqueIdentifier>{38e9a2fb-9373-4c87-ab5b-03c98004b33c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\vtsed\cmf.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\dcontrols.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\pinvoke.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\scontrols.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\console.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\vts.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\common.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vtsed\vts2.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
+    <ClCompile Include="scontrols.cxx">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cxx">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\vtsed\cmf.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\common.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\pinvoke.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\preprocessor.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\dcontrols.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\scontrols.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\vts2.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\vtsed.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\console.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\vts.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="common.hxx">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="scontrols.hxx">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vtsed.net.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\vtsed.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -166,6 +166,7 @@
     <ClInclude Include="include\common.hpp" />
     <ClInclude Include="include\console.hpp" />
     <ClInclude Include="include\dcontrols.hpp" />
+    <ClInclude Include="include\preprocessor.hpp" />
     <ClInclude Include="include\scontrols.hpp" />
     <ClInclude Include="include\vts.hpp" />
     <ClInclude Include="include\vts2.hpp" />

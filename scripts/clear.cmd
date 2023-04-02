@@ -5,6 +5,8 @@ if exist ..\.vscode rmdir /q /s ..\.vs
 
 if exist ..\vtsed\x64 rmdir /q /s ..\vtsed\x64
 if exist ..\vtsed\x86 rmdir /q /s ..\vtsed\x86
+if exist ..\vtsed.net\x64 rmdir /q /s ..\vtsed.net\x64
+if exist ..\vtsed.net\x86 rmdir /q /s ..\vtsed.net\x86
 if exist ..\vtsed.test\x64 rmdir /q /s ..\vtsed.test\x64
 if exist ..\vtsed.test\x86 rmdir /q /s ..\vtsed.test\x86
 if exist ..\examples\checklistbox\x64 rmdir /q /s ..\examples\checklistbox\x64

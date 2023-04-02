@@ -65,5 +65,8 @@
     <ClInclude Include="..\..\vtsed\vts2.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\vtsed\preprocessor.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

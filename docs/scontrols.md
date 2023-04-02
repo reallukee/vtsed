@@ -5,9 +5,9 @@
 > 💡 I controlli statici sono controlli testuali che non presentano una fase interattiva.
 
 - [Controllo GridRow](#controllo-gridrow)
-- [Controllo SBSGridRow](#controllo-sbsgridrow)
+- [Controllo SbsGridRow](#controllo-sbsgridrow)
 - [Controllo GridCol](#controllo-gridcol)
-- [Controllo SBSGridCol](#controllo-sbsgridcol)
+- [Controllo SbsGridCol](#controllo-sbsgridcol)
 
 
 
@@ -19,11 +19,11 @@
 
 
 
-# Controllo `SBSGridRow`
+# Controllo `SbsGridRow`
 
 > [Esempio](../examples/gridrow/main.cpp)
 
-![SBSGridRow](../assets/gridrow.png)
+![SbsGridRow](../assets/gridrow.png)
 
 
 
@@ -35,11 +35,11 @@
 
 
 
-# Controllo `SBSGridCol`
+# Controllo `SbsGridCol`
 
 > [Esempio](../examples/gridcol/main.cpp)
 
-![SBSGridCol](../assets/gridcol.png)
+![SbsGridCol](../assets/gridcol.png)
 
 
 

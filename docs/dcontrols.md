@@ -74,6 +74,7 @@
 | `onCallEnd`        | `NULL`  | Chiama il metodo puntato quando la chiamata `call` viene terminata   |
 | `onSelectedChange` | `NULL`  | Chiama il metodo puntato quando la selezione corrente cambia         |
 | `onCurrentChange`  | `NULL`  | Chiama il metodo puntato quando l'elemento corrente cambia           |
+| `onKnownCommand`   | `NULL`  | Chiama il metodo puntato quando viene inviato un comando conosciuto  |
 | `onUnknownCommand` | `NULL`  | Chiama il metodo puntato quando viene inviato un comando sconosciuto |
 | `onDraw`           | `NULL`  | Chiama il metodo puntato quando la chiamata `draw` viene chiamata    |
 
@@ -83,6 +84,7 @@
 - `onCallEnd()`
 - `onSelectedChange(int)`
 - `onCurrentChange(int)`
+- `onKnownCommand(char)`
 - `onUnknownCommand(char)`
 - `onDraw(int, string, bool, bool, bool)`
 
@@ -111,6 +113,7 @@
 - (`RGBCOLOR`) `currentOptionBackColor`
 - (`RGBCOLOR`) `disabledOptionForeColor`
 - (`RGBCOLOR`) `disabledOptionBackColor`
+- (`bool`) `allowInterruption`
 
 
 
@@ -122,8 +125,15 @@
 
 ## Costanti
 
-- (`unsigned`) `defaultX`
-- (`unsigned`) `defaultY`
+- (`unsigned`) `DEFAULTX`
+- (`unsigned`) `DEFAULTY`
+- (`int`) `UPCOMMAND`
+- (`int`) `DOWNCOMMAND`
+- (`int`) `TOPCOMMAND`
+- (`int`) `BOTTOMCOMMAND`
+- (`int`) `ENDCALLCOMMAND`
+- (`int`) `INTERRUPTCALLCOMMAND`
+- (`int`) `INTERRUPTIONCODE`
 
 
 
@@ -213,6 +223,7 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>
 | `onCallEnd`        | `NULL`  | Chiama il metodo puntato quando la chiamata `call` viene terminata   |
 | `onSelectedChange` | `NULL`  | Chiama il metodo puntato quando la selezione corrente cambia         |
 | `onCurrentChange`  | `NULL`  | Chiama il metodo puntato quando l'elemento corrente cambia           |
+| `onKnownCommand`   | `NULL`  | Chiama il metodo puntato quando viene inviato un comando conosciuto  |
 | `onUnknownCommand` | `NULL`  | Chiama il metodo puntato quando viene inviato un comando sconosciuto |
 | `onDraw`           | `NULL`  | Chiama il metodo puntato quando la chiamata `draw` viene chiamata    |
 
@@ -222,6 +233,7 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>
 - `onCallEnd()`
 - `onSelectedChange(int)`
 - `onCurrentChange(int)`
+- `onKnownCommand(char)`
 - `onUnknownCommand(char)`
 - `onDraw(int, string, bool, bool, bool)`
 
@@ -250,6 +262,7 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>
 - (`RGBCOLOR`) `currentOptionBackColor`
 - (`RGBCOLOR`) `disabledOptionForeColor`
 - (`RGBCOLOR`) `disabledOptionBackColor`
+- (`bool`) `allowInterruption`
 
 
 
@@ -261,8 +274,15 @@ Questo comando viene invocato quando l'utente preme i tasti <kbd>X</kbd> o <kbd>
 
 ## Costanti
 
-- (`unsigned`) `defaultX`
-- (`unsigned`) `defaultY`
+- (`unsigned`) `DEFAULTX`
+- (`unsigned`) `DEFAULTY`
+- (`int`) `UPCOMMAND`
+- (`int`) `DOWNCOMMAND`
+- (`int`) `TOPCOMMAND`
+- (`int`) `BOTTOMCOMMAND`
+- (`int`) `ENDCALLCOMMAND`
+- (`int`) `INTERRUPTCALLCOMMAND`
+- (`int`) `INTERRUPTIONCODE`
 
 
 

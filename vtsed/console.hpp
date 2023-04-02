@@ -1,62 +1,28 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    CONSOLE
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: CONSOLE
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
 #pragma once
 
-//
-// Esposizione.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-        #define VTSED_API __declspec(dllexport)
-    #else
-        #define VTSED_API __declspec(dllimport)
-    #endif  // VTSED_LIBRARY
-#else
-    #define VTSED_API
-#endif  // _WIN32 || _WIN64
-
-//
-// Intestazioni Standard.
-//
-
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
-#include <sstream>
-#include <string>
-
-//
-// Intestazioni Windows.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #include <conio.h>
-    #include <windows.h>
-#endif  // _WIN32 || _WIN64
-
-using namespace std;
+#include "preprocessor.hpp" // Direttive.
+#include "vts.hpp"          // VTS.
 
 namespace vtsed
 {
     extern "C++"
     {
-        #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-
         // ##
         // ##   Cursor
         // ##
@@ -67,7 +33,14 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         void VTSED_API setCursorPosition(int x, int y);
+
+#ifdef WIN  // WIN
         COORD VTSED_API getCursorPosition();
+#endif  // ! WIN
+
+#ifdef UNIX // UNIX
+        void* VTSED_API getCursorPosition();
+#endif  // ! UNIX
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -85,11 +58,8 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         void VTSED_API writeAt(int x, int y, string str);
-        void VTSED_API writeAt(int x, int y, char* str);
         void VTSED_API writeAtCenter(int y, string str);
-        void VTSED_API writeAtCenter(int y, char* str);
         void VTSED_API writeAtRight(int y, string str);
-        void VTSED_API writeAtRight(int y, char* str);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -131,7 +101,5 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         #pragma endregion
-
-        #endif  // _WIN32 || _WIN64
     }
 }

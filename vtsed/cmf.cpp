@@ -1,22 +1,30 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    CMF
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: CMF
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
-#include "pch.hpp"
 
-#include "cmf.hpp"
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
+#include "pch.hpp"  // Intestazioni Precompilate.
+
+#include "cmf.hpp"  // Header di Riferimento.
+
+#pragma endregion
+
 
 namespace vtsed
 {

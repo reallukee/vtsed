@@ -1,22 +1,30 @@
 ﻿//
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    VTS
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: VTS
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
-#include "pch.hpp"
 
-#include "vts.hpp"
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
+#include "pch.hpp"  // Intestazioni Precompilate.
+
+#include "vts.hpp"  // Header di Riferimento.
+
+#pragma endregion
+
 
 namespace vtsed
 {
@@ -28,8 +36,6 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
-
-    #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
 
     bool initConsole()
     {
@@ -53,6 +59,10 @@ namespace vtsed
 
     bool enableVTS()
     {
+        // Solo su Windows è necessario abilitare
+        // le VTS tramite la modifica del comportamento
+        // della sessione corrente del terminale.
+#ifdef WIN  // WIN
         // Ottengo l'output standard.
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
         if (hOut == INVALID_HANDLE_VALUE)
@@ -67,6 +77,7 @@ namespace vtsed
         dwMode |= 0x0004 | 0x0008;
         if (!SetConsoleMode(hOut, dwMode))
             return false;
+#endif  // ! WIN
 
         return true;
     }
@@ -74,6 +85,10 @@ namespace vtsed
 
     bool disableVTS()
     {
+        // Solo su Windows è necessario disabilitare
+        // le VTS tramite la modifica del comportamento
+        // della sessione corrente del terminale.
+#ifdef WIN  // WIN
         // Ottengo l'output standard.
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
         if (hOut == INVALID_HANDLE_VALUE)
@@ -88,11 +103,10 @@ namespace vtsed
         dwMode &= ~0x0004 & ~0x0008;
         if (!SetConsoleMode(hOut, dwMode))
             return false;
+#endif  // ! WIN
 
         return true;
     }
-
-    #endif  // _WIN32 || _WIN64
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -759,7 +773,7 @@ namespace vtsed
     }
 
 
-    void cursorForwardsTab(int n)
+    void cursorForewardsTab(int n)
     {
         cout << "\x1b[" << n << "I";
     }

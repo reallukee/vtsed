@@ -50,6 +50,9 @@
     <ClInclude Include="include\vts2.hpp">
       <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
+    <ClInclude Include="include\preprocessor.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="dll\vtsed-d-x64.dll">

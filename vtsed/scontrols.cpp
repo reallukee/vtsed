@@ -1,27 +1,35 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    STATIC CONTROL
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: STATIC CONTROL
+//               Questo File Contiene le Implementazioni
+//               Relative ai Controlli Statitici.
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
-#include "pch.hpp"
 
-#include "scontrols.hpp"
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
+#include "pch.hpp"          // Intestazioni Precompilate.
+
+#include "scontrols.hpp"    // Header di Riferimento.
+
+#pragma endregion
+
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-
     // ##
     // ##   Grid Row
     // ##
@@ -31,31 +39,29 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    unsigned gridRow::getX()
+    unsigned GridRow::getX()
     {
         return x;
     }
 
-
-    void gridRow::setX(unsigned x)
+    void GridRow::setX(unsigned x)
     {
         this->x = x;
     }
 
-
-    unsigned gridRow::getY()
+    unsigned GridRow::getY()
     {
         return y;
     }
 
-
-    void gridRow::setY(unsigned y)
+    void GridRow::setY(unsigned y)
     {
         this->y = y;
     }
 
 
-    void gridRow::setContent(string* content[], int xSize, int ySize)
+
+    void GridRow::setContent(string* content[], int xSize, int ySize)
     {
         this->content = content;
         this->xSize = xSize;
@@ -63,76 +69,79 @@ namespace vtsed
         updateConfig();
     }
 
-
-    string** gridRow::getContent()
+    string** GridRow::getContent()
     {
         return content;
     }
 
 
-    int gridRow::getXSize()
+
+    int GridRow::getXSize()
     {
         return xSize;
     }
 
-
-    int gridRow::getYSize()
+    int GridRow::getYSize()
     {
         return ySize;
     }
 
 
-    void gridRow::setForeColor(RGBCOLOR foreColor)
+
+    void GridRow::setForeColor(RGBCOLOR foreColor)
     {
         this->foreColor = foreColor;
     }
 
-
-    RGBCOLOR gridRow::getForeColor()
+    RGBCOLOR GridRow::getForeColor()
     {
         return foreColor;
     }
 
-
-    void gridRow::setBackColor(RGBCOLOR backColor)
+    void GridRow::setBackColor(RGBCOLOR backColor)
     {
         this->backColor = backColor;
     }
 
-
-    RGBCOLOR gridRow::getBackColor()
+    RGBCOLOR GridRow::getBackColor()
     {
         return backColor;
     }
 
 
-    gridRow::gridRow()
+
+    GridRow::GridRow()
     {
         this->content = NULL;
         this->xSize = -1;
         this->ySize = -1;
-        this->x = defaultX;
-        this->y = defaultY;
+        this->x = DEFAULTX;
+        this->y = DEFAULTY;
+        this->foreColor = rgbFrom(240);
+        this->backColor = rgbFrom(12);
     }
 
-
-    gridRow::gridRow(string* content[], int xSize, int ySize)
+    GridRow::GridRow(string* content[], int xSize, int ySize)
     {
         this->content = content;
         this->xSize = xSize;
         this->ySize = ySize;
+        this->x = DEFAULTX;
+        this->y = DEFAULTY;
+        this->foreColor = rgbFrom(240);
+        this->backColor = rgbFrom(12);
         updateConfig();
     }
 
-
-    gridRow::~gridRow()
+    GridRow::~GridRow()
     {
         // delete[] content;
         delete maxLen;
     }
 
 
-    void gridRow::updateConfig()
+
+    void GridRow::updateConfig()
     {
         delete maxLen;
      
@@ -151,17 +160,19 @@ namespace vtsed
     }
 
 
-    void gridRow::gap(int currentLen, int maxLen, int currentCol)
+
+    void GridRow::gap(int currentLen, int maxLen, int currentRow)
     {
         for (int i = currentLen; i < maxLen; i++)
             cout << " ";
 
-        if (currentCol != xSize - 1)
+        if (currentRow != xSize - 1)
             cout << " ";
     }
 
 
-    void gridRow::draw()
+
+    void GridRow::draw()
     {
         for (int j = 0; j < ySize; j++)
         {
@@ -183,7 +194,8 @@ namespace vtsed
     }
 
 
-    int gridRow::getWidth()
+
+    int GridRow::getWidth()
     {
         int t = xSize - 1;
 
@@ -193,11 +205,11 @@ namespace vtsed
         return t;
     }
 
-
-    int gridRow::getHeight()
+    int GridRow::getHeight()
     {
         return ySize;
     }
+
 
 
     bool defaultGridRowOnDraw(string content, int row)
@@ -226,14 +238,30 @@ namespace vtsed
         return false;
     }
 
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
-    void sbsGridRow::resetDraw()
+    #pragma endregion
+
+
+    // ##
+    // ##   SbsGridRow
+    // ##
+
+    #pragma region SbsGridRow
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void SbsGridRow::resetDraw()
     {
         current = 0;
+
+        if (onResetDraw != NULL)
+            onResetDraw();
     }
 
-
-    void sbsGridRow::drawNext(string content[], int maxLen[], int xSize)
+    void SbsGridRow::drawNext(string content[], int maxLen[], int xSize)
     {
         setCursorPosition(getX(), getY() + current);
 
@@ -272,31 +300,29 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    unsigned gridCol::getX()
+    unsigned GridCol::getX()
     {
         return x;
     }
 
-
-    void gridCol::setX(unsigned x)
+    void GridCol::setX(unsigned x)
     {
         this->x = x;
     }
 
-
-    unsigned gridCol::getY()
+    unsigned GridCol::getY()
     {
         return y;
     }
 
-
-    void gridCol::setY(unsigned y)
+    void GridCol::setY(unsigned y)
     {
         this->y = y;
     }
 
 
-    void gridCol::setContent(string* content[], int xSize, int ySize)
+
+    void GridCol::setContent(string* content[], int xSize, int ySize)
     {
         this->content = content;
         this->xSize = xSize;
@@ -304,76 +330,79 @@ namespace vtsed
         updateConfig();
     }
 
-
-    string** gridCol::getContent()
+    string** GridCol::getContent()
     {
         return content;
     }
 
 
-    int gridCol::getXSize()
+
+    int GridCol::getXSize()
     {
         return xSize;
     }
 
-
-    int gridCol::getYSize()
+    int GridCol::getYSize()
     {
         return ySize;
     }
 
 
-    void gridCol::setForeColor(RGBCOLOR foreColor)
+
+    void GridCol::setForeColor(RGBCOLOR foreColor)
     {
         this->foreColor = foreColor;
     }
 
-
-    RGBCOLOR gridCol::getForeColor()
+    RGBCOLOR GridCol::getForeColor()
     {
         return foreColor;
     }
 
-
-    void gridCol::setBackColor(RGBCOLOR backColor)
+    void GridCol::setBackColor(RGBCOLOR backColor)
     {
         this->backColor = backColor;
     }
 
-
-    RGBCOLOR gridCol::getBackColor()
+    RGBCOLOR GridCol::getBackColor()
     {
         return backColor;
     }
 
 
-    gridCol::gridCol()
+
+    GridCol::GridCol()
     {
         this->content = NULL;
         this->xSize = -1;
         this->ySize = -1;
-        this->x = defaultX;
-        this->y = defaultY;
+        this->x = DEFAULTX;
+        this->y = DEFAULTY;
+        this->foreColor = rgbFrom(240);
+        this->backColor = rgbFrom(12);
     }
 
-
-    gridCol::gridCol(string* content[], int xSize, int ySize)
+    GridCol::GridCol(string* content[], int xSize, int ySize)
     {
         this->content = content;
         this->xSize = xSize;
         this->ySize = ySize;
+        this->x = DEFAULTX;
+        this->y = DEFAULTY;
+        this->foreColor = rgbFrom(240);
+        this->backColor = rgbFrom(12);
         updateConfig();
     }
 
-
-    gridCol::~gridCol()
+    GridCol::~GridCol()
     {
         // delete[] content;
         delete maxLen;
     }
 
 
-    void gridCol::updateConfig()
+
+    void GridCol::updateConfig()
     {
         delete maxLen;
 
@@ -392,7 +421,8 @@ namespace vtsed
     }
 
 
-    void gridCol::gap(int currentLen, int maxLen, int currentCol)
+
+    void GridCol::gap(int currentLen, int maxLen, int currentCol)
     {
         for (int i = currentLen; i < maxLen; i++)
             cout << " ";
@@ -402,7 +432,8 @@ namespace vtsed
     }
 
 
-    void gridCol::draw()
+
+    void GridCol::draw()
     {
         for (int j = 0; j < ySize; j++)
         {
@@ -424,7 +455,8 @@ namespace vtsed
     }
 
 
-    int gridCol::getWidth()
+
+    int GridCol::getWidth()
     {
         int t = xSize - 1;
 
@@ -434,11 +466,11 @@ namespace vtsed
         return t;
     }
 
-
-    int gridCol::getHeight()
+    int GridCol::getHeight()
     {
         return ySize;
     }
+
 
 
     bool defaultGridColOnDraw(string content, int col)
@@ -467,14 +499,30 @@ namespace vtsed
         return false;
     }
 
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
-    void sbsGridCol::resetDraw()
+    #pragma endregion
+
+
+    // ##
+    // ##   SbsGridCol
+    // ##
+
+    #pragma region SbsGridCol
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    void SbsGridCol::resetDraw()
     {
         current = 0;
+
+        if (onResetDraw != NULL)
+            onResetDraw();
     }
 
-
-    void sbsGridCol::drawNext(string content[], int maxLen[], int xSize)
+    void SbsGridCol::drawNext(string content[], int maxLen[], int xSize)
     {
         setCursorPosition(getX(), getY() + current);
 
@@ -502,6 +550,4 @@ namespace vtsed
     //////////////////////////////////////////////////
 
     #pragma endregion
-
-    #endif  // _WIN32 || _WIN64
 }

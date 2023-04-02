@@ -12,7 +12,7 @@ int main()
     if (!enableVTS())
         return EXIT_ERROR;
 
-    gridRow myGridRow;
+    GridRow myGridRow;
 
     string* content[5] = {
         new string[2] { "NOME", "COGNOME" },

@@ -1,28 +1,37 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    DYNAMIC CONTROL
-//                  Contiene le definizione di base dei controlli
-//                  dinamici e i controlli dinamici.
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: DINAMIC CONTROL
+//               Questo File Contiene le Implementazioni
+//               Relative ai Controlli Dinamici.
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
-#include "pch.hpp"
 
-#include "dcontrols.hpp"
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
+#include "pch.hpp"          // Intestazioni Precompilate.
+
+#include "dcontrols.hpp"    // Header di Riferimento.
+
+#pragma endregion
+
 
 namespace vtsed
 {
-    #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+
+#ifdef WIN  // WIN
 
     // ##
     // ##   Single Control
@@ -33,214 +42,194 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void singleControl::setX(unsigned value)
+    void SingleControl::setX(unsigned value)
     {
         x = value;
     }
 
-
-    unsigned singleControl::getX()
+    unsigned SingleControl::getX()
     {
         return x;
     }
 
-
-    void singleControl::setY(unsigned value)
+    void SingleControl::setY(unsigned value)
     {
         y = value;
     }
 
-
-    unsigned singleControl::getY()
+    unsigned SingleControl::getY()
     {
         return y;
     }
 
 
-    void singleControl::setOptions(string* value)
+
+    void SingleControl::setOptions(string* value)
     {
         options = value;
     }
 
-
-    string* singleControl::getOptions()
+    string* SingleControl::getOptions()
     {
         return options;
     }
 
-
-    void singleControl::setOptionsState(bool* value)
+    void SingleControl::setOptionsState(bool* value)
     {
         optionsState = value;
     }
 
-
-    bool* singleControl::getOptionsState()
+    bool* SingleControl::getOptionsState()
     {
         return optionsState;
     }
 
-
-    void singleControl::setSelectedOption(int value)
+    void SingleControl::setSelectedOption(int value)
     {
         selectedOptions[0] = value;
     }
 
-
-    int singleControl::getSelectedOption()
+    int SingleControl::getSelectedOption()
     {
         return selectedOptions[0];
     }
 
 
-    void singleControl::setCurrentOption(int value)
+
+    void SingleControl::setCurrentOption(int value)
     {
         currentOption = value;
     }
 
-
-    int singleControl::getCurrentOption()
+    int SingleControl::getCurrentOption()
     {
         return currentOption;
     }
 
 
-    void singleControl::setOptionsCount(int value)
+
+    void SingleControl::setOptionsCount(int value)
     {
         optionsCount = value;
     }
 
-
-    int singleControl::getOptionsCount()
+    int SingleControl::getOptionsCount()
     {
         return optionsCount;
     }
 
 
-    void singleControl::setOptionForeColor(RGBCOLOR value)
+
+    void SingleControl::setOptionForeColor(RGBCOLOR value)
     {
         optionForeColor = value;
     }
 
-
-    RGBCOLOR singleControl::getOptionForeColor()
+    RGBCOLOR SingleControl::getOptionForeColor()
     {
         return optionForeColor;
     }
 
-
-    void singleControl::setOptionBackColor(RGBCOLOR value)
+    void SingleControl::setOptionBackColor(RGBCOLOR value)
     {
         optionBackColor = value;
     }
 
-
-    RGBCOLOR singleControl::getOptionBackColor()
+    RGBCOLOR SingleControl::getOptionBackColor()
     {
         return optionBackColor;
     }
 
-
-    void singleControl::setSelectedOptionForeColor(RGBCOLOR value)
+    void SingleControl::setSelectedOptionForeColor(RGBCOLOR value)
     {
         selectedOptionForeColor = value;
     }
 
-
-    RGBCOLOR singleControl::getSelectedOptionForeColor()
+    RGBCOLOR SingleControl::getSelectedOptionForeColor()
     {
         return selectedOptionForeColor;
     }
 
-
-    void singleControl::setSelectedOptionBackColor(RGBCOLOR value)
+    void SingleControl::setSelectedOptionBackColor(RGBCOLOR value)
     {
         selectedOptionBackColor = value;
     }
 
-
-    RGBCOLOR singleControl::getSelectedOptionBackColor()
+    RGBCOLOR SingleControl::getSelectedOptionBackColor()
     {
         return selectedOptionBackColor;
     }
 
-
-    void singleControl::setCurrentOptionForeColor(RGBCOLOR value)
+    void SingleControl::setCurrentOptionForeColor(RGBCOLOR value)
     {
         currentOptionForeColor = value;
     }
 
-
-    RGBCOLOR singleControl::getCurrentOptionForeColor()
+    RGBCOLOR SingleControl::getCurrentOptionForeColor()
     {
         return currentOptionForeColor;
     }
 
-
-    void singleControl::setCurrentOptionBackColor(RGBCOLOR value)
+    void SingleControl::setCurrentOptionBackColor(RGBCOLOR value)
     {
         currentOptionBackColor = value;
     }
 
-
-    RGBCOLOR singleControl::getCurrentOptionBackColor()
+    RGBCOLOR SingleControl::getCurrentOptionBackColor()
     {
         return currentOptionBackColor;
     }
 
-
-    void singleControl::setDisabledOptionForeColor(RGBCOLOR value)
+    void SingleControl::setDisabledOptionForeColor(RGBCOLOR value)
     {
         disabledOptionForeColor = value;
     }
 
-
-    RGBCOLOR singleControl::getDisabledOptionForeColor()
+    RGBCOLOR SingleControl::getDisabledOptionForeColor()
     {
         return disabledOptionForeColor;
     }
 
-
-    void singleControl::setDisabledOptionBackColor(RGBCOLOR value)
+    void SingleControl::setDisabledOptionBackColor(RGBCOLOR value)
     {
         disabledOptionBackColor = value;
     }
 
-
-    RGBCOLOR singleControl::getDisabledOptionBackColor()
+    RGBCOLOR SingleControl::getDisabledOptionBackColor()
     {
         return disabledOptionBackColor;
     }
 
 
-    int singleControl::firstIndex()
+
+    int SingleControl::firstIndex()
     {
         return 0;
     }
 
-
-    int singleControl::lastIndex()
+    int SingleControl::lastIndex()
     {
         return optionsCount - 1;
     }
 
 
-    void singleControl::setAllowInterruption(bool value)
+
+    void SingleControl::setAllowInterruption(bool value)
     {
         allowInterruption = value;
     }
 
-
-    bool singleControl::getAllowInterruption()
+    bool SingleControl::getAllowInterruption()
     {
         return allowInterruption;
     }
 
 
-    singleControl::singleControl()
+
+    SingleControl::SingleControl()
     {
-        x = defaultX;
-        y = defaultY;
+        x = DEFAULTX;
+        y = DEFAULTY;
 
         optionsCount = 0;
 
@@ -262,8 +251,7 @@ namespace vtsed
         disabledOptionBackColor = rgbFrom(12);
     }
 
-
-    singleControl::~singleControl()
+    SingleControl::~SingleControl()
     {
         // delete options;
         // delete optionsState;
@@ -271,7 +259,8 @@ namespace vtsed
     }
 
 
-    int singleControl::call()
+
+    int SingleControl::call()
     {
         if (onCallStart != nullptr)
             onCallStart();
@@ -292,8 +281,7 @@ namespace vtsed
         return R;
     }
 
-
-    void singleControl::up()
+    void SingleControl::up()
     {
         if (optionsCount <= 0)
             return;
@@ -312,8 +300,7 @@ namespace vtsed
         }
     }
 
-
-    void singleControl::down()
+    void SingleControl::down()
     {
         if (optionsCount <= 0)
             return;
@@ -332,8 +319,7 @@ namespace vtsed
         }
     }
 
-
-    void singleControl::top()
+    void SingleControl::top()
     {
         if (optionsCount <= 0)
             return;
@@ -344,8 +330,7 @@ namespace vtsed
             currentOption++;
     }
 
-
-    void singleControl::bottom()
+    void SingleControl::bottom()
     {
         if (optionsCount <= 0)
             return;
@@ -356,8 +341,7 @@ namespace vtsed
             currentOption--;
     }
 
-
-    int singleControl::loop()
+    int SingleControl::loop()
     {
         bool doLoop = true;
 
@@ -464,6 +448,11 @@ namespace vtsed
         return selectedOptions[0];
     }
 
+    void SingleControl::draw()
+    {
+        cout << ":)";
+    }
+
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
@@ -479,25 +468,26 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    listBox::listBox()
+    ListBox::ListBox()
     {
         separator = '-';
     }
 
 
-    void listBox::setSeparator(char value)
+
+    void ListBox::setSeparator(char value)
     {
         separator = value;
     }
 
-
-    char listBox::getSeparator()
+    char ListBox::getSeparator()
     {
         return separator;
     }
 
 
-    void listBox::draw()
+
+    void ListBox::draw()
     {
         for (int i = 0; i < getOptionsCount(); i++)
         {
@@ -566,214 +556,194 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void multiControl::setX(unsigned value)
+    void MultiControl::setX(unsigned value)
     {
         x = value;
     }
 
-
-    unsigned multiControl::getX()
+    unsigned MultiControl::getX()
     {
         return x;
     }
 
-
-    void multiControl::setY(unsigned value)
+    void MultiControl::setY(unsigned value)
     {
         y = value;
     }
 
-
-    unsigned multiControl::getY()
+    unsigned MultiControl::getY()
     {
         return y;
     }
 
 
-    void multiControl::setOptions(string* value)
+
+    void MultiControl::setOptions(string* value)
     {
         options = value;
     }
 
-
-    string* multiControl::getOptions()
+    string* MultiControl::getOptions()
     {
         return options;
     }
 
-
-    void multiControl::setOptionsState(bool* value)
+    void MultiControl::setOptionsState(bool* value)
     {
         optionsState = value;
     }
 
-
-    bool* multiControl::getOptionsState()
+    bool* MultiControl::getOptionsState()
     {
         return optionsState;
     }
 
-
-    void multiControl::setSelectedOptions(int* value)
+    void MultiControl::setSelectedOptions(int* value)
     {
         selectedOptions = value;
     }
 
-
-    int* multiControl::getSelectedOptions()
+    int* MultiControl::getSelectedOptions()
     {
         return selectedOptions;
     }
 
 
-    void multiControl::setCurrentOption(int value)
+
+    void MultiControl::setCurrentOption(int value)
     {
         currentOption = value;
     }
 
-
-    int multiControl::getCurrentOption()
+    int MultiControl::getCurrentOption()
     {
         return currentOption;
     }
 
 
-    void multiControl::setOptionsCount(int value)
+
+    void MultiControl::setOptionsCount(int value)
     {
         optionsCount = value;
     }
 
-
-    int multiControl::getOptionsCount()
+    int MultiControl::getOptionsCount()
     {
         return optionsCount;
     }
 
 
-    void multiControl::setOptionForeColor(RGBCOLOR value)
+
+    void MultiControl::setOptionForeColor(RGBCOLOR value)
     {
         optionForeColor = value;
     }
 
-
-    RGBCOLOR multiControl::getOptionForeColor()
+    RGBCOLOR MultiControl::getOptionForeColor()
     {
         return optionForeColor;
     }
 
-
-    void multiControl::setOptionBackColor(RGBCOLOR value)
+    void MultiControl::setOptionBackColor(RGBCOLOR value)
     {
         optionBackColor = value;
     }
 
-
-    RGBCOLOR multiControl::getOptionBackColor()
+    RGBCOLOR MultiControl::getOptionBackColor()
     {
         return optionBackColor;
     }
 
-
-    void multiControl::setSelectedOptionForeColor(RGBCOLOR value)
+    void MultiControl::setSelectedOptionForeColor(RGBCOLOR value)
     {
         selectedOptionForeColor = value;
     }
 
-
-    RGBCOLOR multiControl::getSelectedOptionForeColor()
+    RGBCOLOR MultiControl::getSelectedOptionForeColor()
     {
         return selectedOptionForeColor;
     }
 
-
-    void multiControl::setSelectedOptionBackColor(RGBCOLOR value)
+    void MultiControl::setSelectedOptionBackColor(RGBCOLOR value)
     {
         selectedOptionBackColor = value;
     }
 
-
-    RGBCOLOR multiControl::getSelectedOptionBackColor()
+    RGBCOLOR MultiControl::getSelectedOptionBackColor()
     {
         return selectedOptionBackColor;
     }
 
-
-    void multiControl::setCurrentOptionForeColor(RGBCOLOR value)
+    void MultiControl::setCurrentOptionForeColor(RGBCOLOR value)
     {
         currentOptionForeColor = value;
     }
 
-
-    RGBCOLOR multiControl::getCurrentOptionForeColor()
+    RGBCOLOR MultiControl::getCurrentOptionForeColor()
     {
         return currentOptionForeColor;
     }
 
-
-    void multiControl::setCurrentOptionBackColor(RGBCOLOR value)
+    void MultiControl::setCurrentOptionBackColor(RGBCOLOR value)
     {
         currentOptionBackColor = value;
     }
 
-
-    RGBCOLOR multiControl::getCurrentOptionBackColor()
+    RGBCOLOR MultiControl::getCurrentOptionBackColor()
     {
         return currentOptionBackColor;
     }
 
-
-    void multiControl::setDisabledOptionForeColor(RGBCOLOR value)
+    void MultiControl::setDisabledOptionForeColor(RGBCOLOR value)
     {
         disabledOptionForeColor = value;
     }
 
-
-    RGBCOLOR multiControl::getDisabledOptionForeColor()
+    RGBCOLOR MultiControl::getDisabledOptionForeColor()
     {
         return disabledOptionForeColor;
     }
 
-
-    void multiControl::setDisabledOptionBackColor(RGBCOLOR value)
+    void MultiControl::setDisabledOptionBackColor(RGBCOLOR value)
     {
         disabledOptionBackColor = value;
     }
 
-
-    RGBCOLOR multiControl::getDisabledOptionBackColor()
+    RGBCOLOR MultiControl::getDisabledOptionBackColor()
     {
         return disabledOptionBackColor;
     }
 
 
-    int multiControl::firstIndex()
+
+    int MultiControl::firstIndex()
     {
         return 0;
     }
 
-
-    int multiControl::lastIndex()
+    int MultiControl::lastIndex()
     {
         return optionsCount - 1;
     }
 
 
-    void multiControl::setAllowInterruption(bool value)
+
+    void MultiControl::setAllowInterruption(bool value)
     {
         allowInterruption = value;
     }
 
-
-    bool multiControl::getAllowInterruption()
+    bool MultiControl::getAllowInterruption()
     {
         return allowInterruption;
     }
 
 
-    multiControl::multiControl()
+
+    MultiControl::MultiControl()
     {
-        x = defaultX;
-        y = defaultY;
+        x = DEFAULTX;
+        y = DEFAULTY;
 
         optionsCount = 0;
 
@@ -795,8 +765,7 @@ namespace vtsed
         disabledOptionBackColor = rgbFrom(12);
     }
 
-
-    multiControl::~multiControl()
+    MultiControl::~MultiControl()
     {
         // delete options;
         // delete optionsState;
@@ -804,7 +773,8 @@ namespace vtsed
     }
 
 
-    int* multiControl::call()
+
+    int* MultiControl::call()
     {
         if (onCallStart != nullptr)
             onCallStart();
@@ -825,8 +795,7 @@ namespace vtsed
         return R;
     }
 
-
-    void multiControl::up()
+    void MultiControl::up()
     {
         if (optionsCount <= 0)
             return;
@@ -845,8 +814,7 @@ namespace vtsed
         }
     }
 
-
-    void multiControl::down()
+    void MultiControl::down()
     {
         if (optionsCount <= 0)
             return;
@@ -865,8 +833,7 @@ namespace vtsed
         }
     }
 
-
-    void multiControl::top()
+    void MultiControl::top()
     {
         if (optionsCount <= 0)
             return;
@@ -877,8 +844,7 @@ namespace vtsed
             currentOption++;
     }
 
-
-    void multiControl::bottom()
+    void MultiControl::bottom()
     {
         if (optionsCount <= 0)
             return;
@@ -889,8 +855,7 @@ namespace vtsed
             currentOption--;
     }
 
-
-    int* multiControl::loop()
+    int* MultiControl::loop()
     {
         bool doLoop = true;
 
@@ -999,8 +964,7 @@ namespace vtsed
         return selectedOptions;
     }
 
-
-    void multiControl::draw()
+    void MultiControl::draw()
     {
         cout << ":)";
     }
@@ -1020,25 +984,26 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    checkListBox::checkListBox()
+    CheckListBox::CheckListBox()
     {
         separator = '-';
     }
 
 
-    void checkListBox::setSeparator(char value)
+
+    void CheckListBox::setSeparator(char value)
     {
         separator = value;
     }
 
-
-    char checkListBox::getSeparator()
+    char CheckListBox::getSeparator()
     {
         return separator;
     }
 
 
-    void checkListBox::draw()
+
+    void CheckListBox::draw()
     {
         for (int i = 0; i < getOptionsCount(); i++)
         {
@@ -1109,5 +1074,6 @@ namespace vtsed
 
     #pragma endregion
 
-    #endif  // _WIN32 || _WIN64
+#endif  // ! WIN
+
 }

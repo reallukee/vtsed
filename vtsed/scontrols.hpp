@@ -1,66 +1,32 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    STATIC CONTROL
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: STATIC CONTROL
+//               Questo Header Contiene le Definizioni
+//               Relative ai Controlli Statitici.
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
 #pragma once
 
-//
-// Esposizione.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-        #define VTSED_API __declspec(dllexport)
-    #else
-        #define VTSED_API __declspec(dllimport)
-    #endif  // VTSED_LIBRARY
-#else
-    #define VTSED_API
-#endif  // _WIN32 || _WIN64
-
-//
-// Intestazioni Standard.
-//
-
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
-#include <sstream>
-#include <string>
-
-//
-// Intestazioni Windows.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #include <conio.h>
-    #include <windows.h>
-#endif  // _WIN32 || _WIN64
-
-using namespace std;
-
-#include "common.hpp"
-#include "console.hpp"
-#include "vts.hpp"
+#include "preprocessor.hpp" // Direttive.
+#include "common.hpp"       // Common.
+#include "console.hpp"      // Console.
+#include "vts.hpp"          // VTS.
 
 namespace vtsed
 {
     extern "C++"
     {
-        #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-
         // ##
         // ##   Grid Row
         // ##
@@ -72,37 +38,63 @@ namespace vtsed
 
         bool VTSED_API defaultGridRowOnDraw(string content, int row);
 
-        class VTSED_API gridRow
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta il controllo statico 'GridRow'.
+        //
+        //  IMPORTANTE! Non vengono effettuati controlli sui puntatori
+        //  e non viene effettuato il disposing dei puntatori.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  +----------+     +--------+
+        //  | * CALLER | --> | DRAW   |
+        //  +----------+     |        |
+        //                   ( onDraw )
+        //                   +--------+
+        //
+
+        class VTSED_API GridRow
         {
 
         private:
 
             int* maxLen = nullptr;
 
-            unsigned x = defaultX;
-            unsigned y = defaultY;
+            unsigned x;
+            unsigned y;
+
             string** content = NULL;
-            int ySize = -1;
-            int xSize = -1;
-            RGBCOLOR foreColor = rgbFrom(240);
-            RGBCOLOR backColor = rgbFrom(12);
+
+            int ySize;
+            int xSize;
+
+            RGBCOLOR foreColor;
+            RGBCOLOR backColor;
 
             void updateConfig();
+
             void gap(int currentLen, int maxLen, int currentCol);
 
         public:
 
-            const unsigned defaultX = 4;
-            const unsigned defaultY = 2;
+            const unsigned DEFAULTX = 4;
+            const unsigned DEFAULTY = 2;
 
-            gridRow();
-            gridRow(string* content[], int xSize, int ySize);
-
-            ~gridRow();
+            GridRow();
+            GridRow(string* content[], int xSize, int ySize);
+            ~GridRow();
 
             void setX(unsigned x);
             unsigned getX();
-
             void setY(unsigned y);
             unsigned getY();
 
@@ -110,17 +102,14 @@ namespace vtsed
             string** getContent();
 
             int getXSize();
-
             int getYSize();
 
             void setForeColor(RGBCOLOR foreColor);
             RGBCOLOR getForeColor();
-
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
 
             int getWidth();
-
             int getHeight();
 
             void draw();
@@ -130,7 +119,39 @@ namespace vtsed
         };
 
 
-        class sbsGridRow : private gridRow
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta il controllo statico 'SbsGridRow'.
+        //
+        //  IMPORTANTE! Non vengono effettuati controlli sui puntatori
+        //  e non viene effettuato il disposing dei puntatori.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  (*** Comportamento di 'GridRow' ***)
+        //
+        //  +----------+     +------------+
+        //  | * CALLER | ~~> | DRAWNEXT   |
+        //  +----------+     |            |
+        //    \              ( onDrawNext )
+        //    \              +------------+
+        //    v
+        //  +-------------+
+        //  | RESETDRAW   |
+        //  |             |
+        //  ( onResetDraw )
+        //  +-------------+
+        //
+
+        class SbsGridRow : private GridRow
         {
 
         private:
@@ -143,6 +164,7 @@ namespace vtsed
             void drawNext(string content[], int maxLen[], int xSize);
 
             bool(*onDrawNext)(string content, int row) = defaultGridRowOnDraw;
+            void(*onResetDraw)() = NULL;
 
         };
 
@@ -163,37 +185,63 @@ namespace vtsed
 
         bool VTSED_API defaultGridColOnDraw(string content, int col);
 
-        class VTSED_API gridCol
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta il controllo statico 'GridCol'.
+        //
+        //  IMPORTANTE! Non vengono effettuati controlli sui puntatori
+        //  e non viene effettuato il disposing dei puntatori.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  +----------+     +--------+
+        //  | * CALLER | --> | DRAW   |
+        //  +----------+     |        |
+        //                   ( onDraw )
+        //                   +--------+
+        //
+
+        class VTSED_API GridCol
         {
 
         private:
 
             int* maxLen = nullptr;
 
-            unsigned x = defaultX;
-            unsigned y = defaultY;
+            unsigned x;
+            unsigned y;
+
             string** content = NULL;
-            int ySize = -1;
-            int xSize = -1;
-            RGBCOLOR foreColor = rgbFrom(240);
-            RGBCOLOR backColor = rgbFrom(12);
+
+            int ySize;
+            int xSize;
+
+            RGBCOLOR foreColor;
+            RGBCOLOR backColor;
 
             void updateConfig();
-            void gap(int currentLen, int maxLen, int currentCol);
+            
+            void gap(int currentLen, int maxLen, int currentRow);
 
         public:
 
-            const unsigned defaultX = 4;
-            const unsigned defaultY = 2;
+            const unsigned DEFAULTX = 4;
+            const unsigned DEFAULTY = 2;
 
-            gridCol();
-            gridCol(string* content[], int xSize, int ySize);
-
-            ~gridCol();
+            GridCol();
+            GridCol(string* content[], int xSize, int ySize);
+            ~GridCol();
 
             void setX(unsigned x);
             unsigned getX();
-
             void setY(unsigned y);
             unsigned getY();
 
@@ -201,17 +249,14 @@ namespace vtsed
             string** getContent();
 
             int getXSize();
-
             int getYSize();
 
             void setForeColor(RGBCOLOR foreColor);
             RGBCOLOR getForeColor();
-
             void setBackColor(RGBCOLOR backColor);
             RGBCOLOR getBackColor();
 
             int getWidth();
-
             int getHeight();
 
             void draw();
@@ -221,7 +266,39 @@ namespace vtsed
         };
 
 
-        class sbsGridCol : private gridCol
+        //
+        //  DESCRIZIONE
+        //  ===========
+        //
+        //  Rappresenta il controllo statico 'SbsGridCol'.
+        //
+        //  IMPORTANTE! Non vengono effettuati controlli sui puntatori
+        //  e non viene effettuato il disposing dei puntatori.
+        //
+        //  FUNZIONAMENTO
+        //  =============
+        //
+        //  Rappresentazione schematica e riassuntiva del funzionamento
+        //  del controllo.
+        //
+        //  * CALLER: Funzione chiamante (Esempio: 'main()').
+        //
+        //  (*** Comportamento di 'GridCol' ***)
+        //
+        //  +----------+     +------------+
+        //  | * CALLER | ~~> | DRAWNEXT   |
+        //  +----------+     |            |
+        //    \              ( onDrawNext )
+        //    \              +------------+
+        //    v
+        //  +-------------+
+        //  | RESETDRAW   |
+        //  |             |
+        //  ( onResetDraw )
+        //  +-------------+
+        //
+
+        class SbsGridCol : private GridCol
         {
 
         private:
@@ -234,6 +311,7 @@ namespace vtsed
             void drawNext(string content[], int maxLen[], int xSize);
 
             bool(*onDrawNext)(string content, int col) = defaultGridColOnDraw;
+            void(*onResetDraw)() = NULL;
 
         };
 
@@ -241,7 +319,5 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         #pragma endregion
-
-        #endif  // _WIN32 || _WIN64
     }
 }

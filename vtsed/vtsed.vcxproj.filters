@@ -45,6 +45,12 @@
     <ClInclude Include="vts2.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="preprocessor.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="pinvoke.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vts.cpp">
@@ -69,6 +75,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="cmf.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="pinvoke.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

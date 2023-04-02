@@ -50,7 +50,7 @@ int main()
         0,
     };
 
-    checkListBox myCheckListBox;
+    CheckListBox myCheckListBox;
 
     myCheckListBox.setOptions(options);
     myCheckListBox.setOptionsState(optionsState);

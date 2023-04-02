@@ -1,57 +1,23 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    VTS2
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: VTS2
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
 #pragma once
 
-//
-// Esposizione.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-        #define VTSED_API __declspec(dllexport)
-    #else
-        #define VTSED_API __declspec(dllimport)
-    #endif  // VTSED_LIBRARY
-#else
-    #define VTSED_API
-#endif  // _WIN32 || _WIN64
-
-//
-// Intestazioni Standard.
-//
-
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
-#include <sstream>
-#include <string>
-
-//
-// Intestazioni Windows.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #include <conio.h>
-    #include <windows.h>
-#endif  // _WIN32 || _WIN64
-
-using namespace std;
-
-#include "common.hpp"
+#include "preprocessor.hpp" // Direttive.
+#include "common.hpp"       // Common.
 
 namespace vtsed
 {
@@ -78,8 +44,8 @@ namespace vtsed
         #define SGR2_STRIKEOUT          0x0100
 
 
-        void VTSED_API setSgr(unsigned _sgr_, unsigned code);
-        bool VTSED_API getSgr(unsigned _sgr_, unsigned code);
+        void VTSED_API setSgr(unsigned sgr, unsigned code);
+        bool VTSED_API getSgr(unsigned sgr, unsigned code);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////

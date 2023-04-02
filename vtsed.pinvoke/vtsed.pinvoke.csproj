@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>x64;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
+    <DefineConstants>$(DefineConstants);x64</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <DefineConstants>$(DefineConstants);x86</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);Release</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>$(DefineConstants);Debug</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(OS)'=='Windows_NT' ">
+    <DefineConstants>$(DefineConstants);WIN</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(OS)'=='UNIX' ">
+    <DefineConstants>$(DefineConstants);NOTWIN</DefineConstants>
+  </PropertyGroup>
+
+</Project>

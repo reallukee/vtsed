@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-🧙‍♂️ Una libreria che migliora la tua applicazione console C++
+🧙‍♂️ Una Libreria che Migliora la tua Applicazione Console C++
 </p>
 
 ![Banner](./assets/banner.png)
@@ -19,6 +19,7 @@
 # Indice
 
 - [Funzionalità](#funzionalità)
+- [Organizzazione](#organizzazione)
 - [Esempi](#esempi)
 - [Download](#download)
 - [Documentazione](./DOCS.md)
@@ -29,6 +30,12 @@
 
 
 # Funzionalità
+
+| Nome           | Header             | Source             |
+| :------------- | :----------------- | :----------------- |
+| Espositore API | `vtsed.hpp`        | `vtsed.cpp`        |
+| Preprocessore  | `preprocessor.hpp` | `preprocessor.cpp` |
+| PInvoke        | `pinvoke.hpp`      | `pinvoke.cpp`      |
 
 | Nome               | Header          | Source          |
 | :----------------- | :-------------- | :-------------- |
@@ -42,10 +49,20 @@
 
 
 
-# Esempi
+# Organizzazione
 
-<div style="width: 100%; display: flex">
-<div style="width: 100%; display: block; margin: 10px;">
+- [`assets`](./assets/) Contenuti Multimediali
+- [`examples`](./examples/) Esempi
+- [`linux`](./linux/) Linux
+- [`scripts`](./scripts/) Script
+- [`templates`](./templates/) Template
+- [`vtsed`](./vtsed/) Libreria
+- [`vtsed.net`](./vtsed/) Wrapper Libreria
+- [`vtsed.test`](./vtsed/) Test Libreria
+
+
+
+# Esempi
 
 ## Controllo `ListBox`
 
@@ -53,9 +70,7 @@
 
 ![ListBox](./assets/listbox.png)
 
-</div>
 
-<div style="width: 100%; display: block; margin: 10px;">
 
 ## Controllo `CheckListBox`
 
@@ -63,11 +78,7 @@
 
 ![CheckListBox](./assets/checklistbox.png)
 
-</div>
-</div>
 
-<div style="width: 100%; display: flex">
-<div style="width: 100%; display: block; margin: 10px;">
 
 ## Controllo `GridRow` e `sbsGridRow`
 
@@ -75,18 +86,13 @@
 
 ![GridRow](./assets/gridrow.png)
 
-</div>
 
-<div style="width: 100%; display: block; margin: 10px;">
 
 ## Controllo `GridCol` e `sbsGridCol`
 
 > [Esempio](./examples/gridcol/main.cpp)
 
 ![GridCol](./assets/gridcol.png)
-
-</div>
-</div>
 
 
 
@@ -100,13 +106,49 @@ L'ultima versione di VTSEd può essere scaricata da [GitHub](https://github.com/
 
 ## Windows
 
-## Unix-Like
+1. Clonare la repository con Git.
+
+```
+git clone https://githu.com/reallukee/vtsed
+```
+
+2. Selezionare la cartella `scripts`.
+
+```
+cd .\scripts
+```
+
+3. Eseguire lo script.
+
+```
+.\build.cmd
+```
+
+## Unix
+
+1. Clonare la repository con Git.
+
+```
+git clone https://githu.com/reallukee/vtsed
+```
+
+2. Selezionare la cartella `scripts`.
+
+```
+cd ./linux
+```
+
+3. Eseguire lo script.
+
+```
+chmod +x && ./build.sh
+```
 
 
 
 # Autore
 
-- [Realluke](https://github.com/reallukee/)
+- [Luca Pollicino](https://github.com/reallukee/)
 
 
 

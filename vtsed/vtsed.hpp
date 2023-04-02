@@ -1,31 +1,34 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    API EXPOSER
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: API EXPOSER
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
 #pragma once
 
 #ifndef VTSED_API_EXPOSER   // VTSED_API_EXPOSER
-    #define VTSED_API_EXPOSER
 
-    #ifdef VTSED_LIBRARY  // VTSED_LIBRARY
-        #define MODE "LIBRARY"
-    #else
-        #define MODE "PROGRAM"
-#endif  // VTSED_LIBRARY
+#define VTSED_API_EXPOSER
 
-#define VERSION "1.0.0"
+#ifdef VTSED_LIBRARY  // VTSED_LIBRARY
+#define MODE "LIBRARY"
+#else
+#define MODE "PROGRAM"
+#endif  // ! VTSED_LIBRARY
+
+#define VERSION "1.1.0"
+
+#include "pinvoke.hpp"
 
 #include "common.hpp"
 #include "console.hpp"
@@ -35,4 +38,4 @@
 #include "vts.hpp"
 #include "vts2.hpp"
 
-#endif  // VTSED_API_EXPOSER
+#endif  // ! VTSED_API_EXPOSER

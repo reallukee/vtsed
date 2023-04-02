@@ -39,7 +39,7 @@ int main()
         false,
     };
 
-    listBox myListBox;
+    ListBox myListBox;
 
     myListBox.setOptions(options);
     myListBox.setOptionsState(optionsState);

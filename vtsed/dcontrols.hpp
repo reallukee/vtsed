@@ -1,75 +1,34 @@
 //
 //  VTSEd
 //
-//  Migliora la tua Applicazione Console!
+//  Migliora la tua Applicazione Console C++!
 //
-//  Questo progetto è distribuito sotto licenza MIT.
-//  Questo progetto è disponibile su GitHub.
+//  Questo File fa Parte del Progetto VTSEd
+//  ed è Distribuito sotto Licenza MIT.
 //
-//  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    DYNAMIC CONTROL
-//                  Contiene le definizione di base dei controlli
-//                  dinamici e i controlli dinamici.
-//  Autore:         Luca Pollicino (https://github.com/reallukee/)
-//  Versione:       1.0.0
+//  GitHub:      https://github.com/reallukee/vtsed/
+//  Autore:      Luca Pollicino
+//  Descrizione: DINAMIC CONTROL
+//               Questo Header Contiene le Definizioni
+//               Relative ai Controlli Dinamici.
+//  Versione:    1.1.0
 //
-//  Leggere README.md per maggiori informazioni.
+//  Leggere README.md per Maggiori Informazioni.
 //
 
 #pragma once
 
-//
-// Esposizione.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #ifdef VTSED_LIBRARY   // VTSED_LIBRARY
-        #define VTSED_API __declspec(dllexport)
-    #else
-        #define VTSED_API __declspec(dllimport)
-    #endif  // VTSED_LIBRARY
-#else
-    #define VTSED_API
-#endif  // _WIN32 || _WIN64
-
-//
-// Intestazioni Standard.
-//
-
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
-#include <sstream>
-#include <string>
-
-//
-// Intestazioni Windows.
-//
-
-#if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
-    #include <conio.h>
-    #include <windows.h>
-#endif  // _WIN32 || _WIN64
-
-using namespace std;
-
-#include "common.hpp"
-#include "console.hpp"
-#include "vts.hpp"
+#include "preprocessor.hpp" // Direttive.
+#include "common.hpp"       // Common.
+#include "console.hpp"      // Console.
+#include "vts.hpp"          // VTS.
 
 namespace vtsed
 {
     extern "C++"
     {
 
-        //
-        //  Presenza di metodi disponibili solo su Windows.
-        //
-        //  TODO: Porting su Linux e macOS. Sostituzione API
-        //        di Windows con VTS.
-        //
-
-        #if defined(_WIN32) || defined(_WIN64)  // _WIN32 || _WIN64
+#ifdef WIN // WIN
 
         // ##
         // ##   Single Control
@@ -118,7 +77,7 @@ namespace vtsed
         //  +--------------------------+
         //
 
-        class VTSED_API singleControl
+        class VTSED_API SingleControl
         {
 
         private:
@@ -157,11 +116,11 @@ namespace vtsed
             const int INTERRUPTCALLCOMMAND  = 27;
             const int INTERRUPTIONCODE      = -123;
 
-            const unsigned defaultX = 4;
-            const unsigned defaultY = 2;
+            const unsigned DEFAULTX = 4;
+            const unsigned DEFAULTY = 2;
 
-            singleControl();
-            ~singleControl();
+            SingleControl();
+            ~SingleControl();
 
             void setX(unsigned value);
             unsigned getX();
@@ -237,7 +196,7 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        class VTSED_API listBox : public singleControl
+        class VTSED_API ListBox : public SingleControl
         {
 
         private:
@@ -246,7 +205,7 @@ namespace vtsed
 
         public:
 
-            listBox();
+            ListBox();
 
             void setSeparator(char value);
             char getSeparator();
@@ -305,7 +264,7 @@ namespace vtsed
         //  +--------------------------+
         //
 
-        class VTSED_API multiControl
+        class VTSED_API MultiControl
         {
 
         private:
@@ -344,11 +303,11 @@ namespace vtsed
             const int INTERRUPTCALLCOMMAND = 27;
             const int INTERRUPTIONCODE = -123;
 
-            const unsigned defaultX = 4;
-            const unsigned defaultY = 2;
+            const unsigned DEFAULTX = 4;
+            const unsigned DEFAULTY = 2;
 
-            multiControl();
-            ~multiControl();
+            MultiControl();
+            ~MultiControl();
 
             void setX(unsigned value);
             unsigned getX();
@@ -431,7 +390,7 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        class VTSED_API checkListBox : public multiControl
+        class VTSED_API CheckListBox : public MultiControl
         {
 
         private:
@@ -440,7 +399,7 @@ namespace vtsed
 
         public:
 
-            checkListBox();
+            CheckListBox();
 
             void setSeparator(char value);
             char getSeparator();
@@ -454,6 +413,7 @@ namespace vtsed
 
         #pragma endregion
 
-        #endif  // _WIN32 || _WIN64
+#endif  // ! WIN
+
     }
 }
