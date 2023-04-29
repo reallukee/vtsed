@@ -25,6 +25,8 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="console.hpp">INCLUDE\console.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="cmf.hpp">INCLUDE\cmf.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="dcontrols.hpp">INCLUDE\dcontrols.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pinvoke.hpp">INCLUDE\pinvoke.hpp</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="preprocessor.hpp">INCLUDE\preprocessor.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="scontrols.hpp">INCLUDE\scontrols.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vts.hpp">INCLUDE\vts.hpp</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="vts2.hpp">INCLUDE\vts2.hpp</ProjectItem>

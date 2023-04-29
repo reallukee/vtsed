@@ -9,9 +9,15 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: PREPROCESSOR
+//               Questo Header Contiene le Definizioni
+//               Relative all'Utilizzo di VTSEd.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
+//
+
+//
+//  NON MODIFICARE QUESTO FILE!
 //
 
 #pragma once

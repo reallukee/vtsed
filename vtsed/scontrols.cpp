@@ -152,8 +152,12 @@ namespace vtsed
             int t = 0;
 
             for (int j = 0; j < ySize; j++)
+            {
                 if ((int)content[j][i].size() > t)
+                {
                     t = (int)content[j][i].size();
+                }
+            }
 
             maxLen[i] = t;
         }
@@ -164,10 +168,14 @@ namespace vtsed
     void GridRow::gap(int currentLen, int maxLen, int currentRow)
     {
         for (int i = currentLen; i < maxLen; i++)
+        {
             cout << " ";
+        }
 
         if (currentRow != xSize - 1)
+        {
             cout << " ";
+        }
     }
 
 
@@ -183,10 +191,14 @@ namespace vtsed
                 bool d = true;
 
                 if (onDraw != NULL)
+                {
                     d = onDraw(content[j][i], j);
+                }
 
                 if (d)
+                {
                     cout << sFC(foreColor) << sBC(backColor) << content[j][i];
+                }
 
                 gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
@@ -200,7 +212,9 @@ namespace vtsed
         int t = xSize - 1;
 
         for (int i = 0; i < xSize; i++)
+        {
             t += maxLen[i];
+        }
 
         return t;
     }
@@ -258,7 +272,9 @@ namespace vtsed
         current = 0;
 
         if (onResetDraw != NULL)
+        {
             onResetDraw();
+        }
     }
 
     void SbsGridRow::drawNext(string content[], int maxLen[], int xSize)
@@ -270,16 +286,24 @@ namespace vtsed
             bool d = true;
 
             if (onDrawNext != NULL)
+            {
                 d = onDrawNext(content[i], current);
+            }
 
             if (d)
+            {
                 cout << sFC(getForeColor()) << sBC(getBackColor()) << content[i];
+            }
 
             for (int j = (int)content[i].size(); j < maxLen[i]; j++)
+            {
                 cout << " ";
+            }
 
             if (i != xSize - 1)
+            {
                 cout << " ";
+            }
         }
 
         current++;
@@ -413,8 +437,12 @@ namespace vtsed
             int t = 0;
 
             for (int j = 0; j < ySize; j++)
+            {
                 if ((int)content[j][i].size() > t)
+                {
                     t = (int)content[j][i].size();
+                }
+            }
 
             maxLen[i] = t;
         }
@@ -425,10 +453,14 @@ namespace vtsed
     void GridCol::gap(int currentLen, int maxLen, int currentCol)
     {
         for (int i = currentLen; i < maxLen; i++)
+        {
             cout << " ";
+        }
 
         if (currentCol != xSize - 1)
+        {
             cout << " ";
+        }
     }
 
 
@@ -444,10 +476,14 @@ namespace vtsed
                 bool d = true;
 
                 if (onDraw != NULL)
+                {
                     d = onDraw(content[j][i], i);
+                }
 
                 if (d)
+                {
                     cout << sFC(foreColor) << sBC(backColor) << content[j][i];
+                }
 
                 gap((int)content[j][i].size(), maxLen[i], (int)i);
             }
@@ -461,7 +497,9 @@ namespace vtsed
         int t = xSize - 1;
 
         for (int i = 0; i < xSize; i++)
+        {
             t += maxLen[i];
+        }
 
         return t;
     }
@@ -519,7 +557,9 @@ namespace vtsed
         current = 0;
 
         if (onResetDraw != NULL)
+        {
             onResetDraw();
+        }
     }
 
     void SbsGridCol::drawNext(string content[], int maxLen[], int xSize)
@@ -531,16 +571,24 @@ namespace vtsed
             bool d = true;
 
             if (onDrawNext != NULL)
+            {
                 d = onDrawNext(content[i], i);
+            }
 
             if (d)
+            {
                 cout << sFC(getForeColor()) << sBC(getBackColor()) << content[i];
+            }
 
             for (int j = (int)content[i].size(); j < maxLen[i]; j++)
+            {
                 cout << " ";
+            }
 
             if (i != xSize - 1)
+            {
                 cout << " ";
+            }
         }
 
         current++;

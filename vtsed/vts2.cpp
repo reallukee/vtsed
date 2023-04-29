@@ -9,6 +9,8 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: VTS2
+//               Questo Header Contiene le Implementazioni
+//               Relative a VTS2.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
@@ -37,21 +39,39 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void setSgr(unsigned sgr, unsigned code)
+    void setSGR(unsigned sgr, unsigned code)
     {
-        if (getSgr(sgr, code))
+        if (getSGR(sgr, code))
+        {
             sgr -= code;
+        }
         else
+        {
             sgr += code;
+
+            switch (code)
+            {
+            case SGR2_DEFAULT:
+                cout << "\x1b[0m";
+                break;
+
+            default:
+                break;
+            }
+        }
     }
 
 
-    bool getSgr(unsigned sgr, unsigned code)
+    bool getSGR(unsigned sgr, unsigned code)
     {
         if (((sgr >> 8) & 1) == 1)
+        {
             return true;
+        }
         else
+        {
             return false;
+        }
     }
 
     //////////////////////////////////////////////////

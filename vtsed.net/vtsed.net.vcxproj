@@ -141,8 +141,7 @@
     <ClCompile Include="..\vtsed\scontrols.cpp" />
     <ClCompile Include="..\vtsed\vts.cpp" />
     <ClCompile Include="..\vtsed\vts2.cpp" />
-    <ClCompile Include="common.cxx" />
-    <ClCompile Include="scontrols.cxx" />
+    <ClCompile Include="vts.cxx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\vtsed\cmf.hpp" />
@@ -154,10 +153,14 @@
     <ClInclude Include="..\vtsed\scontrols.hpp" />
     <ClInclude Include="..\vtsed\vts.hpp" />
     <ClInclude Include="..\vtsed\vts2.hpp" />
-    <ClInclude Include="..\vtsed\vtsed.hpp" />
-    <ClInclude Include="common.hxx" />
+    <ClInclude Include="..\vtsed\vtsed.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="resource.hpp" />
-    <ClInclude Include="scontrols.hxx" />
+    <ClInclude Include="vts.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

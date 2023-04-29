@@ -9,10 +9,17 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: CMF
+//               Questo Header Contiene le Definizioni
+//               Relative a CMF.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
 //
+
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
 
 #pragma once
 
@@ -20,6 +27,9 @@
 #include "common.hpp"       // Common.
 #include "console.hpp"      // Console.
 #include "vts.hpp"          // VTS.
+
+#pragma endregion
+
 
 namespace vtsed
 {

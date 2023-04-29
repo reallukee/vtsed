@@ -9,15 +9,25 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: CONSOLE
+//               Questo Header Contiene le Definizioni
+//               Relative alla Console.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
 #include "vts.hpp"          // VTS.
+
+#pragma endregion
+
 
 namespace vtsed
 {

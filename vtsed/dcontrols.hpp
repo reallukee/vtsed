@@ -16,6 +16,11 @@
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
@@ -23,12 +28,15 @@
 #include "console.hpp"      // Console.
 #include "vts.hpp"          // VTS.
 
+#pragma endregion
+
+
 namespace vtsed
 {
     extern "C++"
     {
 
-#ifdef WIN // WIN
+//#ifdef WIN // WIN
 
         // ##
         // ##   Single Control
@@ -119,6 +127,7 @@ namespace vtsed
             const unsigned DEFAULTX = 4;
             const unsigned DEFAULTY = 2;
 
+            SingleControl(string* options, int size);
             SingleControl();
             ~SingleControl();
 
@@ -127,15 +136,23 @@ namespace vtsed
             void setY(unsigned value);
             unsigned getY();
 
-            void setOptionsCount(int value);
+            // void setOptionsCount(int value);
             int getOptionsCount();
 
-            void setOptions(string* value);
-            string* getOptions();
-            void setOptionsState(bool* value);
+            // void setOptions(string* value);
+            // string* getOptions();
+            // void setOptionsState(bool* value);
             bool* getOptionsState();
+   
             void setSelectedOption(int value);
             int getSelectedOption();
+
+            void setOptions(string* options, int size);
+            string* getOptions();
+            int getOptionsSize();
+
+            void setOptionState(int index, bool state);
+            bool getOptionState(int index);
 
             void setCurrentOption(int value);
             int getCurrentOption();
@@ -205,6 +222,7 @@ namespace vtsed
 
         public:
 
+            ListBox(string* options, int size);
             ListBox();
 
             void setSeparator(char value);
@@ -295,17 +313,18 @@ namespace vtsed
 
         public:
             
-            const int UPCOMMAND = 72;
-            const int DOWNCOMMAND = 80;
-            const int TOPCOMMAND = 73;
-            const int BOTTOMCOMMAND = 81;
-            const int ENDCALLCOMMAND = 28;
-            const int INTERRUPTCALLCOMMAND = 27;
-            const int INTERRUPTIONCODE = -123;
+            const int UPCOMMAND             = 72;
+            const int DOWNCOMMAND           = 80;
+            const int TOPCOMMAND            = 73;
+            const int BOTTOMCOMMAND         = 81;
+            const int ENDCALLCOMMAND        = 28;
+            const int INTERRUPTCALLCOMMAND  = 27;
+            const int INTERRUPTIONCODE      = -123;
 
             const unsigned DEFAULTX = 4;
             const unsigned DEFAULTY = 2;
 
+            MultiControl(string* options, int size);
             MultiControl();
             ~MultiControl();
 
@@ -314,15 +333,24 @@ namespace vtsed
             void setY(unsigned value);
             unsigned getY();
 
-            void setOptionsCount(int value);
+            // void setOptionsCount(int value);
             int getOptionsCount();
 
-            void setOptions(string* value);
-            string* getOptions();
-            void setOptionsState(bool* value);
+            // void setOptions(string* value);
+            // string* getOptions();
+            // void setOptionsState(bool* value);
+            
             bool* getOptionsState();
+            
             void setSelectedOptions(int* value);
             int* getSelectedOptions();
+
+            void setOptions(string* options, int size);
+            string* getOptions();
+            int getOptionsSize();
+
+            void setOptionState(int index, bool state);
+            bool getOptionState(int index);
 
             void setCurrentOption(int value);
             int getCurrentOption();
@@ -335,30 +363,23 @@ namespace vtsed
 
             void setOptionForeColor(RGBCOLOR value);
             RGBCOLOR getOptionForeColor();
-
             void setOptionBackColor(RGBCOLOR value);
             RGBCOLOR getOptionBackColor();
-
             void setSelectedOptionForeColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionForeColor();
-
             void setSelectedOptionBackColor(RGBCOLOR value);
             RGBCOLOR getSelectedOptionBackColor();
-
             void setCurrentOptionForeColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionForeColor();
-
             void setCurrentOptionBackColor(RGBCOLOR value);
             RGBCOLOR getCurrentOptionBackColor();
-
             void setDisabledOptionForeColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionForeColor();
-
             void setDisabledOptionBackColor(RGBCOLOR value);
             RGBCOLOR getDisabledOptionBackColor();
 
             int* call();
-            virtual void draw();
+            virtual void draw() = 0;
             void up();
             void down();
             void top();
@@ -399,6 +420,7 @@ namespace vtsed
 
         public:
 
+            CheckListBox(string* options, int size);
             CheckListBox();
 
             void setSeparator(char value);
@@ -413,7 +435,7 @@ namespace vtsed
 
         #pragma endregion
 
-#endif  // ! WIN
+//#endif  // ! WIN
 
     }
 }

@@ -7,7 +7,7 @@
 //  Questo progetto è disponibile su GitHub.
 //
 //  Repository:     https://github.com/reallukee/vtsed/
-//  Descrizione:    Core
+//  Descrizione:    CORE
 //  Autore:         Luca Pollicino (https://github.com/reallukee/)
 //  Versione:       1.0.0
 //
@@ -40,10 +40,5 @@ namespace VTSEd.PInvoke
 #endif
 #endif
 #endif
-
-        public static void Main()
-        {
-
-        }
     }
 }

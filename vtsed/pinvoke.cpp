@@ -9,6 +9,8 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: P/INVOKE
+//               Questo Header Contiene le Implementazioni
+//               Relative al P/Invoke.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
@@ -43,7 +45,7 @@ namespace vtsed
     }
 
 
-    void disposeGridRow(GridRow* t)
+    void deleteGridRow(GridRow* t)
     {
         delete t;
     }
@@ -55,7 +57,7 @@ namespace vtsed
     }
 
 
-    void disposeSbsGridRow(SbsGridRow* t)
+    void deleteSbsGridRow(SbsGridRow* t)
     {
         delete t;
     }
@@ -67,7 +69,7 @@ namespace vtsed
     }
 
 
-    void disposeGridCol(GridCol* t)
+    void deleteGridCol(GridCol* t)
     {
         delete t;
     }
@@ -79,7 +81,31 @@ namespace vtsed
     }
 
 
-    void disposeSbsGridCol(SbsGridCol* t)
+    void deleteSbsGridCol(SbsGridCol* t)
+    {
+        delete t;
+    }
+
+
+    void newListBox(ListBox* t)
+    {
+        t = new ListBox();
+    }
+
+
+    void deleteListBox(ListBox* t)
+    {
+        delete t;
+    }
+
+
+    void newCheckListBox(CheckListBox* t)
+    {
+        t = new CheckListBox();
+    }
+
+
+    void deleteCheckListBox(CheckListBox* t)
     {
         delete t;
     }

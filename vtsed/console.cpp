@@ -10,7 +10,7 @@
 //  Autore:      Luca Pollicino
 //  Descrizione: CONSOLE
 //               Questo File Contiene le Implementazioni
-//               Relative ai Controlli Statitici.
+//               Relative alla Console.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.

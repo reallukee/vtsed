@@ -9,15 +9,25 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: VTS2
+//               Questo Header Contiene le Definizioni
+//               Relative a VTS2.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
 #include "common.hpp"       // Common.
+
+#pragma endregion
+
 
 namespace vtsed
 {
@@ -44,8 +54,8 @@ namespace vtsed
         #define SGR2_STRIKEOUT          0x0100
 
 
-        void VTSED_API setSgr(unsigned sgr, unsigned code);
-        bool VTSED_API getSgr(unsigned sgr, unsigned code);
+        void VTSED_API setSGR(unsigned sgr, unsigned code);
+        bool VTSED_API getSGR(unsigned sgr, unsigned code);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////

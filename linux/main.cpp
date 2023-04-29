@@ -30,23 +30,22 @@ int main()
 
     eraseInDisplay(TEXT_MODIFICATION_ERASE_ENTIRE);
 
-    GridRow myGridRow;
+    int size = 5;
 
-    string* content[5] = {
-        new string[2] { "NOME", "COGNOME" },
-        new string[2] { "Mario", "Rossi" },
-        new string[2] { "Luigi", "Verdi" },
-        new string[2] { "Mario", "Rossi" },
-        new string[2] { "Luigi", "Verdi" },
+    string options[] = {
+        "Mele",
+        "Pere",
+        "Banane",
+        "Kiwi",
+        "Ananas"
     };
 
-    myGridRow.setX(6);
-    myGridRow.setY(2);
-    myGridRow.setContent(content, 2, 5);
+    ListBox* myListBox = new ListBox(options, size);
 
-    myGridRow.onDraw = myOnDraw;
+    myListBox->setOptionState(0, false);
+    myListBox->setCurrentOption(2);
 
-    myGridRow.draw();
+    int result = myListBox->call();
 
 #ifdef WIN  // WIN
     char k = _getch();
@@ -57,31 +56,4 @@ int main()
 #endif  // ! UNIX
 
     return EXIT_OK;
-}
-
-
-bool myOnDraw(string content, int row)
-{
-    if (row == 0)
-    {
-        cout << sFC(RGBCOLOR(240));
-        cout << sBC(RGBCOLOR(0, 128, 128));
-    }
-    else
-    {
-        if (row % 2 == 0)
-        {
-            cout << sFC(RGBCOLOR(240));
-            cout << sBC(RGBCOLOR(150));
-        }
-        else
-        {
-            cout << sFC(RGBCOLOR(240));
-            cout << sBC(RGBCOLOR(100));
-        }
-    }
-
-    cout << content;
-
-    return false;
 }

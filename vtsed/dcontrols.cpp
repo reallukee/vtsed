@@ -31,7 +31,7 @@
 namespace vtsed
 {
 
-#ifdef WIN  // WIN
+//#ifdef WIN  // WIN
 
     // ##
     // ##   Single Control
@@ -64,6 +64,8 @@ namespace vtsed
 
 
 
+    /*
+
     void SingleControl::setOptions(string* value)
     {
         options = value;
@@ -79,10 +81,14 @@ namespace vtsed
         optionsState = value;
     }
 
+    */
+
     bool* SingleControl::getOptionsState()
     {
         return optionsState;
     }
+
+
 
     void SingleControl::setSelectedOption(int value)
     {
@@ -92,6 +98,45 @@ namespace vtsed
     int SingleControl::getSelectedOption()
     {
         return selectedOptions[0];
+    }
+
+
+
+    void SingleControl::setOptions(string* options, int size)
+    {
+        options = options;
+        optionsCount = size;
+        optionsState = new bool[optionsCount];
+    }
+
+    string* SingleControl::getOptions()
+    {
+        return options;
+    }
+
+    int SingleControl::getOptionsSize()
+    {
+        return optionsCount;
+    }
+
+
+
+    void SingleControl::setOptionState(int index, bool state)
+    {
+        if (index >= 0 && index < optionsCount)
+        {
+            optionsState[index] = state;
+        }
+    }
+
+    bool SingleControl::getOptionState(int index)
+    {
+        if (index >= 0 && index < optionsCount)
+        {
+            return optionsState[index];
+        }
+
+        return false;
     }
 
 
@@ -108,10 +153,14 @@ namespace vtsed
 
 
 
+    /*
+
     void SingleControl::setOptionsCount(int value)
     {
         optionsCount = value;
     }
+
+    */
 
     int SingleControl::getOptionsCount()
     {
@@ -226,6 +275,31 @@ namespace vtsed
 
 
 
+    SingleControl::SingleControl(string* options, int size)
+    {
+        x = DEFAULTX;
+        y = DEFAULTY;
+
+        optionsCount = size;
+
+        this->options = options;
+        optionsState = new bool[optionsCount];
+        selectedOptions = new int[1];
+
+        currentOption = 1;
+
+        allowInterruption = false;
+
+        optionForeColor = rgbFrom(240);
+        optionBackColor = rgbFrom(12);
+        selectedOptionForeColor = rgbFrom(65, 130, 115);
+        selectedOptionBackColor = rgbFrom(40, 80, 70);
+        currentOptionForeColor = rgbFrom(10, 70, 125);
+        currentOptionBackColor = rgbFrom(35, 170, 240);
+        disabledOptionForeColor = rgbFrom(120);
+        disabledOptionBackColor = rgbFrom(12);
+    }
+
     SingleControl::SingleControl()
     {
         x = DEFAULTX;
@@ -262,8 +336,10 @@ namespace vtsed
 
     int SingleControl::call()
     {
-        if (onCallStart != nullptr)
+        if (onCallStart != NULL)
+        {
             onCallStart();
+        }
 
         cursorVisible(false);
 
@@ -275,8 +351,10 @@ namespace vtsed
 
         cout << sgr(SGR_DEFAULT);
 
-        if (onCallEnd != nullptr)
+        if (onCallEnd != NULL)
+        {
             onCallEnd();
+        }
 
         return R;
     }
@@ -284,61 +362,89 @@ namespace vtsed
     void SingleControl::up()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         if (currentOption - 1 >= 0)
+        {
             currentOption--;
+        }
         else
+        {
             currentOption = optionsCount - 1;
+        }
 
         while (!optionsState[currentOption])
         {
             if (currentOption - 1 >= 0)
+            {
                 currentOption--;
+            }
             else
+            {
                 currentOption = optionsCount - 1;
+            }
         }
     }
 
     void SingleControl::down()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         if (currentOption + 1 <= optionsCount - 1)
+        {
             currentOption++;
+        }
         else
+        {
             currentOption = 0;
+        }
 
         while (!optionsState[currentOption])
         {
             if (currentOption + 1 <= optionsCount - 1)
+            {
                 currentOption++;
+            }
             else
+            {
                 currentOption = 0;
+            }
         }
     }
 
     void SingleControl::top()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         currentOption = 0;
 
         while (!optionsState[currentOption])
+        {
             currentOption++;
+        }
     }
 
     void SingleControl::bottom()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         currentOption = optionsCount - 1;
 
         while (!optionsState[currentOption])
+        {
             currentOption--;
+        }
     }
 
     int SingleControl::loop()
@@ -349,10 +455,18 @@ namespace vtsed
 
         while (doLoop)
         {
+#ifdef WIN
             key = _getch();
+#else
+            key = getchar();
+#endif
 
+#ifdef WIN
             if (key == '\xE0')
+            {
                 key = _getch();
+            }
+#endif
 
             switch (key)
             {
@@ -363,10 +477,14 @@ namespace vtsed
                 selectedOptions[0] = currentOption;
 
                 if (onSelectedChange != NULL)
+                {
                     onSelectedChange(selectedOptions[0]);
+                }
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -377,10 +495,14 @@ namespace vtsed
                 selectedOptions[0] = currentOption;
 
                 if (onSelectedChange != NULL)
+                {
                     onSelectedChange(selectedOptions[0]);
+                }
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -391,10 +513,14 @@ namespace vtsed
                 selectedOptions[0] = currentOption;
 
                 if (onSelectedChange != NULL)
+                {
                     onSelectedChange(selectedOptions[0]);
+                }
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -405,10 +531,14 @@ namespace vtsed
                 selectedOptions[0] = currentOption;
 
                 if (onSelectedChange != NULL)
+                {
                     onSelectedChange(selectedOptions[0]);
+                }
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -422,28 +552,38 @@ namespace vtsed
             case 'Q':
             case 'q':
                 if (allowInterruption)
+                {
                     doLoop = false;
+                }
 
                 break;
 
             default:
                 if (onUnknownCommand != NULL)
+                {
                     onUnknownCommand(key);
+                }
 
                 if (allowInterruption)
+                {
                     return key * -1;
+                }
 
                 break;
             }
 
             if (onKnownCommand != NULL)
+            {
                 onKnownCommand(key);
+            }
 
             draw();
         }
 
         if (key == INTERRUPTCALLCOMMAND)
+        {
             return INTERRUPTIONCODE;
+        }
         
         return selectedOptions[0];
     }
@@ -467,6 +607,12 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    ListBox::ListBox(string* options, int size)
+    {
+        setOptions(options, size);
+        separator = '-';
+    }
 
     ListBox::ListBox()
     {
@@ -495,12 +641,14 @@ namespace vtsed
 
             setCursorPosition(getX(), getY() + i);
 
-            if (onDraw != nullptr)
+            if (onDraw != NULL)
+            {
                 d = onDraw(i,
                     getOptions()[i],
                     getOptionsState()[i],
-                    (i == getCurrentOption()), 
+                    (i == getCurrentOption()),
                     (i == getSelectedOption()));
+            }
 
             if (d)
             {
@@ -548,10 +696,10 @@ namespace vtsed
 
 
     // ##
-    // ##   Single Control
+    // ##   Multi Control
     // ##
 
-    #pragma region Single Control
+    #pragma region Multi Control
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -578,6 +726,8 @@ namespace vtsed
 
 
 
+    /*
+
     void MultiControl::setOptions(string* value)
     {
         options = value;
@@ -593,10 +743,14 @@ namespace vtsed
         optionsState = value;
     }
 
+    */
+
     bool* MultiControl::getOptionsState()
     {
         return optionsState;
     }
+
+
 
     void MultiControl::setSelectedOptions(int* value)
     {
@@ -606,6 +760,45 @@ namespace vtsed
     int* MultiControl::getSelectedOptions()
     {
         return selectedOptions;
+    }
+
+
+
+    void MultiControl::setOptions(string* options, int size)
+    {
+        options = options;
+        optionsCount = size;
+        optionsState = new bool[optionsCount];
+    }
+
+    string* MultiControl::getOptions()
+    {
+        return options;
+    }
+
+    int MultiControl::getOptionsSize()
+    {
+        return optionsCount;
+    }
+
+
+
+    void MultiControl::setOptionState(int index, bool state)
+    {
+        if (index >= 0 && index < optionsCount)
+        {
+            optionsState[index] = state;
+        }
+    }
+
+    bool MultiControl::getOptionState(int index)
+    {
+        if (index >= 0 && index < optionsCount)
+        {
+            return optionsState[index];
+        }
+
+        return false;
     }
 
 
@@ -622,10 +815,14 @@ namespace vtsed
 
 
 
+    /*
+
     void MultiControl::setOptionsCount(int value)
     {
         optionsCount = value;
     }
+
+    */
 
     int MultiControl::getOptionsCount()
     {
@@ -740,6 +937,31 @@ namespace vtsed
 
 
 
+    MultiControl::MultiControl(string* options, int size)
+    {
+        x = DEFAULTX;
+        y = DEFAULTY;
+
+        optionsCount = size;
+
+        this->options = options;
+        optionsState = new bool[optionsCount];
+        selectedOptions = new int[1];
+
+        currentOption = 1;
+
+        allowInterruption = false;
+
+        optionForeColor = rgbFrom(240);
+        optionBackColor = rgbFrom(12);
+        selectedOptionForeColor = rgbFrom(65, 130, 115);
+        selectedOptionBackColor = rgbFrom(40, 80, 70);
+        currentOptionForeColor = rgbFrom(10, 70, 125);
+        currentOptionBackColor = rgbFrom(35, 170, 240);
+        disabledOptionForeColor = rgbFrom(120);
+        disabledOptionBackColor = rgbFrom(12);
+    }
+
     MultiControl::MultiControl()
     {
         x = DEFAULTX;
@@ -776,8 +998,10 @@ namespace vtsed
 
     int* MultiControl::call()
     {
-        if (onCallStart != nullptr)
+        if (onCallStart != NULL)
+        {
             onCallStart();
+        }
 
         cursorVisible(false);
 
@@ -789,8 +1013,10 @@ namespace vtsed
 
         cout << sgr(SGR_DEFAULT);
 
-        if (onCallEnd != nullptr)
+        if (onCallEnd != NULL)
+        {
             onCallEnd();
+        }
 
         return R;
     }
@@ -798,61 +1024,89 @@ namespace vtsed
     void MultiControl::up()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         if (currentOption - 1 >= 0)
+        {
             currentOption--;
+        }
         else
+        {
             currentOption = optionsCount - 1;
+        }
 
         while (!optionsState[currentOption])
         {
             if (currentOption - 1 >= 0)
+            {
                 currentOption--;
+            }
             else
+            {
                 currentOption = optionsCount - 1;
+            }
         }
     }
 
     void MultiControl::down()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         if (currentOption + 1 <= optionsCount - 1)
+        {
             currentOption++;
+        }
         else
+        {
             currentOption = 0;
+        }
 
         while (!optionsState[currentOption])
         {
             if (currentOption + 1 <= optionsCount - 1)
+            {
                 currentOption++;
+            }
             else
+            {
                 currentOption = 0;
+            }
         }
     }
 
     void MultiControl::top()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         currentOption = 0;
 
         while (!optionsState[currentOption])
+        {
             currentOption++;
+        }
     }
 
     void MultiControl::bottom()
     {
         if (optionsCount <= 0)
+        {
             return;
+        }
 
         currentOption = optionsCount - 1;
 
         while (!optionsState[currentOption])
+        {
             currentOption--;
+        }
     }
 
     int* MultiControl::loop()
@@ -863,10 +1117,18 @@ namespace vtsed
 
         while (doLoop)
         {
+#ifdef WIN
             key = _getch();
+#else
+            key = getchar();
+#endif
 
+#ifdef WIN
             if (key == '\xE0')
+            {
                 key = _getch();
+            }
+#endif
 
             switch (key)
             {
@@ -876,7 +1138,9 @@ namespace vtsed
                 up();
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -886,7 +1150,9 @@ namespace vtsed
                 down();
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -896,7 +1162,9 @@ namespace vtsed
                 top();
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -906,7 +1174,9 @@ namespace vtsed
                 bottom();
 
                 if (onCurrentChange != NULL)
+                {
                     onCurrentChange(currentOption);
+                }
 
                 break;
 
@@ -916,7 +1186,9 @@ namespace vtsed
                 selectedOptions[currentOption] = false;
 
                 if (onSelectedChange != NULL)
-                    onSelectedChange(selectedOptions[0]);
+                {
+                    onSelectedChange(selectedOptions[currentOption]);
+                }
 
                 break;
 
@@ -926,7 +1198,9 @@ namespace vtsed
                 selectedOptions[currentOption] = true;
 
                 if (onSelectedChange != NULL)
-                    onSelectedChange(selectedOptions[0]);
+                {
+                    onSelectedChange(selectedOptions[currentOption]);
+                }
 
                 break;
 
@@ -940,26 +1214,36 @@ namespace vtsed
             case 'Q':
             case 'q':
                 if (allowInterruption)
+                {
                     doLoop = false;
+                }
 
             default:
                 if (onUnknownCommand != NULL)
+                {
                     onUnknownCommand(key);
+                }
 
                 if (allowInterruption)
-                    return new int { key * -1 };
+                {
+                    return new int[1] { key * -1 };
+                }
 
                 break;
             }
 
             if (onKnownCommand != NULL)
+            {
                 onKnownCommand(key);
+            }
 
             draw();
         }
 
         if (key == INTERRUPTCALLCOMMAND)
+        {
             return new int[1] { INTERRUPTIONCODE };
+        }
 
         return selectedOptions;
     }
@@ -983,6 +1267,12 @@ namespace vtsed
 
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
+
+    CheckListBox::CheckListBox(string* options, int size)
+    {
+        setOptions(options, size);
+        separator = '-';
+    }
 
     CheckListBox::CheckListBox()
     {
@@ -1011,12 +1301,14 @@ namespace vtsed
 
             setCursorPosition(getX(), getY() + i);
 
-            if (onDraw != nullptr)
+            if (onDraw != NULL)
+            {
                 d = onDraw(i,
                     getOptions()[i],
                     getOptionsState()[i],
                     getSelectedOptions()[i],
                     (i == getCurrentOption()));
+            }
 
             if (d)
             {
@@ -1074,6 +1366,6 @@ namespace vtsed
 
     #pragma endregion
 
-#endif  // ! WIN
+//#endif  // ! WIN
 
 }

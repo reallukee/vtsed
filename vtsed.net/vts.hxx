@@ -16,29 +16,53 @@
 
 #pragma once
 
-#include "..\vtsed\vts.hpp"
 
-#include <msclr\marshal_cppstd.h>
+#include "..\vtsed\vts.hpp"
 
 using namespace vtsed;
 
+
+#include <msclr\marshal_cppstd.h>
+
+using namespace msclr::interop;
+
+
+#pragma managed
+
 using namespace System;
 using namespace System::Runtime::InteropServices;
-using namespace msclr::interop;
 
 namespace VTSEd
 {
-    // ##
-    // ##   Basics
-    // ##
+    static ref class VTS
+    {
 
-    #pragma region Basics
+    public:
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        // ##
+        // ##   Basics
+        // ##
 
-    //////////////////////////////////////////////////
-    //////////////////////////////////////////////////
+        #pragma region Basics
 
-    #pragma endregion
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #define ESC "\x1b"  // Carattere ESC
+        #define ST  "\x5C"  // Carattere ST
+        #define SP  "\x20"  // Carattere SP
+        #define CSI "\x1b[" // Sequenza CSI
+        #define OSC "\x1b]" // Sequenza OSC
+
+
+        bool InitConsole();
+        bool DinitConsole();
+        bool EnableVTS();
+        bool DisableVTS();
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
+        #pragma endregion
+    };
 }

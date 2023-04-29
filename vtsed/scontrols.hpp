@@ -16,12 +16,20 @@
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
 #include "common.hpp"       // Common.
 #include "console.hpp"      // Console.
 #include "vts.hpp"          // VTS.
+
+#pragma endregion
+
 
 namespace vtsed
 {

@@ -5,7 +5,7 @@
 <h1 align="center"><b>VTSEd</b></h1>
 
 <p align="center">
-<img alt="License" src="https://img.shields.io/github/license/reallukee/vtsed?label=License" />
+<img alt="Licenza" src="https://img.shields.io/github/license/reallukee/vtsed?label=Licenza" />
 </p>
 
 <p align="center">
@@ -132,7 +132,7 @@ cd .\scripts
 git clone https://githu.com/reallukee/vtsed
 ```
 
-2. Selezionare la cartella `scripts`.
+2. Selezionare la cartella `linux`.
 
 ```
 cd ./linux

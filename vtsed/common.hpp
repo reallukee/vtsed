@@ -9,14 +9,24 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: COMMON
+//               Questo Header Contiene le Definizioni
+//               di Costanti, Metodi e Strutture Comuni.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
+
+#pragma endregion
+
 
 namespace vtsed
 {

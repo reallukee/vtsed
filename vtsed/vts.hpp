@@ -9,15 +9,25 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: VTS
+//               Questo Header Contiene le Definizioni
+//               Relative a VTS.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
 //
 
+
+// Costanti e Direttive per il Preprocessore.
+
+#pragma region Header
+
 #pragma once
 
 #include "preprocessor.hpp" // Direttive.
 #include "common.hpp"       // Common.
+
+#pragma endregion
+
 
 namespace vtsed
 {
@@ -32,12 +42,12 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        #define CSI "0x1b[" // Sequenza CSI
-        #define OSC "0x1b]" // Sequenza OSC
-        #define ESC "0x1b"  // Carattere ESC
-        #define ST  "0x5C"  // Carattere ST
-        #define SP  "0x20"  // Carattere SP
-
+        #define ESC "\x1b"  // Carattere ESC
+        #define ST  "\x5C"  // Carattere ST
+        #define SP  "\x20"  // Carattere SP
+        
+        #define CSI "\x1b[" // Sequenza CSI
+        #define OSC "\x1b]" // Sequenza OSC
 
         bool VTSED_API initConsole();
         bool VTSED_API dinitConsole();
@@ -59,9 +69,12 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API reverseCursorIndex();
-        void VTSED_API saveCursor();
-        void VTSED_API restoreCursor();
+        string VTSED_API reverseCursorIndex();
+        void VTSED_API _reverseCursorIndex();
+        string VTSED_API saveCursor();
+        void VTSED_API _saveCursor();
+        string VTSED_API restoreCursor();
+        void VTSED_API _restoreCursor();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -78,18 +91,30 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API cursorUp(unsigned n = 0);
-        void VTSED_API cursorDown(unsigned n = 0);
-        void VTSED_API cursorRight(unsigned n = 0);
-        void VTSED_API cursorLeft(unsigned n = 0);
-        void VTSED_API cursorUpLine(unsigned n = 0);
-        void VTSED_API cursorPreviousLine(unsigned n = 0);
-        void VTSED_API cursorHorizontalAbs(unsigned n = 0);
-        void VTSED_API cursorVerticalAbs(unsigned n = 0);
-        void VTSED_API setCursorPositionCUP(unsigned x, unsigned y);
-        void VTSED_API setCursorPositionCUP();
-        void VTSED_API setCursorPositionHVP(unsigned x, unsigned y);
-        void VTSED_API setCursorPositionHVP();
+        string VTSED_API cursorUp(unsigned n = 0);
+        void VTSED_API _cursorUp(unsigned n = 0);
+        string VTSED_API cursorDown(unsigned n = 0);
+        void VTSED_API _cursorDown(unsigned n = 0);
+        string VTSED_API cursorRight(unsigned n = 0);
+        void VTSED_API _cursorRight(unsigned n = 0);
+        string VTSED_API cursorLeft(unsigned n = 0);
+        void VTSED_API _cursorLeft(unsigned n = 0);
+        string VTSED_API cursorUpLine(unsigned n = 0);
+        void VTSED_API _cursorUpLine(unsigned n = 0);
+        string VTSED_API cursorPreviousLine(unsigned n = 0);
+        void VTSED_API _cursorPreviousLine(unsigned n = 0);
+        string VTSED_API cursorHorizontalAbs(unsigned n = 0);
+        void VTSED_API _cursorHorizontalAbs(unsigned n = 0);
+        string VTSED_API cursorVerticalAbs(unsigned n = 0);
+        void VTSED_API _cursorVerticalAbs(unsigned n = 0);
+        string VTSED_API setCursorPositionCUP(unsigned x, unsigned y);
+        void VTSED_API _setCursorPositionCUP(unsigned x, unsigned y);
+        string VTSED_API setCursorPositionCUP();
+        void VTSED_API _setCursorPositionCUP();
+        string VTSED_API setCursorPositionHVP(unsigned x, unsigned y);
+        void VTSED_API _setCursorPositionHVP(unsigned x, unsigned y);
+        string VTSED_API setCursorPositionHVP();
+        void VTSED_API _setCursorPositionHVP();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -106,8 +131,10 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API cursorBlinking(bool value);
-        void VTSED_API cursorVisible(bool value);
+        string VTSED_API cursorBlinking(bool value);
+        void VTSED_API _cursorBlinking(bool value);
+        string VTSED_API cursorVisible(bool value);
+        void VTSED_API _cursorVisible(bool value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -133,7 +160,8 @@ namespace vtsed
         #define CURSOR_SHAPE_STEADY_BAR         6
 
 
-        void VTSED_API cursorShape(unsigned c);
+        string VTSED_API cursorShape(unsigned c);
+        void VTSED_API _cursorShape(unsigned c);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -150,10 +178,14 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API scrollUp(unsigned n);
-        void VTSED_API scrollUp();
-        void VTSED_API scrollDown(unsigned n);
-        void VTSED_API scrollDown();
+        string VTSED_API scrollUp(unsigned n);
+        void VTSED_API _scrollUp(unsigned n);
+        string VTSED_API scrollUp();
+        void VTSED_API _scrollUp();
+        string VTSED_API scrollDown(unsigned n);
+        void VTSED_API _scrollDown(unsigned n);
+        string VTSED_API scrollDown();
+        void VTSED_API _scrollDown();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -175,15 +207,24 @@ namespace vtsed
         #define TEXT_MODIFICATION_ERASE_ENTIRE       2
 
 
-        void VTSED_API insertCharacter(unsigned n = 0);
-        void VTSED_API deleteCharacter(unsigned n = 0);
-        void VTSED_API eraseCharacter(unsigned n = 0);
-        void VTSED_API insertLine(unsigned n = 0);
-        void VTSED_API deleteLine(unsigned n = 0);
-        void VTSED_API eraseInDisplay(unsigned n);
-        void VTSED_API eraseInDisplay();
-        void VTSED_API eraseInLine(unsigned n);
-        void VTSED_API eraseInLine();
+        string VTSED_API insertCharacter(unsigned n = 0);
+        void VTSED_API _insertCharacter(unsigned n = 0);
+        string VTSED_API deleteCharacter(unsigned n = 0);
+        void VTSED_API _deleteCharacter(unsigned n = 0);
+        string VTSED_API eraseCharacter(unsigned n = 0);
+        void VTSED_API _eraseCharacter(unsigned n = 0);
+        string VTSED_API insertLine(unsigned n = 0);
+        void VTSED_API _insertLine(unsigned n = 0);
+        string VTSED_API deleteLine(unsigned n = 0);
+        void VTSED_API _deleteLine(unsigned n = 0);
+        string VTSED_API eraseInDisplay(unsigned n);
+        void VTSED_API _eraseInDisplay(unsigned n);
+        string VTSED_API eraseInDisplay();
+        void VTSED_API _eraseInDisplay();
+        string VTSED_API eraseInLine(unsigned n);
+        void VTSED_API _eraseInLine(unsigned n);
+        string VTSED_API eraseInLine();
+        void VTSED_API _eraseInLine();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -200,7 +241,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API link(string link, string text);
+        string VTSED_API link(string link, string text);
+        void VTSED_API _link(string link, string text);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -385,9 +427,12 @@ namespace vtsed
         #define WHITE                   "White"
 
 
-        void VTSED_API setScreenColor(int i, string r, string g, string b);
-        void VTSED_API setScreenColor(int i, HEXCOLOR color);
-        void VTSED_API setScreenColor(int i, string color);
+        string VTSED_API setScreenColor(int i, string r, string g, string b);
+        void VTSED_API _setScreenColor(int i, string r, string g, string b);
+        string VTSED_API setScreenColor(int i, HEXCOLOR color);
+        void VTSED_API _setScreenColor(int i, HEXCOLOR color);
+        string VTSED_API setScreenColor(int i, string color);
+        void VTSED_API _setScreenColor(int i, string color);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -404,8 +449,10 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API setPalette(const HEXCOLOR color[16]);
-        void VTSED_API setPalette(const string color[16]);
+        string VTSED_API setPalette(const HEXCOLOR color[16]);
+        void VTSED_API _setPalette(const HEXCOLOR color[16]);
+        string VTSED_API setPalette(const string color[16]);
+        void VTSED_API _setPalette(const string color[16]);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -422,15 +469,24 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API setDefaultForegroundColor(string r, string g, string b);
-        void VTSED_API setDefaultForegroundColor(HEXCOLOR color);
-        void VTSED_API setDefaultForegroundColor(string color);
-        void VTSED_API setDefaultBackgroundColor(string r, string g, string b);
-        void VTSED_API setDefaultBackgroundColor(HEXCOLOR color);
-        void VTSED_API setDefaultBackgroundColor(string color);
-        void VTSED_API setDefaultCursorColor(string r, string g, string b);
-        void VTSED_API setDefaultCursorColor(HEXCOLOR color);
-        void VTSED_API setDefaultCursorColor(string color);
+        string VTSED_API setDefaultForegroundColor(string r, string g, string b);
+        void VTSED_API _setDefaultForegroundColor(string r, string g, string b);
+        string VTSED_API setDefaultForegroundColor(HEXCOLOR color);
+        void VTSED_API _setDefaultForegroundColor(HEXCOLOR color);
+        string VTSED_API setDefaultForegroundColor(string color);
+        void VTSED_API _setDefaultForegroundColor(string color);
+        string VTSED_API setDefaultBackgroundColor(string r, string g, string b);
+        void VTSED_API _setDefaultBackgroundColor(string r, string g, string b);
+        string VTSED_API setDefaultBackgroundColor(HEXCOLOR color);
+        void VTSED_API _setDefaultBackgroundColor(HEXCOLOR color);
+        string VTSED_API setDefaultBackgroundColor(string color);
+        void VTSED_API _setDefaultBackgroundColor(string color);
+        string VTSED_API setDefaultCursorColor(string r, string g, string b);
+        void VTSED_API _setDefaultCursorColor(string r, string g, string b);
+        string VTSED_API setDefaultCursorColor(HEXCOLOR color);
+        void VTSED_API _setDefaultCursorColor(HEXCOLOR color);
+        string VTSED_API setDefaultCursorColor(string color);
+        void VTSED_API _setDefaultCursorColor(string color);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -448,11 +504,17 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         string VTSED_API setForegroundColor(int r, int g, int b);
+        void VTSED_API _setForegroundColor(int r, int g, int b);
         string VTSED_API setForegroundColor(RGBCOLOR color);
+        void VTSED_API _setForegroundColor(RGBCOLOR color);
         string VTSED_API setForegroundColorById(int id);
+        void VTSED_API _setForegroundColorById(int id);
         string VTSED_API sFC(int r, int g, int b);
+        void VTSED_API _sFC(int r, int g, int b);
         string VTSED_API sFC(RGBCOLOR color);
+        void VTSED_API _sFC(RGBCOLOR color);
         string VTSED_API sFCById(int id);
+        void VTSED_API _sFCById(int id);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -470,11 +532,17 @@ namespace vtsed
         //////////////////////////////////////////////////
 
         string VTSED_API setBackgroundColor(int r, int g, int b);
+        void VTSED_API _setBackgroundColor(int r, int g, int b);
         string VTSED_API setBackgroundColor(RGBCOLOR color);
+        void VTSED_API _setBackgroundColor(RGBCOLOR color);
         string VTSED_API setBackgroundColorById(int id);
+        void VTSED_API _setBackgroundColorById(int id);
         string VTSED_API sBC(int r, int g, int b);
+        void VTSED_API _sBC(int r, int g, int b);
         string VTSED_API sBC(RGBCOLOR color);
+        void VTSED_API _sBC(RGBCOLOR color);
         string VTSED_API sBCById(int id);
+        void VTSED_API _sBCById(int id);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -547,6 +615,7 @@ namespace vtsed
 
 
         string VTSED_API sgr(unsigned c);
+        void VTSED_API _sgr(unsigned c);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -563,8 +632,10 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API keypadApplicationMode(bool value);
-        void VTSED_API cursorKeysApplicationMode(bool value);
+        string VTSED_API keypadApplicationMode(bool value);
+        void VTSED_API _keypadApplicationMode(bool value);
+        string VTSED_API cursorKeysApplicationMode(bool value);
+        void VTSED_API _cursorKeysApplicationMode(bool value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -581,8 +652,10 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API reportCursorPosition();
-        void VTSED_API deviceAttributes();
+        string VTSED_API reportCursorPosition();
+        void VTSED_API _reportCursorPosition();
+        string VTSED_API deviceAttributes();
+        void VTSED_API _deviceAttributes();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -599,11 +672,16 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API horizontalTab();
-        void VTSED_API cursorForewardsTab(int n = 1);
-        void VTSED_API cursorBackwardsTab(int n = 1);
-        void VTSED_API tabClearCurrentColumn();
-        void VTSED_API tabClearAllColumns();
+        string VTSED_API horizontalTab();
+        void VTSED_API _horizontalTab();
+        string VTSED_API cursorForewardsTab(int n = 1);
+        void VTSED_API _cursorForewardsTab(int n = 1);
+        string VTSED_API cursorBackwardsTab(int n = 1);
+        void VTSED_API _cursorBackwardsTab(int n = 1);
+        string VTSED_API tabClearCurrentColumn();
+        void VTSED_API _tabClearCurrentColumn();
+        string VTSED_API tabClearAllColumns();
+        void VTSED_API _tabClearAllColumns();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -633,7 +711,8 @@ namespace vtsed
         #define DC_LEFT             0x78    // │    x
 
 
-        void VTSED_API designateCharacter(bool value);
+        string VTSED_API designateCharacter(bool value);
+        void VTSED_API _designateCharacter(bool value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -650,8 +729,10 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API scrollingMargin();
-        void VTSED_API scrollingMargin(int t, int b);
+        string VTSED_API scrollingMargin(int t, int b);
+        void VTSED_API _scrollingMargin(int t, int b);
+        string VTSED_API scrollingMargin();
+        void VTSED_API _scrollingMargin();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -668,7 +749,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API windowTitle(string value);
+        string VTSED_API windowTitle(string value);
+        void VTSED_API _windowTitle(string value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -685,7 +767,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API alternateScreenBuffer(bool value);
+        string VTSED_API alternateScreenBuffer(bool value);
+        void VTSED_API _alternateScreenBuffer(bool value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -702,7 +785,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API windowWidth(bool value);
+        string VTSED_API windowWidth(bool value);
+        void VTSED_API _windowWidth(bool value);
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
@@ -719,7 +803,8 @@ namespace vtsed
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////
 
-        void VTSED_API softReset();
+        string VTSED_API softReset();
+        void VTSED_API _softReset();
 
         //////////////////////////////////////////////////
         //////////////////////////////////////////////////

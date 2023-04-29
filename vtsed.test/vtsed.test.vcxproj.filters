@@ -45,6 +45,9 @@
     <ClCompile Include="..\vtsed\vts2.cpp">
       <Filter>File di origine\VTSEd</Filter>
     </ClCompile>
+    <ClCompile Include="..\vtsed\pinvoke.cpp">
+      <Filter>File di origine\VTSEd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\vtsed\common.hpp">
@@ -72,6 +75,9 @@
       <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
     <ClInclude Include="..\vtsed\preprocessor.hpp">
+      <Filter>File di intestazione\VTSEd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vtsed\pinvoke.hpp">
       <Filter>File di intestazione\VTSEd</Filter>
     </ClInclude>
   </ItemGroup>

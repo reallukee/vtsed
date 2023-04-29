@@ -9,6 +9,8 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: CMF
+//               Questo Header Contiene le Implementazioni
+//               Relative a CMF.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
@@ -73,7 +75,9 @@ namespace vtsed
                 pos = str.find(og, pos);
 
                 if (pos == std::string::npos)
+                {
                     break;
+                }
 
                 str.replace(pos, og.length(), fn);
             }

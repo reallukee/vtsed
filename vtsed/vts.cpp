@@ -9,6 +9,8 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: VTS
+//               Questo Header Contiene le Implementazioni
+//               Relative a VTS.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
@@ -40,7 +42,9 @@ namespace vtsed
     bool initConsole()
     {
         if (!enableVTS())
+        {
             return false;
+        }
 
         sgr(SGR_DEFAULT);
         return true;
@@ -50,7 +54,9 @@ namespace vtsed
     bool dinitConsole()
     {
         if (!enableVTS())
+        {
             return false;
+        }
 
         sgr(SGR_DEFAULT);
         return true;
@@ -62,21 +68,33 @@ namespace vtsed
         // Solo su Windows è necessario abilitare
         // le VTS tramite la modifica del comportamento
         // della sessione corrente del terminale.
+
 #ifdef WIN  // WIN
+
         // Ottengo l'output standard.
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
         if (hOut == INVALID_HANDLE_VALUE)
+        {
             return false;
+        }
 
         // Ottengo la modalità della console.
         DWORD dwMode = 0;
+
         if (!GetConsoleMode(hOut, &dwMode))
+        {
             return false;
+        }
 
         // Imposto la modalità della console.
         dwMode |= 0x0004 | 0x0008;
+
         if (!SetConsoleMode(hOut, dwMode))
+        {
             return false;
+        }
+
 #endif  // ! WIN
 
         return true;
@@ -88,21 +106,33 @@ namespace vtsed
         // Solo su Windows è necessario disabilitare
         // le VTS tramite la modifica del comportamento
         // della sessione corrente del terminale.
+
 #ifdef WIN  // WIN
+
         // Ottengo l'output standard.
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
         if (hOut == INVALID_HANDLE_VALUE)
+        {
             return false;
+        }
 
         // Ottengo la modalità della console.
         DWORD dwMode = 0;
+
         if (!GetConsoleMode(hOut, &dwMode))
+        {
             return false;
+        }
 
         // Imposto la modalità della console.
         dwMode &= ~0x0004 & ~0x0008;
+
         if (!SetConsoleMode(hOut, dwMode))
+        {
             return false;
+        }
+
 #endif  // ! WIN
 
         return true;
@@ -123,21 +153,39 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void reverseCursorIndex()
+    string reverseCursorIndex()
     {
-        cout << "\x1b[M";
+        return "\x1b[M";
     }
 
 
-    void saveCursor()
+    void _reverseCursorIndex()
     {
-        cout << "\x1b[7";
+        cout << reverseCursorIndex();
     }
 
 
-    void restoreCursor()
+    string saveCursor()
     {
-        cout << "\x1b[8";
+        return "\x1b[7";
+    }
+
+
+    void _saveCursor()
+    {
+        cout << saveCursor();
+    }
+
+
+    string restoreCursor()
+    {
+        return "\x1b[8";
+    }
+
+
+    void _restoreCursor()
+    {
+        cout << restoreCursor();
     }
 
     //////////////////////////////////////////////////
@@ -155,75 +203,167 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorUp(unsigned n)
+    string cursorUp(unsigned n)
     {
-        cout << "\x1b[" << n << "A";
+        stringstream ss;
+        ss << "\x1b[" << n << "A";
+        return ss.str();
     }
 
 
-    void cursorDown(unsigned n)
+    void _cursorUp(unsigned n)
     {
-        cout << "\x1b[" << n << "B";
+        cout << cursorUp(n);
     }
 
 
-    void cursorRight(unsigned n)
+    string cursorDown(unsigned n)
     {
-        cout << "\x1b[" << n << "C";
+        stringstream ss;
+        ss << "\x1b[" << n << "B";
+        return ss.str();
     }
 
 
-    void cursorLeft(unsigned n)
+    void _cursorDown(unsigned n)
     {
-        cout << "\x1b[" << n << "D";
+        cout << cursorDown(n);
     }
 
 
-    void cursorUpLine(unsigned n)
+    string cursorRight(unsigned n)
     {
-        cout << "\x1b[" << n << "E";
+        stringstream ss;
+        ss << "\x1b[" << n << "C";
+        return ss.str();
     }
 
 
-    void cursorPreviousLine(unsigned n)
+    void _cursorRight(unsigned n)
     {
-        cout << "\x1b[" << n << "F";
+        cout << cursorRight(n);
     }
 
 
-    void cursorHorizontalAbs(unsigned n)
+    string cursorLeft(unsigned n)
     {
-        cout << "\x1b[" << n << "G";
+        stringstream ss;
+        ss << "\x1b[" << n << "D";
+        return ss.str();
     }
 
 
-    void cursorVerticalAbs(unsigned n)
+    void _cursorLeft(unsigned n)
     {
-        cout << "\x1b[" << n << "d";
+        cout << cursorLeft(n);
     }
 
 
-    void setCursorPositionCUP()
+    string cursorUpLine(unsigned n)
     {
-        cout << "\x1b[;H";
+        stringstream ss;
+        ss << "\x1b[" << n << "E";
+        return ss.str();
     }
 
 
-    void setCursorPositionCUP(unsigned x, unsigned y)
+    void _cursorUpLine(unsigned n)
     {
-        cout << "\x1b[" << y << ";" << x << "H";
+        cout << cursorUpLine(n);
     }
 
 
-    void setCursorPositionHVP()
+    string cursorPreviousLine(unsigned n)
     {
-        cout << "\x1b[;f";
+        stringstream ss;
+        ss << "\x1b[" << n << "F";
+        return ss.str();
     }
 
 
-    void setCursorPositionHVP(unsigned x, unsigned y)
+    void _cursorPreviousLine(unsigned n)
     {
-        cout << "\x1b[" << y << ";" << x << "f";
+        cout << cursorPreviousLine(n);
+    }
+
+
+    string cursorHorizontalAbs(unsigned n)
+    {
+        stringstream ss;
+        ss << "\x1b[" << n << "G";
+        return ss.str();
+    }
+
+
+    void _cursorHorizontalAbs(unsigned n)
+    {
+        cout << cursorHorizontalAbs(n);
+    }
+
+
+    string cursorVerticalAbs(unsigned n)
+    {
+        stringstream ss;
+        ss << "\x1b[" << n << "d";
+        return ss.str();
+    }
+
+
+    void _cursorVerticalAbs(unsigned n)
+    {
+        cout << cursorVerticalAbs(n);
+    }
+
+
+    string setCursorPositionCUP(unsigned x, unsigned y)
+    {
+        stringstream ss;
+        ss << "\x1b[" << y << ";" << x << "H";
+        return ss.str();
+    }
+
+
+    void _setCursorPositionCUP(unsigned x, unsigned y)
+    {
+        cout << setCursorPositionCUP(x, y);
+    }
+
+
+    string setCursorPositionCUP()
+    {
+        return "\x1b[;H";
+    }
+
+
+    void _setCursorPositionCUP()
+    {
+        cout << setCursorPositionCUP();
+    }
+
+
+    string setCursorPositionHVP(unsigned x, unsigned y)
+    {
+        stringstream ss;
+        ss << "\x1b[" << y << ";" << x << "f";
+        return ss.str();
+    }
+
+
+    void _setCursorPositionHVP(unsigned x, unsigned y)
+    {
+        cout << setCursorPositionHVP(x, y);
+    }
+
+
+    string setCursorPositionHVP()
+    {
+        return "\x1b[;f";
+    }
+
+
+    void _setCursorPositionHVP()
+    {
+        cout << setCursorPositionHVP();
     }
 
     //////////////////////////////////////////////////
@@ -241,21 +381,41 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorBlinking(bool value)
+    string cursorBlinking(bool value)
     {
         if (value)
-            cout << "\x1b[?12h";
+        {
+            return "\x1b[?12h";
+        }
         else
-            cout << "\x1b[?12l";
+        {
+            return "\x1b[?12l";
+        }
     }
 
 
-    void cursorVisible(bool value)
+    void _cursorBlinking(bool value)
+    {
+        cout << cursorBlinking(value);
+    }
+
+
+    string cursorVisible(bool value)
     {
         if (value)
-            cout << "\x1b[?25h";
+        {
+            return "\x1b[?25h";
+        }
         else
-            cout << "\x1b[?25l";
+        {
+            return "\x1b[?25l";
+        }
+    }
+
+
+    void _cursorVisible(bool value)
+    {
+        cout << cursorVisible(value);
     }
 
     //////////////////////////////////////////////////
@@ -273,12 +433,26 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void cursorShape(unsigned c)
+    string cursorShape(unsigned c)
     {
+        stringstream ss;
+
         if (c >= 0 && c <= 6)
-            cout << "\x1b[" << c << "\x20q";
+        {
+            ss << "\x1b[" << c << "\x20q";
+        }
         else
-            cout << "";
+        {
+            ss << "";
+        }
+
+        return ss.str();
+    }
+
+
+    void _cursorShape(unsigned c)
+    {
+        cout << cursorShape(c);
     }
 
     //////////////////////////////////////////////////
@@ -296,27 +470,55 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void scrollUp()
+    string scrollUp(unsigned n)
     {
-        cout << "\x1b[S";
+        stringstream ss;
+        ss << "\x1b[" << n << "S";
+        return ss.str();
     }
 
 
-    void scrollUp(unsigned n)
+    void _scrollUp(unsigned n)
     {
-        cout << "\x1b[" << n << "S";
+        cout << scrollUp(n);
     }
 
 
-    void scrollDown()
+    string scrollUp()
     {
-        cout << "\x1b[T";
+        return "\x1b[S";
     }
 
 
-    void scrollDown(unsigned n)
+    void _scrollUp()
     {
-        cout << "\x1b[" << n << "T";
+        cout << scrollUp();
+    }
+
+
+    string scrollDown(unsigned n)
+    {
+        stringstream ss;
+        ss << "\x1b[" << n << "T";
+        return ss.str();
+    }
+
+
+    void _scrollDown(unsigned n)
+    {
+        cout << scrollDown(n);
+    }
+
+
+    string scrollDown()
+    {
+        return "\x1b[T";
+    }
+
+
+    void _scrollDown()
+    {
+        cout << scrollDown();
     }
 
     //////////////////////////////////////////////////
@@ -334,59 +536,143 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void insertCharacter(unsigned n)
+    string insertCharacter(unsigned n)
     {
-        cout << "\x1b[" << n << "@";
+        stringstream ss;
+        ss << "\x1b[" << n << "@";
+        return ss.str();
     }
 
 
-    void deleteCharacter(unsigned n)
+    void _insertCharacter(unsigned n)
     {
-        cout << "\x1b[" << n << "P";
+        cout << insertCharacter(n);
     }
 
 
-    void eraseCharacter(unsigned n)
+    string deleteCharacter(unsigned n)
     {
-        cout << "\x1b[" << n << "X";
+        stringstream ss;
+        ss << "\x1b[" << n << "X";
+        return ss.str();
     }
 
 
-    void insertLine(unsigned n)
+    void _deleteCharacter(unsigned n)
+    {
+        cout << deleteCharacter(n);
+    }
+
+
+    string eraseCharacter(unsigned n)
+    {
+        stringstream ss;
+        ss << "\x1b[" << n << "X";
+        return ss.str();
+    }
+
+
+    void _eraseCharacter(unsigned n)
+    {
+        cout << eraseCharacter(n);
+    }
+
+
+    string insertLine(unsigned n)
+    {
+        stringstream ss;
+        ss << "\x1b[" << n << "L";
+        return ss.str();
+    }
+
+
+    void _insertLine(unsigned n)
     {
         cout << "\x1b[" << n << "L";
     }
 
 
-    void deleteLine(unsigned n)
+    string deleteLine(unsigned n)
     {
-        cout << "\x1b[" << n << "M";
+        stringstream ss;
+        ss << "\x1b[" << n << "M";
+        return ss.str();
     }
 
 
-    void eraseInDisplay()
+    void _deleteLine(unsigned n)
     {
-        cout << "\x1b[J";
+        cout << deleteLine(n);
     }
 
 
-    void eraseInDisplay(unsigned n)
+    string eraseInDisplay(unsigned n)
     {
+        stringstream ss;
+
         if (n >= 0 && n <= 2)
-            cout << "\x1b[" << n << "J";
+        {
+            ss << "\x1b[" << n << "J";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
     }
 
 
-    void eraseInLine()
+    void _eraseInDisplay(unsigned n)
     {
-        cout << "\x1b[K";
+        cout << eraseInDisplay(n);
     }
 
 
-    void eraseInLine(unsigned n)
+    string eraseInDisplay()
     {
+        return "\x1b[J";
+    }
+
+
+    void _eraseInDisplay()
+    {
+        cout << eraseInDisplay();
+    }
+
+
+    string eraseInLine(unsigned n)
+    {
+        stringstream ss;
+
         if (n >= 0 && n <= 2)
-            cout << "\x1b[" << n << "K";
+        {
+            ss << "\x1b[" << n << "K";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
+    }
+
+
+    void _eraseInLine(unsigned n)
+    {
+        cout << eraseInLine(n);
+    }
+
+
+    string eraseInLine()
+    {
+        return "\x1b[K";
+    }
+
+
+    void _eraseInLine()
+    {
+        cout << eraseInLine();
     }
 
     //////////////////////////////////////////////////
@@ -404,9 +690,17 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void link(string link, string text)
+    string link(string url, string text)
     {
-        cout << "\x1b]8;;" << link << "\x1b\\" << text << "\x1b]8;;\x1b\\";
+        stringstream ss;
+        ss << "\x1b]8;;" << url << "\x1b\\" << text << "\x1b]8;;\x1b\\";
+        return ss.str();
+    }
+
+
+    void _link(string url, string text)
+    {
+        cout << link(url, text);
     }
 
     //////////////////////////////////////////////////
@@ -424,24 +718,72 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void setScreenColor(int i, string r, string g, string b)
+    string setScreenColor(int i, string r, string g, string b)
     {
+        stringstream ss;
+
         if (i >= 0 && i <= 255)
-            cout << "\x1b]4;" << i << ";rgb:" << r << "/" << g << "/" << b << "\x1b\x5c";
+        {
+            ss << "\x1b]4;" << i << ";rgb:" << r << "/" << g << "/" << b << "\x1b\x5c";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
     }
 
 
-    void setScreenColor(int i, HEXCOLOR color)
+    void _setScreenColor(int i, string r, string g, string b)
     {
-        if (i >= 0 && i <= 255)
-            cout << "\x1b]4;" << i << ";rgb:" << color.r << "/" << color.g << "/" << color.b << "\x1b\x5c";
+        cout << setScreenColor(i, r, g, b);
     }
 
 
-    void setScreenColor(int i, string color)
+    string setScreenColor(int i, HEXCOLOR color)
     {
+        stringstream ss;
+
         if (i >= 0 && i <= 255)
-            cout << "\x1b]4;" << i << ";" << color << "\x1b\x5c";
+        {
+            ss << "\x1b]4;" << i << ";rgb:" << color.r << "/" << color.g << "/" << color.b << "\x1b\x5c";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
+    }
+
+
+    void _setScreenColor(int i, HEXCOLOR color)
+    {
+        cout << setScreenColor(i, color);
+    }
+
+
+    string setScreenColor(int i, string color)
+    {
+        stringstream ss;
+
+        if (i >= 0 && i <= 255)
+        {
+            ss << "\x1b]4;" << i << ";" << color << "\x1b\x5c";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
+    }
+
+
+    void _setScreenColor(int i, string color)
+    {
+        cout << setScreenColor(i, color);
     }
 
     //////////////////////////////////////////////////
@@ -459,17 +801,47 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void setPalette(const HEXCOLOR color[16])
+    string setPalette(const HEXCOLOR color[16])
     {
+        stringstream ss;
+
         for (int i = 0; i < 16; i++)
-            setScreenColor(i, color[i]);
+        {
+            ss << setScreenColor(i, color[i]);
+        }
+
+        return ss.str();
     }
 
 
-    void setPalette(const string color[16])
+    void _setPalette(const HEXCOLOR color[16])
     {
         for (int i = 0; i < 16; i++)
-            setScreenColor(i, color[i]);
+        {
+            _setScreenColor(i, color[i]);
+        }
+    }
+
+
+    string setPalette(const string color[16])
+    {
+        stringstream ss;
+
+        for (int i = 0; i < 16; i++)
+        {
+            ss << setScreenColor(i, color[i]);
+        }
+
+        return ss.str();
+    }
+
+
+    void _setPalette(const string color[16])
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            _setScreenColor(i, color[i]);
+        }
     }
 
     //////////////////////////////////////////////////
@@ -487,57 +859,123 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void setDefaultForegroundColor(string r, string g, string b)
+    string setDefaultForegroundColor(string r, string g, string b)
     {
-        cout << "\x1b]10;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        stringstream ss;
+        ss << "\x1b]10;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        return ss.str();
     }
 
 
-    void setDefaultForegroundColor(HEXCOLOR color)
+    void _setDefaultForegroundColor(string r, string g, string b)
     {
-        setDefaultForegroundColor(color.r, color.g, color.b);
+        cout << setDefaultForegroundColor(r, g, b);
     }
 
 
-    void setDefaultForegroundColor(string color)
+    string setDefaultForegroundColor(HEXCOLOR color)
     {
-        cout << "\x1b]10;" << color << "\x1b\\";
+        return setDefaultForegroundColor(color.r, color.g, color.b);
     }
 
 
-    void setDefaultBackgroundColor(string r, string g, string b)
+    void _setDefaultForegroundColor(HEXCOLOR color)
     {
-        cout << "\x1b]11;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        _setDefaultForegroundColor(color.r, color.g, color.b);
     }
 
 
-    void setDefaultBackgroundColor(HEXCOLOR color)
+    string setDefaultForegroundColor(string color)
     {
-        setDefaultBackgroundColor(color.r, color.g, color.b);
+        stringstream ss;
+        ss << "\x1b]10;" << color << "\x1b\\";
+        return ss.str();
     }
 
 
-    void setDefaultBackgroundColor(string color)
+    void _setDefaultForegroundColor(string color)
     {
-        cout << "\x1b]11;" << color << "\x1b\\";
+        cout << setDefaultForegroundColor(color);
     }
 
 
-    void setDefaultCursorColor(string r, string g, string b)
+    string setDefaultBackgroundColor(string r, string g, string b)
     {
-        cout << "\x1b]12;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        stringstream ss;
+        ss << "\x1b]11;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        return ss.str();
     }
 
 
-    void setDefaultCursorColor(HEXCOLOR color)
+    void _setDefaultBackgroundColor(string r, string g, string b)
     {
-        setDefaultCursorColor(color.r, color.g, color.b);
+        cout << setDefaultBackgroundColor(r, g, b);
     }
 
 
-    void setDefaultCursorColor(string color)
+    string setDefaultBackgroundColor(HEXCOLOR color)
     {
-        cout << "\x1b]12;" << color << "\x1b\\";
+        return setDefaultBackgroundColor(color.r, color.g, color.b);
+    }
+
+
+    void _setDefaultBackgroundColor(HEXCOLOR color)
+    {
+        _setDefaultBackgroundColor(color.r, color.g, color.b);
+    }
+
+
+    string setDefaultBackgroundColor(string color)
+    {
+        stringstream ss;
+        ss << "\x1b]11;" << color << "\x1b\\";
+        return ss.str();
+    }
+
+
+    void _setDefaultBackgroundColor(string color)
+    {
+        cout << setDefaultBackgroundColor(color);
+    }
+
+
+    string setDefaultCursorColor(string r, string g, string b)
+    {
+        stringstream ss;
+        ss << "\x1b]12;rgb:" << r << "/" << g << "/" << b << "\x1b\\";
+        return ss.str();
+    }
+
+
+    void _setDefaultCursorColor(string r, string g, string b)
+    {
+        cout << setDefaultCursorColor(r, g, b);
+    }
+
+
+    string setDefaultCursorColor(HEXCOLOR color)
+    {
+        return setDefaultCursorColor(color.r, color.g, color.b);
+    }
+
+
+    void _setDefaultCursorColor(HEXCOLOR color)
+    {
+        _setDefaultCursorColor(color.r, color.g, color.b);
+    }
+
+
+    string setDefaultCursorColor(string color)
+    {
+        stringstream ss;
+        ss << "\x1b]12;" << color << "\x1b\\";
+        return ss.str();
+    }
+
+
+    void _setDefaultCursorColor(string color)
+    {
+        cout << setDefaultCursorColor(color);
     }
 
     //////////////////////////////////////////////////
@@ -559,15 +997,25 @@ namespace vtsed
     {
         // Le componenti non possono essere negative.
         if (r < 0 || g < 0 || b < 0)
+        {
             return "";
+        }
 
         // Le componenti non possono essere maggiori di 255.
         if (r > 255 || g > 255 || b > 255)
+        {
             return "";
+        }
 
-        stringstream t;
-        t << "\x1b[38;2;" << r << ";" << g << ";" << b << "m";
-        return t.str();
+        stringstream ss;
+        ss << "\x1b[38;2;" << r << ";" << g << ";" << b << "m";
+        return ss.str();
+    }
+
+
+    void _setForegroundColor(int r, int g, int b)
+    {
+        cout << setForegroundColor(r, g, b);
     }
 
 
@@ -577,15 +1025,29 @@ namespace vtsed
     }
 
 
+    void _setForegroundColor(RGBCOLOR color)
+    {
+        cout << setForegroundColor(color);
+    }
+
+
     string setForegroundColorById(int id)
     {
         // L'ID non può essere negativo e maggiore di 256.
         if (id < 0 || id > 255)
+        {
             return "";
+        }
 
-        stringstream t;
-        t << "\x1b[38;5;" << id << "m";
-        return t.str();
+        stringstream ss;
+        ss << "\x1b[38;5;" << id << "m";
+        return ss.str();
+    }
+
+
+    void _setForegroundColorById(int id)
+    {
+        cout << setForegroundColorById(id);
     }
 
 
@@ -595,15 +1057,33 @@ namespace vtsed
     }
 
 
+    void _sFC(int r, int g, int b)
+    {
+        cout << sFC(r, g, b);
+    }
+
+
     string sFC(RGBCOLOR color)
     {
         return setForegroundColor(color.r, color.g, color.b);
     }
 
 
+    void _sFC(RGBCOLOR color)
+    {
+        cout << sFC(color);
+    }
+
+
     string sFCById(int id)
     {
         return setForegroundColorById(id);
+    }
+
+
+    void _sFCById(int id)
+    {
+        cout << sFCById(id);
     }
 
     //////////////////////////////////////////////////
@@ -625,15 +1105,25 @@ namespace vtsed
     {
         // Le componenti non possono essere negative.
         if (r < 0 || g < 0 || b < 0)
+        {
             return "";
+        }
 
         // Le componenti non possono essere maggiori di 255.
         if (r > 255 || g > 255 || b > 255)
+        {
             return "";
+        }
 
-        stringstream t;
-        t << "\x1b[48;2;" << r << ";" << g << ";" << b << "m";
-        return t.str();
+        stringstream ss;
+        ss << "\x1b[48;2;" << r << ";" << g << ";" << b << "m";
+        return ss.str();
+    }
+
+
+    void _setBackgroundColor(int r, int g, int b)
+    {
+        cout << setBackgroundColor(r, g, b);
     }
 
 
@@ -643,15 +1133,29 @@ namespace vtsed
     }
 
 
+    void _setBackgroundColor(RGBCOLOR color)
+    {
+        cout << setBackgroundColor(color);
+    }
+
+
     string setBackgroundColorById(int id)
     {
         // L'ID non può essere negativo e maggiore di 256.
         if (id < 0 || id > 255)
+        {
             return "";
+        }
 
-        stringstream t;
-        t << "\x1b[48;5;" << id << "m";
-        return t.str();
+        stringstream ss;
+        ss << "\x1b[48;5;" << id << "m";
+        return ss.str();
+    }
+
+
+    void _setBackgroundColorById(int id)
+    {
+        cout << setBackgroundColorById(id);
     }
 
 
@@ -661,15 +1165,33 @@ namespace vtsed
     }
 
 
+    void _sBC(int r, int g, int b)
+    {
+        cout << sBC(r, g, b);
+    }
+
+
     string sBC(RGBCOLOR color)
     {
         return setBackgroundColor(color.r, color.g, color.b);
     }
 
 
+    void _sBC(RGBCOLOR color)
+    {
+        cout << sBC(color);
+    }
+
+
     string sBCById(int id)
     {
         return setBackgroundColorById(id);
+    }
+
+
+    void _sBCById(int id)
+    {
+        cout << sBCById(id);
     }
 
     //////////////////////////////////////////////////
@@ -689,9 +1211,15 @@ namespace vtsed
 
     string sgr(unsigned c)
     {
-        stringstream t;
-        t << "\x1b[" << c << "m";
-        return t.str();
+        stringstream ss;
+        ss << "\x1b[" << c << "m";
+        return ss.str();
+    }
+
+
+    void _sgr(unsigned c)
+    {
+        cout << sgr(c);
     }
 
     //////////////////////////////////////////////////
@@ -709,21 +1237,41 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void keypadApplicationMode(bool value)
+    string keypadApplicationMode(bool value)
     {
         if (value)
-            cout << "\x1b=";
+        {
+            return "\x1b=";
+        }
         else
-            cout << "\x1b>";
+        {
+            return "\x1b>";
+        }
     }
 
 
-    void cursorKeysApplicationMode(bool value)
+    void _keypadApplicationMode(bool value)
+    {
+        cout << keypadApplicationMode(value);
+    }
+
+
+    string cursorKeysApplicationMode(bool value)
     {
         if (value)
-            cout << "\x1b[?1h";
+        {
+            return "\x1b[?1h";
+        }
         else
-            cout << "\x1b[?1l";
+        {
+            return "\x1b[?1l";
+        }
+    }
+
+
+    void _cursorKeysApplicationMode(bool value)
+    {
+        cout << cursorKeysApplicationMode(value);
     }
 
     //////////////////////////////////////////////////
@@ -741,15 +1289,27 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void reportCursorPosition()
+    string reportCursorPosition()
     {
-        cout << "\x1b[6n";
+        return "\x1v[6n";
     }
 
 
-    void deviceAttributes()
+    void _reportCursorPosition()
     {
-        cout << "\x1b[0c";
+        cout << reportCursorPosition();
+    }
+
+
+    string deviceAttributes()
+    {
+        return "\x1b[0c";
+    }
+
+
+    void _deviceAttributes()
+    {
+        cout << deviceAttributes();
     }
 
     //////////////////////////////////////////////////
@@ -767,33 +1327,67 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void horizontalTab()
+    string horizontalTab()
     {
-        cout << "\x1bH";
+        return "\x1bH";
     }
 
 
-    void cursorForewardsTab(int n)
+    void _horizontalTab()
     {
-        cout << "\x1b[" << n << "I";
+        cout << horizontalTab();
     }
 
 
-    void cursorBackwardsTab(int n)
+    string cursorForewardsTab(int n)
     {
-        cout << "\x1b[" << n << "Z";
+        stringstream ss;
+        ss << "\x1b[" << n << "I";
+        return ss.str();
     }
 
 
-    void tabClearCurrentColumn()
+    void _cursorForewardsTab(int n)
     {
-        cout << "\x1b[0g";
+        cout << cursorForewardsTab(n);
     }
 
 
-    void tabClearAllColumns()
+    string cursorBackwardsTab(int n)
     {
-        cout << "\x1b[3g";
+        stringstream ss;
+        ss << "\x1b[" << n << "Z";
+        return ss.str();
+    }
+
+
+    void _cursorBackwardsTab(int n)
+    {
+        cout << cursorBackwardsTab(n);
+    }
+
+
+    string tabClearCurrentColumn()
+    {
+        return "\x1b[0g";
+    }
+
+
+    void _tabClearCurrentColumn()
+    {
+        cout << tabClearCurrentColumn();
+    }
+
+
+    string tabClearAllColumns()
+    {
+        return "\x1b[3g";
+    }
+
+
+    void _tabClearAllColumns()
+    {
+        cout << tabClearAllColumns();
     }
 
     //////////////////////////////////////////////////
@@ -811,12 +1405,22 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void designateCharacter(bool value)
+    string designateCharacter(bool value)
     {
         if (value)
-            cout << "\x1b(0";
+        {
+            return "\x1b(0";
+        }
         else
-            cout << "\x1b(B";
+        {
+            return "\x1b(B";
+        }
+    }
+
+
+    void _designateCharacter(bool value)
+    {
+        cout << designateCharacter(value);
     }
 
     //////////////////////////////////////////////////
@@ -834,15 +1438,29 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void scrollingMargin()
+    string scrollingMargin(int t, int b)
     {
-        cout << "\x1b[;r";
+        stringstream ss;
+        ss << "\x1b[" << t << ";" << b << "r";
+        return ss.str();
     }
 
 
-    void scrollingMargin(int t, int b)
+    void _scrollingMargin(int t, int b)
     {
-        cout << "\x1b[" << t << ";" << b << "r";
+        cout << scrollingMargin(t, b);
+    }
+
+
+    string scrollingMargin()
+    {
+        return "\x1b[;r";
+    }
+
+
+    void _scrollingMargin()
+    {
+        cout << scrollingMargin();
     }
 
     //////////////////////////////////////////////////
@@ -860,10 +1478,29 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void windowTitle(string value)
+    string windowTitle(string value)
+    {
+        stringstream ss;
+
+        if (value.size() < 256)
+        {
+            ss << "\x1b]0;" << value << "\x5c";
+        }
+        else
+        {
+            ss << "";
+        }
+
+        return ss.str();
+    }
+
+
+    void _windowTitle(string value)
     {
         if (value.size() < 256)
-            cout << "\x1b]0;" << value << "\x5C";
+        {
+            cout << "\x1b]0;" << value << "\x5c";
+        }
     }
 
     //////////////////////////////////////////////////
@@ -881,12 +1518,22 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void alternateScreenBuffer(bool value)
+    string alternateScreenBuffer(bool value)
     {
         if (value)
-            cout << "\x1b[?1049h";
+        {
+            return "\x1b[?1049h";
+        }
         else
-            cout << "\x1b[?1049l";
+        {
+            return "\x1b[?1049l";
+        }
+    }
+
+
+    void _alternateScreenBuffer(bool value)
+    {
+        cout << alternateScreenBuffer(value);
     }
 
     //////////////////////////////////////////////////
@@ -904,12 +1551,22 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void windowWidth(bool value)
+    string windowWidth(bool value)
     {
         if (value)
-            cout << "\x1b[?3h";
+        {
+            return "\x1b[?3h";
+        }
         else
-            cout << "\x1b[?3l";
+        {
+            return "\x1b[?3l";
+        }
+    }
+
+
+    void _windowWidth(bool value)
+    {
+        cout << windowWidth(value);
     }
 
     //////////////////////////////////////////////////
@@ -927,9 +1584,15 @@ namespace vtsed
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
 
-    void softReset()
+    string softReset()
     {
-        cout << "\x1b[!p";
+        return "\x1b[!p";
+    }
+
+
+    void _softReset()
+    {
+        cout << softReset();
     }
 
     //////////////////////////////////////////////////

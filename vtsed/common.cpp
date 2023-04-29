@@ -9,6 +9,8 @@
 //  GitHub:      https://github.com/reallukee/vtsed/
 //  Autore:      Luca Pollicino
 //  Descrizione: COMMON
+//               Questo Header Contiene le Implementazioni
+//               di Costanti, Metodi e Strutture Comuni.
 //  Versione:    1.1.0
 //
 //  Leggere README.md per Maggiori Informazioni.
@@ -46,9 +48,13 @@ namespace vtsed
             int t = dec % 16;
 
             if (t > 9)
+            {
                 hex = (char)(65 + t - 10) + hex;
+            }
             else
+            {
                 hex = to_string(t) + hex;
+            }
 
             dec = dec / 16;
         }
@@ -66,9 +72,13 @@ namespace vtsed
             int t = hex[i];
 
             if (t > 64)
+            {
                 t = (unsigned)(t - 55);
+            }
             else
+            {
                 t = (unsigned)(t - 48);
+            }
 
             dec += t * pow(16, i);
         }
@@ -98,13 +108,19 @@ namespace vtsed
         this->b = b;
 
         if (r < 0 || r > 255)
+        {
             this->r = 0;
+        }
 
         if (g < 0 || g > 255)
+        {
             this->g = 0;
+        }
 
         if (b < 0 || b > 255)
+        {
             this->b = 0;
+        }
     }
 
 
@@ -178,13 +194,19 @@ namespace vtsed
         this->b = b;
 
         if (r.size() != 2)
+        {
             this->r = "00";
+        }
 
         if (g.size() != 2)
+        {
             this->g = "00";
+        }
 
         if (b.size() != 2)
+        {
             this->b = "00";
+        }
     }
 
 
